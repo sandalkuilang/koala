@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6252E39-B143-430C-9A04-2DDFD118408F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Koala</RootNamespace>
+    <AssemblyName>Koala</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>koala.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="De.TorstenMandelkow.MetroChart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d5b8d1bbc99c4a2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\De.TorstenMandelkow.MetroChart.dll</HintPath>
+    </Reference>
+    <Reference Include="FirstFloor.ModernUI, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
+    <Reference Include="GrayscaleEffect, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\GrayscaleEffect.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.Resources, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\MahApps.Metro.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="ReactiveUI">
+      <HintPath>libs\ReactiveUI.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.Events, Version=6.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\ReactiveUI.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat">
+      <HintPath>libs\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>libs\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>libs\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>libs\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Texaco.Container, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\Texaco.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Texaco.Database, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\Texaco.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Texaco.Database.Petapoco, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\yudha\AppData\Local\Temporary Projects\DigitPrinting\libs\Texaco.Database.Petapoco.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Core\Printer.cs" />
+    <Compile Include="Core\RegistryFinder.cs" />
+    <Compile Include="Core\Navigation\DevicesMenuNavigation.cs" />
+    <Compile Include="Core\Navigation\HomeNavigation.cs" />
+    <Compile Include="Core\Navigation\MessagesMenuNavigation.cs" />
+    <Compile Include="Core\SafeRaise.cs" />
+    <Compile Include="Core\ThemeManager.cs" />
+    <Compile Include="Styles\ComboWithCheckboxes.xaml.cs">
+      <DependentUpon>ComboWithCheckboxes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\Controls\ModernListBox.cs" />
+    <Compile Include="ViewModels\BaseBindableModel.cs" />
+    <Compile Include="ViewModels\BaseCollectionViewModel.cs" />
+    <Compile Include="ViewModels\BaseGridRow.cs" />
+    <Compile Include="ViewModels\Configuration\BaseConfigurationSection.cs" />
+    <Compile Include="ViewModels\Configuration\Client\ApplicationSettings.cs" />
+    <Compile Include="ViewModels\Configuration\Client\AudioSettings.cs" />
+    <Compile Include="ViewModels\Configuration\Client\ConfigurationCommand.cs" />
+    <Compile Include="ViewModels\Configuration\Client\ContactSettings.cs" />
+    <Compile Include="ViewModels\Configuration\Client\DatabaseSettings.cs" />
+    <Compile Include="ViewModels\Configuration\Client\GeneralSettings.cs" />
+    <Compile Include="ViewModels\Configuration\Client\OpenWithSettings.cs" />
+    <Compile Include="ViewModels\ExtensionsIEnumerable.cs" />
+    <Compile Include="ViewModels\ISynchronize.cs" />
+    <Compile Include="ViewModels\KeyValueOption.cs" />
+    <Compile Include="ViewModels\Master\BaseMasterModel.cs" />
+    <Compile Include="ViewModels\Master\BaseMasterCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Master\FinishingCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Master\MasterCollaborator.cs" />
+    <Compile Include="ViewModels\Master\MasterType.cs" />
+    <Compile Include="ViewModels\Master\MaterialCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Master\MaterialComparer.cs" />
+    <Compile Include="ViewModels\Master\QualityCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Master\QualityType.cs" />
+    <Compile Include="ViewModels\Master\SizeCollectionViewSource.cs" />
+    <Compile Include="ViewModels\MutableObservableCollection.cs" />
+    <Compile Include="ViewModels\IDetailCommand.cs" />
+    <Compile Include="ViewModels\ISelectableGridCommand.cs" />
+    <Compile Include="ViewModels\IPrintCommand.cs" />
+    <Compile Include="ViewModels\ISaveCommand.cs" />
+    <Compile Include="ViewModels\Master\MaterialType.cs" />
+    <Compile Include="ViewModels\Order\CreateOrderDetailCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Order\CreateOrderDetailModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Order\OrderCollaborator.cs" />
+    <Compile Include="ViewModels\Order\BaseOrderCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Order\CreateOrderModel.cs" />
+    <Compile Include="ViewModels\IEditGridCommand.cs" />
+    <Compile Include="ViewModels\Order\OrderSearchEngine.cs" />
+    <Compile Include="ViewModels\Order\FinishedOrderCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Order\PreviewImage.cs" />
+    <Compile Include="ViewModels\Order\PrintOrderCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Order\QueueCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Report\BaseDashboardViewSource.cs" />
+    <Compile Include="ViewModels\Report\DashboardCollaborator.cs" />
+    <Compile Include="ViewModels\Report\InvoiceMonthViewSource.cs" />
+    <Compile Include="ViewModels\Report\DataValue.cs" />
+    <Compile Include="ViewModels\Report\SeriesData.cs" />
+    <Compile Include="ViewModels\Report\TopFiveMaterialViewSource.cs" />
+    <Compile Include="ViewModels\WarningModel.cs" />
+    <Compile Include="ViewModels\PasswordHelper.cs" />
+    <Compile Include="ViewModels\ValidationRules\AllowableCharactersTextBoxBehavior.cs" />
+    <Compile Include="ViewModels\ValidationRules\BooleanConverter.cs" />
+    <Compile Include="ViewModels\ValidationRules\BooleanVisibilityConverter.cs" />
+    <Compile Include="ViewModels\ValidationRules\CheckedConverter.cs" />
+    <Compile Include="ViewModels\ValidationRules\PercentageConverter.cs" />
+    <Compile Include="ViewModels\ValidationRules\MinimunDateConverter.cs" />
+    <Compile Include="ViewModels\ValidationRules\NotEmptyValidationRule.cs" />
+    <Compile Include="ViewModels\ValidationRules\NullableValueConverter.cs" />
+    <Compile Include="ViewModels\ValidationRules\PassThroughConverter.cs" />
+    <Compile Include="Views\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\CreateOrder.xaml.cs">
+      <DependentUpon>CreateOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\CreateOrderDetail.xaml.cs">
+      <DependentUpon>CreateOrderDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\Finishing.xaml.cs">
+      <DependentUpon>Finishing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\Material.xaml.cs">
+      <DependentUpon>Material.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\PrintQuality.xaml.cs">
+      <DependentUpon>PrintQuality.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\Size.xaml.cs">
+      <DependentUpon>Size.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\Warning.xaml.cs">
+      <DependentUpon>Warning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MasterLayout.xaml.cs">
+      <DependentUpon>MasterLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Master\FinishingList.xaml.cs">
+      <DependentUpon>FinishingList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Master\MaterialTypeList.xaml.cs">
+      <DependentUpon>MaterialTypeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Master\PrintQualityList.xaml.cs">
+      <DependentUpon>PrintQualityList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Master\SizeList.xaml.cs">
+      <DependentUpon>SizeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderLayout.xaml.cs">
+      <DependentUpon>OrderLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\PrintOrderList.xaml.cs">
+      <DependentUpon>PrintOrderList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\FinishedOrder.xaml.cs">
+      <DependentUpon>FinishedOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\Queue.xaml.cs">
+      <DependentUpon>Queue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportLayout.xaml.cs">
+      <DependentUpon>ReportLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\PrintInvoice.xaml.cs">
+      <DependentUpon>PrintInvoice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\TopFiveMaterial.xaml.cs">
+      <DependentUpon>TopFiveMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ApplicationStartup.cs" />
+    <Compile Include="Core\Audio.cs" />
+    <Compile Include="Core\AudioEnum.cs" />
+    <Compile Include="Core\BaseDataTemplate.cs" />
+    <Compile Include="Core\BaseSingleton.cs" />
+    <Compile Include="Core\DatabaseNames.cs" />
+    <Compile Include="Core\DefaultAudioService.cs" />
+    <Compile Include="Core\DelegateCommand.cs" />
+    <Compile Include="Core\DelegateCommandBase.cs" />
+    <Compile Include="Core\DialogService.cs" />
+    <Compile Include="Core\IAudioPlayer.cs" />
+    <Compile Include="Core\IAudioService.cs" />
+    <Compile Include="Core\IDialogService.cs" />
+    <Compile Include="Core\IServiceLocator.cs" />
+    <Compile Include="Core\ObjectPool.cs" />
+    <Compile Include="Core\SoundPlayer.cs" />
+    <Compile Include="Core\StartupManager.cs" />
+    <Compile Include="Core\ViewLocator.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Resource Include="Images\completed.png" />
+    <Resource Include="Images\uncompleted.png" />
+    <EmbeddedResource Include="SqlFiles\UpdateOrderDetailStatus.sql">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Page Include="Styles\BackButtonMetroStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\CheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ComboWithCheckboxes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Global.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\MetroListBoxItemStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\MetroListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\PasswordBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\CreateOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\CreateOrderDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\Finishing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\Material.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\PrintQuality.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\Size.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\Warning.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MasterLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Master\FinishingList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Master\MaterialTypeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Master\PrintQualityList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Master\SizeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrderLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Order\PrintOrderList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Order\FinishedOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Order\Queue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\PrintInvoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\TopFiveMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SqlFiles\GetDashbordMaterialYear.sql" />
+    <EmbeddedResource Include="SqlFiles\GetDistinctYear.sql" />
+    <EmbeddedResource Include="SqlFiles\GetDashboardInvoiceMonth.sql" />
+    <EmbeddedResource Include="SqlFiles\GetMaterialName.sql" />
+    <EmbeddedResource Include="SqlFiles\UpdatePrintOrder.sql" />
+    <EmbeddedResource Include="SqlFiles\GetFinishedOrder.sql" />
+    <EmbeddedResource Include="SqlFiles\GetQueue.sql" />
+    <EmbeddedResource Include="SqlFiles\DeleteOrderDetail.sql" />
+    <EmbeddedResource Include="SqlFiles\DeletePrintOrder.sql" />
+    <EmbeddedResource Include="SqlFiles\UpdateOrder.sql" />
+    <EmbeddedResource Include="SqlFiles\UpdateOrderDetail.sql" />
+    <EmbeddedResource Include="SqlFiles\GetOrderDetail.sql" />
+    <EmbeddedResource Include="SqlFiles\GetPrintOrder.sql" />
+    <EmbeddedResource Include="SqlFiles\CreateOrder.sql" />
+    <EmbeddedResource Include="SqlFiles\CreateOrderDetail.sql" />
+    <EmbeddedResource Include="SqlFiles\DeleteFinishing.sql" />
+    <EmbeddedResource Include="SqlFiles\DeleteMaterial.sql" />
+    <EmbeddedResource Include="SqlFiles\DeleteQuality.sql" />
+    <EmbeddedResource Include="SqlFiles\DeleteSize.sql" />
+    <EmbeddedResource Include="SqlFiles\InsertFinishing.sql" />
+    <EmbeddedResource Include="SqlFiles\InsertMaterial.sql" />
+    <EmbeddedResource Include="SqlFiles\InsertQuality.sql" />
+    <EmbeddedResource Include="SqlFiles\InsertSize.sql" />
+    <EmbeddedResource Include="SqlFiles\UpdateFinishing.sql" />
+    <EmbeddedResource Include="SqlFiles\UpdateMaterial.sql" />
+    <EmbeddedResource Include="SqlFiles\UpdateQuality.sql" />
+    <EmbeddedResource Include="SqlFiles\UpdateSize.sql" />
+    <EmbeddedResource Include="SqlFiles\GetFinishing.sql" />
+    <EmbeddedResource Include="SqlFiles\GetMaterial.sql" />
+    <EmbeddedResource Include="SqlFiles\GetQuality.sql" />
+    <EmbeddedResource Include="SqlFiles\GetSize.sql" />
+    <Resource Include="Images\create.png" />
+    <Resource Include="Images\create_new-26.png" />
+    <Resource Include="Images\plus_26.png" />
+    <Resource Include="Images\minus_26.png" />
+    <Resource Include="Images\paid_in_full.png" />
+    <Resource Include="Images\refresh.png" />
+    <Resource Include="Images\koala.png" />
+    <Resource Include="Images\warning.png" />
+    <Resource Include="koala.ico" />
+    <Content Include="libs\De.TorstenMandelkow.MetroChart.dll" />
+    <Content Include="libs\FirstFloor.ModernUI.dll" />
+    <Content Include="libs\GrayscaleEffect.dll" />
+    <Content Include="libs\MahApps.Metro.dll" />
+    <Content Include="libs\MahApps.Metro.Resources.dll" />
+    <Content Include="libs\Microsoft.Threading.Tasks.dll" />
+    <Content Include="libs\Newtonsoft.Json.dll" />
+    <Content Include="libs\ReactiveMarrow.dll" />
+    <Content Include="libs\ReactiveUI.dll" />
+    <Content Include="libs\ReactiveUI.Events.dll" />
+    <Content Include="libs\Splat.dll" />
+    <Content Include="libs\System.Reactive.Core.dll" />
+    <Content Include="libs\System.Reactive.Interfaces.dll" />
+    <Content Include="libs\System.Reactive.Linq.dll" />
+    <Content Include="libs\System.Reactive.PlatformServices.dll" />
+    <Content Include="libs\System.Reactive.Windows.Threading.dll" />
+    <Content Include="libs\System.Windows.Interactivity.dll" />
+    <Content Include="libs\Texaco.Container.dll" />
+    <Content Include="libs\Texaco.Database.dll" />
+    <Content Include="libs\Texaco.Database.Petapoco.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

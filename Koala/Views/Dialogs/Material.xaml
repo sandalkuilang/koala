@@ -1,0 +1,135 @@
+﻿<Controls:MetroWindow x:Class="Koala.Views.Dialogs.Material"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:rules="clr-namespace:Koala.ViewModels.ValidationRules"   
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"  
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        WindowStartupLocation="CenterScreen"  
+        ShowMaxRestoreButton="False"
+        ShowMinButton="False"
+        ResizeMode="NoResize"  
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Title="Material" Height="250" Width="400">
+
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/ButtonStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
+    <Grid RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"
+          VerticalAlignment="Stretch">
+        <Border BorderBrush="LightBlue" BorderThickness="1" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="Auto">
+            <Controls:TransitioningContentControl Width="Auto" x:Name="transitionComposeContact"
+                Transition="Left" Margin="9,-1,-9,0">
+                <Grid Margin="20,20,20,20" > 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  />
+                        <RowDefinition  />
+                        <RowDefinition  />
+                        <RowDefinition  />
+                        <RowDefinition  />  
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="ID"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"  
+                             Width="80"
+                             IsReadOnly="True"
+                             Text="{Binding Path=Id, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Left"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Material"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" AcceptsReturn="True"  
+                             Width="220" 
+                             Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" 
+                             IsReadOnly="{Binding Path=IsClone}"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Left"
+                             Controls:TextBoxHelper.Watermark="Enter description"> 
+                    </TextBox>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Quality"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10"
+                                  Width="120" HorizontalAlignment="Left" 
+                                  ItemsSource="{Binding Quality}"
+                                  DisplayMemberPath="Description"
+                                  SelectedItem="{Binding SelectedQuality, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                                  SelectedValuePath="Id"/>
+                  
+                    <Label Grid.Row="3" Grid.Column="0" Content="Price"/>
+                    <TextBox  
+                            Width="80"   
+                            Text="{Binding Path=Price, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:n0}, NotifyOnValidationError=True}" 
+                            VerticalAlignment="Top"
+                            TextAlignment="Right"
+                            HorizontalAlignment="Left"
+                            Grid.Row="3" Grid.Column="1" >
+                        <i:Interaction.Behaviors>
+                            <rules:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9]+$" MaxLength="15" />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+
+                    <Label Grid.Row="4" Grid.Column="0" Content="Hi. Res." Visibility="Collapsed"/>
+                    <TextBox   Visibility="Collapsed"
+                            Width="100"  
+                            Height="25"
+                            VerticalAlignment="Top"
+                            Text="{Binding Path=HiRes, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:n0}}" 
+                            HorizontalAlignment="Left"
+                            TextAlignment="Right"
+                            Grid.Row="4" Grid.Column="1" >
+                        <i:Interaction.Behaviors>
+                            <rules:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9]+$" MaxLength="15" />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+
+                    <Label Grid.Row="5" Grid.Column="0" Content="Laminating" Visibility="Collapsed"/>
+                    <TextBox   Visibility="Collapsed"
+                            Width="100"  
+                            Height="25"
+                            Text="{Binding Path=Laminating, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:n0}}" 
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            TextAlignment="Right"
+                            Grid.Row="5" Grid.Column="1" >
+                        <i:Interaction.Behaviors>
+                            <rules:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9]+$" MaxLength="15" />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+
+                    <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
+                                Orientation="Horizontal" >
+                        
+                        <Button Content="Add"  
+                                Command="{Binding AddCommand}"
+                                CommandParameter="{Binding}"
+                                Visibility="{Binding AddVisibility}"
+                                Width="100" Height="40" Margin="0 0 15 0" Click="Button_Click" />
+                        
+                        <Button Content="Update"
+                                Command="{Binding UpdateCommand}"
+                                CommandParameter="{Binding}"
+                                Visibility="{Binding UpdateVisibility}"
+                                Width="100" Height="40" Margin="0 0 15 0" Click="Button_Click_1">
+                            
+                        </Button>
+                        
+                        <Button x:Name="btnCancel" Content="Close" Width="70" 
+                                Height="40" Click="btnCancel_Click" /> 
+                    </StackPanel>
+
+                </Grid>
+            </Controls:TransitioningContentControl>
+        </Border>
+    </Grid>
+
+</Controls:MetroWindow>

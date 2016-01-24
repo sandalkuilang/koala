@@ -1,0 +1,34 @@
+﻿INSERT INTO [OrderDetail]
+           ([OrderId]
+           ,[SeqNbr]
+           ,[MaterialTypeId]
+           ,[QualityId]
+           ,[FinishingId]
+           ,[SizeId]
+           ,[Title]
+           ,[Width]
+           ,[Height]
+           ,[Qty]
+           ,[Filename]
+           ,[Image]
+           ,[Queue]
+           ,[Deadline]
+           ,[Description]
+           ,[Total])
+     VALUES
+           (@OrderId
+           ,@SeqNbr
+           ,@MaterialTypeId
+           ,@QualityId
+           ,@FinishingId
+           ,NULL
+           ,@Title
+           ,@Width
+           ,@Height
+           ,@Qty
+		   ,@Filename
+           ,ISNULL(CONVERT(varbinary(max), @Image), 0x)
+           ,@Queue
+           ,@Deadline
+           ,@Description
+           ,@Total)

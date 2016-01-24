@@ -1,0 +1,20 @@
+﻿INSERT INTO [Order]
+           ([OrderId]
+           ,[CustomerName]
+           ,[CustomerPhone]
+           ,[Status]
+           ,[CreatedDate]
+           ,[Total]
+           ,[Installment]
+           ,[Remaining]
+           ,[Disc])
+     VALUES
+           (@OrderId
+           ,@CustomerName
+           ,@CustomerPhone
+           ,@Status
+           ,GetDate()
+           ,@Total
+           ,@Installment
+           ,@Remaining
+           ,@Disc) 

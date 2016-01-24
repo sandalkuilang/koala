@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="Koala.Views.Order.Queue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converter="clr-namespace:Koala.ViewModels.ValidationRules"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="1024">
+    <Grid>
+        <DataGrid x:Name="grid" 
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False" 
+                  ItemsSource="{Binding Source, UpdateSourceTrigger=PropertyChanged}"
+                  GridLinesVisibility="Horizontal">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding Path=EditCommand}" CommandParameter="{Binding ElementName=grid, Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Open"
+                              IsEnabled="{Binding EnableContextMenu, UpdateSourceTrigger=PropertyChanged}"
+                              Command="{Binding Path=EditCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}"/>
+                    <Separator />
+                    <MenuItem Header="Set as Finished Order"
+                              IsEnabled="{Binding EnableContextMenu, UpdateSourceTrigger=PropertyChanged}"
+                              Command="{Binding Path=UpdateQueueOrderCommand}"
+                              CommandParameter="F"/>
+                    <Separator />
+                    <MenuItem Header="Delete" 
+                              IsEnabled="{Binding EnableContextMenu, UpdateSourceTrigger=PropertyChanged}"
+                              Command="{Binding Path=DeleteCommand}"
+                              CommandParameter="D"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn CanUserResize="False">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=DataContext.CheckedHeader, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"  >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click" >
+                                        <i:InvokeCommandAction Command="{Binding Path=DataContext.CheckedHeaderCommand,
+                                            RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding Path=DataContext.CheckedHeader, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" Margin="9 0 0 0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click" >
+                                        <i:InvokeCommandAction Command="{Binding Path=DataContext.CheckedRowCommand,
+                                            RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding ElementName=grid, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Customer" IsReadOnly="True" Width="200" Binding="{Binding CustomerName}" />
+                <DataGridTextColumn Header="Phone number" IsReadOnly="True" Width="120" Binding="{Binding CustomerPhone}" />
+                <DataGridTextColumn Header="Disc." IsReadOnly="True" Width="50" Binding="{Binding Discount, StringFormat={}{0}%}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Total Payment" IsReadOnly="True" Width="113" Binding="{Binding TotalPayment, StringFormat={}{0:n0}}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextAlignment" Value="Right" />
+                            <Setter Property="Margin" Value="0,0,10,0" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Installment" IsReadOnly="True" Width="110" Binding="{Binding Installment, StringFormat={}{0:n0}}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextAlignment" Value="Right" />
+                            <Setter Property="Margin" Value="0,0,10,0" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Remaining" TextBlock.Foreground="Red" TextBlock.FontWeight="ExtraBold" IsReadOnly="True" Width="100" Binding="{Binding Remaining, StringFormat={}{0:n0}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextAlignment" Value="Right" />
+                            <Setter Property="Margin" Value="0,0,10,0" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn> 
+                <DataGridTextColumn Header="Created date" IsReadOnly="True" Width="105" Binding="{Binding CreatedDate, StringFormat={}\{0:dd-MMM-yyyy HH:mm\}}" />
+                <DataGridTextColumn Header="Payment Status" IsReadOnly="True" Width="125" Binding="{Binding PaymentStatus}" TextBlock.FontWeight="Bold" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
