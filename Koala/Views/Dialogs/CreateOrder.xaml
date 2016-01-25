@@ -141,7 +141,7 @@
                                 Width="120"  
                                 Height="25" 
                                 Padding="3"
-                                Text="{Binding CreatedDate, StringFormat={}{0:dd-MMM-yyyy HH:MM}, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding CreatedDate, StringFormat={}{0:dd-MMM-yyyy HH:mm}, UpdateSourceTrigger=PropertyChanged}"
                                 IsReadOnly="True"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Left"
