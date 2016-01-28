@@ -69,6 +69,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cryptography, Version=1.0.5871.40011, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="De.TorstenMandelkow.MetroChart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d5b8d1bbc99c4a2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libs\De.TorstenMandelkow.MetroChart.dll</HintPath>
@@ -165,6 +169,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Credential\AuthorizationFeatureQualifer.cs" />
+    <Compile Include="Core\Credential\AuthorizationUIPolicy.cs" />
+    <Compile Include="Core\Credential\DatabaseUserProvider.cs" />
+    <Compile Include="Core\Credential\IAuthorization.cs" />
+    <Compile Include="Core\Credential\IUserProvider.cs" />
+    <Compile Include="Core\Credential\User.cs" />
     <Compile Include="Core\Printer.cs" />
     <Compile Include="Core\RegistryFinder.cs" />
     <Compile Include="Core\Navigation\DevicesMenuNavigation.cs" />
@@ -541,6 +551,7 @@
     <Resource Include="Images\koala.png" />
     <Resource Include="Images\warning.png" />
     <Resource Include="koala.ico" />
+    <Content Include="libs\Cryptography.dll" />
     <Content Include="libs\De.TorstenMandelkow.MetroChart.dll" />
     <Content Include="libs\FirstFloor.ModernUI.dll" />
     <Content Include="libs\GrayscaleEffect.dll" />
