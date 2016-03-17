@@ -581,6 +581,9 @@
                                             <DataTrigger Binding ="{Binding Path=Status}" Value="Q">
                                                 <Setter Property="Visibility" Value="Collapsed"/>
                                             </DataTrigger>
+                                            <DataTrigger Binding ="{Binding Path=Status}" Value="I">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
                                             <DataTrigger Binding ="{Binding Path=Status}" Value="F">
                                                 <Setter Property="Visibility" Value="Collapsed"/>
                                             </DataTrigger>
