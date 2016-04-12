@@ -35,7 +35,11 @@ namespace Koala.Core.Credential
 
         public User GetUser(string username, string password)
         {
-            throw new NotImplementedException();
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            //User user = db.Query<User>("GetUserByName", new 
+            //{
+            //    Username = username
+            //});
         }
 
         public List<AuthorizationFeatureQualifier> GetAuthorization(User user)

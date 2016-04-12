@@ -22,7 +22,8 @@ namespace Koala.Views
     {
         public ReportLayout()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
+
     }
 }

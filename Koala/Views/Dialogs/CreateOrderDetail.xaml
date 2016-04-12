@@ -10,7 +10,7 @@
         ShowMinButton="False"
         ResizeMode="NoResize"  
         GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="detail" Height="640" Width="500">
+        Title="detail" Height="500" Width="500">
 
     <Control.Resources>
         <ResourceDictionary>
@@ -170,8 +170,8 @@
                             Controls:TextBoxHelper.Watermark="Enter your requirement">
                         </TextBox>
 
-                        <Label Grid.Row="9" Grid.Column="0" Content="Upload file"/>
-                        <Grid Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" Height="150">
+                        <Label Grid.Row="9" Grid.Column="0" Content="Upload file" Visibility="Collapsed"/>
+                        <Grid Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" Height="150" Visibility="Collapsed">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                             </Grid.RowDefinitions>
@@ -253,15 +253,17 @@
                                 Command="{Binding AddDetailCommand}"
                                 CommandParameter="{Binding}"
                                 Visibility="{Binding AddVisibility}"
+                                Background="BlueViolet"
                                 Width="150" Margin="0 0 15 0"/>
                             
                             <Button Content="Update"  
                                 Command="{Binding UpdateDetailCommand}"
                                 CommandParameter="{Binding}"
+                                Background="BlueViolet"
                                 Visibility="{Binding UpdateVisibility}"
                                 Width="150" Margin="0 0 15 0"/>
-                            
-                            <Button x:Name="btnCancel"  Content="Close" Width="110" Click="btnCancel_Click"/>
+
+                            <Button x:Name="btnCancel"  Content="Close" Width="110" Click="btnCancel_Click" Background="BlueViolet" />
                         </StackPanel>
                     </Grid>
                 </Controls:TransitioningContentControl>

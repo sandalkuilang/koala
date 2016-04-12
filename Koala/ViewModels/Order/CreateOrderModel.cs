@@ -393,18 +393,19 @@ namespace Koala.ViewModels.Order
             { 
                 if (discount > 0)
                 {
-                    Remaining = remaining - installment; 
+                    Remaining = (remaining - installment); 
                 }
                 else
                 {
-                    Remaining = paymentBeforeDiscount - installment; 
+                    Remaining = (paymentBeforeDiscount - installment) ; 
                 }
+                Remaining *= -1;
             }
                 
 
             if (installment > totalPayment)
             {
-                Change = (installment - TotalPayment) * -1;
+                Change = (installment - TotalPayment);
                 Remaining = 0;
             }
             else if (installment > 0)

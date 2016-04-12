@@ -9,6 +9,8 @@
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:Views="clr-namespace:Koala.Views" 
              xmlns:ctrls="clr-namespace:Koala.ViewModels" 
+             xmlns:a="clr-namespace:Koala.Core.Credential"
+             xmlns:op="clr-namespace:Koala.ViewModels.ValidationRules"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="250" >
@@ -22,14 +24,14 @@
     </UserControl.Resources>
     
     <Grid> 
-        <Controls:MetroAnimatedSingleRowTabControl Margin="0,0,0,0">
-            <TabItem Header="order" >
+        <Controls:MetroAnimatedSingleRowTabControl Margin="0,0,0,0" x:Name="tabMenu">
+            <TabItem Header="order" x:Name="orderMenuItem">
                 <Views:OrderLayout/>
             </TabItem>
-            <TabItem Header="report">
+            <TabItem Header="report" x:Name="reportMenuItem" Visibility="{op:AuthorizationToVisibility {x:Static a:AccessLevel.CAN_VIEW_REPORT}}">
                 <Views:ReportLayout/>
             </TabItem>
-            <TabItem Header="master">
+            <TabItem Header="master" x:Name="masterMenuItem">
                 <Views:MasterLayout/>
             </TabItem>
         </Controls:MetroAnimatedSingleRowTabControl>

@@ -167,7 +167,7 @@
                                     diag:PresentationTraceSources.TraceLevel="High">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Width="26" Height="26" Margin="0,0,10,0" VerticalAlignment="Center" 
-                                        HorizontalAlignment="Center"  Source="../../Images/plus_26.png"/>
+                                        HorizontalAlignment="Center"  Source="../../Images/plus_26.png" ToolTip="add item"/>
                                     </StackPanel>
 
                                     <i:Interaction.Triggers>
@@ -182,7 +182,7 @@
                                     diag:PresentationTraceSources.TraceLevel="High">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Width="26" Height="26" Margin="0,0,10,0" VerticalAlignment="Center" 
-                                           HorizontalAlignment="Center"  Source="../../Images/minus_26.png"/>
+                                           HorizontalAlignment="Center"  Source="../../Images/minus_26.png" ToolTip="delete"/>
                                     </StackPanel>
                                     
                                     <i:Interaction.Triggers>
@@ -210,7 +210,7 @@
                                     diag:PresentationTraceSources.TraceLevel="High">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Width="30" Height="30" Margin="0,0,10,0" VerticalAlignment="Center" 
-                                        HorizontalAlignment="Center"  Source="../../Images/completed.png"/>
+                                        HorizontalAlignment="Center"  Source="../../Images/completed.png" ToolTip="set as complete"/>
                                     </StackPanel>
 
                                     <i:Interaction.Triggers>
@@ -225,7 +225,7 @@
                                     diag:PresentationTraceSources.TraceLevel="High">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Width="30" Height="30" Margin="0,0,10,0" VerticalAlignment="Center" 
-                                           HorizontalAlignment="Center"  Source="../../Images/uncompleted.png"/>
+                                           HorizontalAlignment="Center"  Source="../../Images/uncompleted.png" ToolTip="set as uncomplete"/>
                                     </StackPanel>
 
                                     <i:Interaction.Triggers>

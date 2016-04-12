@@ -223,6 +223,7 @@
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="240"/>
@@ -271,6 +272,16 @@
                                     <TextBlock TextBlock.FontWeight="SemiBold" Width="85" Text="{Binding Discount, StringFormat={}{0:n0}}" TextAlignment="Right" />
                                     <TextBlock TextBlock.FontWeight="SemiBold" Text="%" TextAlignment="Right" />
                                 </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="0" Grid.Row="4">
+                                <TextBlock Text="Remaining" TextAlignment="Right" />
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="4">
+                                <TextBlock Text=":" TextAlignment="Right" />
+                            </Grid>
+                            <Grid Grid.Column="2" Grid.Row="4">
+                                <TextBlock TextBlock.FontWeight="SemiBold" Text="{Binding Remaining, StringFormat={}{0:n0}}" TextAlignment="Right" />
                             </Grid>
                         </Grid>
                     </Grid>

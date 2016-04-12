@@ -19,6 +19,16 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml " />
                 <ResourceDictionary Source="../Styles/ButtonStyle.xaml" />
                 <ResourceDictionary Source="../Styles/MetroListBoxStyle.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Mauve.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+
+                <ResourceDictionary Source="../Styles/Colors.xaml" />
+                <ResourceDictionary Source="../Styles/Global.xaml" />
+
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Light.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -39,7 +49,7 @@
                 Background="Transparent" BorderThickness="0,0,0,0" 
                 BorderBrush="{StaticResource BorderContent}">
             <Grid>
-                <Controls:MetroAnimatedSingleRowTabControl Grid.Column="0">
+                <Controls:MetroAnimatedSingleRowTabControl Grid.Column="0" x:Name="tabReport">
                     <TabItem>
                         <TabItem.HeaderTemplate>
                             <DataTemplate>

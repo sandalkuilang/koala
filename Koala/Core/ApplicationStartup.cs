@@ -48,12 +48,12 @@ namespace Koala.Core
         private void InitializeModels()
         {
             OrderCollaborator order = new OrderCollaborator();
-            MasterCollaborator master = new MasterCollaborator();
-            DashboardCollaborator report = new DashboardCollaborator();
+            //MasterCollaborator master = new MasterCollaborator();
+            //DashboardCollaborator report = new DashboardCollaborator();
 
             ObjectPool.Instance.Register<OrderCollaborator>().ImplementedBy(order);
-            ObjectPool.Instance.Register<MasterCollaborator>().ImplementedBy(master);
-            ObjectPool.Instance.Register<DashboardCollaborator>().ImplementedBy(report);
+            //ObjectPool.Instance.Register<MasterCollaborator>().ImplementedBy(master);
+            //ObjectPool.Instance.Register<DashboardCollaborator>().ImplementedBy(report);
         }
 
         private void InitializeAudio()

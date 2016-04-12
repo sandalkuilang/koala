@@ -169,12 +169,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Core\Credential\AuthorizationFeatureQualifer.cs" />
-    <Compile Include="Core\Credential\AuthorizationUIPolicy.cs" />
-    <Compile Include="Core\Credential\DatabaseUserProvider.cs" />
-    <Compile Include="Core\Credential\IAuthorization.cs" />
-    <Compile Include="Core\Credential\IUserProvider.cs" />
-    <Compile Include="Core\Credential\User.cs" />
+    <Compile Include="Core\Credential\AccessLevel.cs" />
+    <Compile Include="Core\Credential\AuthorizationDelegateCommand.cs" />
     <Compile Include="Core\Printer.cs" />
     <Compile Include="Core\RegistryFinder.cs" />
     <Compile Include="Core\Navigation\DevicesMenuNavigation.cs" />
@@ -235,6 +231,11 @@
     <Compile Include="ViewModels\Report\DataValue.cs" />
     <Compile Include="ViewModels\Report\SeriesData.cs" />
     <Compile Include="ViewModels\Report\TopFiveMaterialViewSource.cs" />
+    <Compile Include="ViewModels\User\UserModel.cs" />
+    <Compile Include="ViewModels\ValidationRules\AuthorizationDelegateCommand.cs" />
+    <Compile Include="ViewModels\ValidationRules\AuthorizationProvider.cs" />
+    <Compile Include="ViewModels\ValidationRules\AuthorizationToVisibilityExtension.cs" />
+    <Compile Include="ViewModels\ValidationRules\DefaultAuthorizationProvider.cs" />
     <Compile Include="ViewModels\WarningModel.cs" />
     <Compile Include="ViewModels\PasswordHelper.cs" />
     <Compile Include="ViewModels\ValidationRules\AllowableCharactersTextBoxBehavior.cs" />
@@ -272,6 +273,9 @@
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogOn.xaml.cs">
+      <DependentUpon>LogOn.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MasterLayout.xaml.cs">
       <DependentUpon>MasterLayout.xaml</DependentUpon>
@@ -328,7 +332,6 @@
     <Compile Include="Core\AudioEnum.cs" />
     <Compile Include="Core\BaseDataTemplate.cs" />
     <Compile Include="Core\BaseSingleton.cs" />
-    <Compile Include="Core\DatabaseNames.cs" />
     <Compile Include="Core\DefaultAudioService.cs" />
     <Compile Include="Core\DelegateCommand.cs" />
     <Compile Include="Core\DelegateCommandBase.cs" />
@@ -427,6 +430,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\LogOn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MasterLayout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -511,6 +518,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SqlFiles\GetUser.sql" />
     <EmbeddedResource Include="SqlFiles\GetDashbordMaterialYear.sql" />
     <EmbeddedResource Include="SqlFiles\GetDistinctYear.sql" />
     <EmbeddedResource Include="SqlFiles\GetDashboardInvoiceMonth.sql" />
