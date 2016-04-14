@@ -56,6 +56,9 @@ namespace Koala.ViewModels.Order
                     });
                     order.IsSelected = false;
 
+                    /// update list
+                    order.Status = "Q";
+                    
                     orderCollaborator.PrintOrder.source.Remove(order);
                     orderCollaborator.Queue.Source.Add(order);
                 }
@@ -93,7 +96,7 @@ namespace Koala.ViewModels.Order
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
             OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
-            foreach (CreateOrderModel order in Source)
+            foreach (CreateOrderModel order in Source.ToList())
             {
                 if (order.IsSelected)
                 {

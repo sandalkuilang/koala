@@ -14,10 +14,11 @@ using Texaco.Database;
 using ReactiveUI;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.ComponentModel;
 
 namespace Koala.ViewModels.Order
 {
-    public class CreateOrderModel : BaseGridRow, IInvoiceCommand, ISaveCommand, IOrderDetailCommand
+    public class CreateOrderModel : BaseGridRow, IInvoiceCommand, ISaveCommand, IOrderDetailCommand, IDataErrorInfo
     {
         public delegate void OrderEventHandler(object sender, EventArgs e);
 
@@ -330,7 +331,7 @@ namespace Koala.ViewModels.Order
                 Installment = this.installment,
                 Remaining = this.remaining,
                 Disc = this.discount,
-                OrderId = this.poNumber
+                OrderId = this.poNumber,
             });
 
             db.Close();
@@ -528,11 +529,11 @@ namespace Koala.ViewModels.Order
                     scripts.Add("OrderDetail", "CreateOrderDetail");
 
                     CreateOrderModel model = (CreateOrderModel)obj;
-                    db.Execute("DeletePrintOrder", new 
-                    {
-                        OrderId = model.PoNumber,
-                        Status = "I"
-                    });
+                    //db.Execute("DeletePrintOrder", new 
+                    //{
+                    //    OrderId = model.PoNumber,
+                    //    Status = "I"
+                    //});
 
                     IDbTransaction transaction = ((BaseDbCommand)db).BeginTransaction();
                     try
@@ -592,8 +593,26 @@ namespace Koala.ViewModels.Order
                 });
 
             }
-        }  
-
+        }
+         
+        public string this[string columnName]
+        {
+            get
+            {
+                String errorMessage = String.Empty;
+                string messageFormat = "{0} cannot be empty";
+                switch (columnName)
+                {
+                    case "CustomerName":
+                        if (this.CustomerName == null)
+                        {
+                            errorMessage = String.Format(messageFormat, "Name");
+                        }
+                        break; 
+                }
+                return errorMessage;
+            }
+        }
     }
 
 }

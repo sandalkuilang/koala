@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Koala.ViewModels;
+using System.Diagnostics;
 
 namespace Koala.Views
 {
@@ -43,5 +44,10 @@ namespace Koala.Views
             selector.Transition = TransitionType.Left;
         }
 
+        private void ButtonRestart_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
     }
 }

@@ -81,7 +81,7 @@
                                 Padding="3" 
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Left"
-                                Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                                 Grid.Row="0" Grid.Column="1" >
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">

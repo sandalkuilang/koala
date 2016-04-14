@@ -17,7 +17,7 @@
              VerticalAlignment="Stretch"
              Margin="0,0,0,0" 
              mc:Ignorable="d"
-             d:DesignHeight="700"
+             d:DesignHeight="900"
              d:DesignWidth="800" >
 
     <UserControl.Resources>
@@ -86,7 +86,7 @@
                     <ColumnDefinition Width="350"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid Grid.Row="0" Grid.Column="2" Visibility="Collapsed">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
@@ -180,7 +180,7 @@
                                 <TextBox Margin="0,0,0,10" HorizontalAlignment="Left" 
                                          Width="450" Height="140" AcceptsReturn="True" 
                                          VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" FontSize="16" Tag="Key"
-                                         Text="{Binding Path=Encryption.Key, UpdateSourceTrigger=PropertyChanged}"> 
+                                         Text="{Binding Path=Encryption.Key, UpdateSourceTrigger=PropertyChanged}">
                                     <interactivity:Interaction.Behaviors>
                                         <rules:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9\, ]+$" MaxLength="700" />
                                     </interactivity:Interaction.Behaviors>
@@ -217,21 +217,21 @@
                                          Width="220" 
                                          FontSize="16" 
                                          Text="{Binding Contact.Company}"
-                                         Tag="Company name" >  
+                                         Tag="Company name" >
                                 </TextBox>
                                 <TextBox Margin="0,0,0,10" 
                                          HorizontalAlignment="Left" 
                                          Width="450" 
                                          FontSize="16" 
                                          Text="{Binding Contact.Address}"
-                                         Tag="Address"> 
+                                         Tag="Address">
                                 </TextBox>
                                 <TextBox Margin="0,0,0,10" 
                                          HorizontalAlignment="Left" 
                                          Width="180" 
                                          FontSize="16" 
                                          Text="{Binding Contact.Phone}"
-                                         Tag="Phone" > 
+                                         Tag="Phone" >
                                     <interactivity:Interaction.Behaviors>
                                         <rules:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9-+]+$" MaxLength="20" />
                                     </interactivity:Interaction.Behaviors>
@@ -241,10 +241,10 @@
                                          Width="180" 
                                          FontSize="16" 
                                          Text="{Binding Contact.Email}"
-                                         Tag="Email"> 
+                                         Tag="Email">
                                 </TextBox>
                             </StackPanel>
-                        </Grid>  
+                        </Grid>
                     </StackPanel>
                 </Grid>
 
@@ -302,6 +302,13 @@
                         Content="Save" 
                         HorizontalAlignment="Left"
                         Command="{Binding Path=Commands.SaveCommand}"/>
+
+                    <Button 
+                        Content="Restart" 
+                        HorizontalAlignment="Left"
+                        Background="Red"
+                        Margin="150,0,0,0"
+                        Click="ButtonRestart_Click" VerticalAlignment="Top"/>
                 </Grid>
             </Grid>
         </ScrollViewer>

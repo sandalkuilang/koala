@@ -34,7 +34,7 @@
                               Command="{Binding Path=PrintCommand}"
                               CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}"/>
                     <Separator />
-                    <MenuItem Header="Set into a queue" 
+                    <MenuItem Header="Set to production" 
                               IsEnabled="{Binding EnableContextMenu}"
                               Command="{Binding Path=UpdateQueueOrderCommand}"
                               CommandParameter="Q"/>

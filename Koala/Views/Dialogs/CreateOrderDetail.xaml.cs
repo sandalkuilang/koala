@@ -33,5 +33,10 @@ namespace Koala.Views.Dialogs
         {
             DialogResult = true;
         }
+
+        private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 }

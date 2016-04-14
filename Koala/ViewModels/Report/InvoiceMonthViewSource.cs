@@ -19,8 +19,8 @@ namespace Koala.ViewModels.Report
     public class InvoiceMonthViewSource : BaseDashboardViewSource
     {
         
-        private MutableObservableCollection<SeriesData<DataValue>> source;
-        public MutableObservableCollection<SeriesData<DataValue>> Source
+        private MutableObservableCollection<SeriesData<InvoiceDataValue>> source;
+        public MutableObservableCollection<SeriesData<InvoiceDataValue>> Source
         {
             get
             {
@@ -173,21 +173,21 @@ namespace Koala.ViewModels.Report
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
-            List<DataValue> result = db.Query<DataValue>("GetDashboardInvoiceMonth", new { Year = this.Year });
+            List<InvoiceDataValue> result = db.Query<InvoiceDataValue>("GetDashboardInvoiceMonth", new { Year = this.Year });
 
-            MutableObservableCollection<SeriesData<DataValue>> model = new MutableObservableCollection<SeriesData<DataValue>>();
-            DataValue item;
+            MutableObservableCollection<SeriesData<InvoiceDataValue>> model = new MutableObservableCollection<SeriesData<InvoiceDataValue>>();
+            InvoiceDataValue item;
             for (int i = 1; i <= 12; i++)
             {
                 item = result.Where(x => x.Month == i.ToString()).SingleOrDefault();
-                model.Add(new SeriesData<DataValue>() 
+                model.Add(new SeriesData<InvoiceDataValue>() 
                 {
                     SeriesDisplayName  = DateTimeFormatInfo.CurrentInfo.GetMonthName(i)
                 });
                 
                 if (item != null)
                 {
-                    model[i - 1].Items.Add(new DataValue()
+                    model[i - 1].Items.Add(new InvoiceDataValue()
                     {
                         Month = DateTimeFormatInfo.CurrentInfo.GetMonthName(i),
                         Number = item.Number
@@ -195,7 +195,7 @@ namespace Koala.ViewModels.Report
                 }
                 else
                 {
-                    model[i - 1].Items.Add(new DataValue()
+                    model[i - 1].Items.Add(new InvoiceDataValue()
                     {
                         Month = DateTimeFormatInfo.CurrentInfo.GetMonthName(i),
                         Number = 0

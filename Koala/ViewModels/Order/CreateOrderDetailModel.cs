@@ -20,10 +20,11 @@ using ReactiveUI;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace Koala.ViewModels.Order
 {
-    public class CreateOrderDetailModel : BaseGridRow, ICloneable
+    public class CreateOrderDetailModel : BaseGridRow, ICloneable, IDataErrorInfo
     {
        
         public delegate void OrderDetailEventHandler(object sender, CreateOrderDetailModel e);
@@ -56,6 +57,20 @@ namespace Koala.ViewModels.Order
                 NotifyIfChanged(ref seqNbr, value);
             }
         }
+
+        private DateTime createdDate;
+        public DateTime CreatedDate
+        {
+            get
+            {
+                return createdDate;
+            }
+            set
+            {
+                NotifyIfChanged(ref createdDate, value);
+            }
+        }
+
 
         private string finishingId;
         public string FinishingId
@@ -612,6 +627,32 @@ namespace Koala.ViewModels.Order
         {
             if (UpdatingOrderDetail != null)
                 UpdatingOrderDetail(this, this);
+
+            Task.Run(() => {
+                IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+
+                CreateOrderDetailModel detail = (CreateOrderDetailModel)arg;
+                db.Execute("UpdateOrderDetail", new
+                {
+                    MaterialTypeId = detail.SelectedMaterial.Id,
+                    QualityId = detail.SelectedQuality.Id,
+                    FinishingId = detail.SelectedFinishing.Id,
+                    Title = detail.title,
+                    Width = detail.width,
+                    Height = detail.height,
+                    Qty = detail.qty,
+                    Queue = detail.Queue,
+                    Deadline = detail.deadline,
+                    Description = detail.description,
+                    Total = detail.Price,
+                    OrderId = detail.orderId,
+                    SeqNbr = detail.SeqNbr
+                });
+
+                db.Close();
+            }); 
+            
         }
          
         private void OnViewStream(string arg)
@@ -739,11 +780,16 @@ namespace Koala.ViewModels.Order
         private async Task<CreateOrderDetailModel> BeginCloneAsync()
         {
             CreateOrderDetailModel detail = new CreateOrderDetailModel();
+             
             await Task.Run(() =>
             {
+                if ((this.SelectedFinishing == null) || (this.SelectedMaterial == null) || (this.selectedQuality == null))
+                    return;
+
                 detail.title = this.title;
                
                 detail.SelectedFinishing = new KeyValueOption();
+
                 detail.SelectedFinishing.Id = this.SelectedFinishing.Id;
                 detail.SelectedFinishing.Description = this.SelectedFinishing.Description;
 
@@ -760,11 +806,7 @@ namespace Koala.ViewModels.Order
                 detail.QualityId = this.QualityId;
                 detail.MaterialId = this.MaterialId;
                 detail.FinishingId = this.FinishingId;
-                //detail.SizeId = this.SizeId;
-
-                //detail.SelectedSize = new KeyValueOption();
-                //detail.SelectedSize.Id = this.selectedSize.Id;
-                //detail.SelectedSize.Description = this.selectedSize.Description;
+                //detail.SizeId = this.SizeId; 
 
                 detail.Width = this.width;
                 detail.Height = this.height;
@@ -780,6 +822,37 @@ namespace Koala.ViewModels.Order
             });
 
             return detail;
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                String errorMessage = String.Empty;
+                string messageFormat = "{0} cannot be empty";
+                switch (columnName)
+                {
+                    case "SelectedMaterial":
+                        if (this.SelectedMaterial == null)
+                        {
+                            errorMessage = String.Format(messageFormat, "Material");
+                        }
+                        break;
+                    case "SelectedQuality":
+                        if (this.SelectedMaterial == null)
+                        {
+                            errorMessage = String.Format(messageFormat, "Quality");
+                        }
+                        break;
+                    case "SelectedFinishing":
+                        if (this.SelectedFinishing == null)
+                        {
+                            errorMessage = String.Format(messageFormat, "Finishing");
+                        }
+                        break;
+                }
+                return errorMessage;
+            }
         }
     }
 }

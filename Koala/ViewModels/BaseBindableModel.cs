@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Koala.ViewModels
 {
-    public abstract class BaseBindableModel : INotifyPropertyChanged, IDataErrorInfo
+    public abstract class BaseBindableModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual bool NotifyIfChanged<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
@@ -70,10 +70,6 @@ namespace Koala.ViewModels
         {
             get { return null; }
         }
-
-        public virtual string this[string columnName]
-        {
-            get { return string.Empty; }
-        }
+ 
     }
 }

@@ -132,6 +132,12 @@ namespace Koala.ViewModels.Order
 
             Range.Add(new KeyValueOption()
             {
+                Id = "24",
+                Description = "3 years ago"
+            });
+
+            Range.Add(new KeyValueOption()
+            {
                 Id = UInt16.MaxValue.ToString(),
                 Description = "All transaction"
             });
@@ -286,14 +292,14 @@ namespace Koala.ViewModels.Order
         private void GetDetails(MutableObservableCollection<CreateOrderModel> source, IDataCommand db)
         {
             List<CreateOrderDetailModel> details;
-            foreach (CreateOrderModel order in source)
+            foreach (CreateOrderModel order in source.ToList())
             {
                 order.NewOrder = false;
                 details = db.Query<CreateOrderDetailModel>("GetOrderDetail", new { OrderId = order.PoNumber });
                 if (details.Any())
                 {
                     order.Details.Source = details.Convert<CreateOrderDetailModel>();
-                    foreach (CreateOrderDetailModel detail in order.Details.Source)
+                    foreach (CreateOrderDetailModel detail in order.Details.Source.ToList())
                     {
                         detail.Finishing = db.Query<KeyValueOption>("GetFinishing");
                         detail.Size = db.Query<KeyValueOption>("GetSize");

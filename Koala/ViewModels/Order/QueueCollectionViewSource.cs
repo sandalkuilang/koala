@@ -110,7 +110,7 @@ namespace Koala.ViewModels.Order
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
             OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
 
-            foreach (CreateOrderModel order in Source)
+            foreach (CreateOrderModel order in Source.ToList())
             {
                 if (order.IsSelected)
                 {

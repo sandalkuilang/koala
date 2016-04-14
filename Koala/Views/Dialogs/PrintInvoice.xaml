@@ -12,7 +12,7 @@
         ShowMaxRestoreButton="False"
         ShowMinButton="False"
         ResizeMode="NoResize" 
-        Title="Invoice" Height="500" Width="1100">
+        Title="Invoice" Height="530" Width="1100">
 
     <Control.Resources>
         <ResourceDictionary> 
@@ -238,7 +238,7 @@
                                 <TextBlock Text=":" TextAlignment="Right" />
                             </Grid>
                             <Grid Grid.Column="2">
-                                <TextBlock TextBlock.FontWeight="SemiBold" Text="{Binding Remaining, StringFormat={}{0:n0}}" TextAlignment="Right" />
+                                <TextBlock TextBlock.FontWeight="SemiBold" Text="{Binding TotalPayment, StringFormat={}{0:n0}}" TextAlignment="Right" />
                             </Grid>
 
                             <Grid Grid.Column="0" Grid.Row="1">

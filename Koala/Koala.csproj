@@ -228,7 +228,7 @@
     <Compile Include="ViewModels\Report\BaseDashboardViewSource.cs" />
     <Compile Include="ViewModels\Report\DashboardCollaborator.cs" />
     <Compile Include="ViewModels\Report\InvoiceMonthViewSource.cs" />
-    <Compile Include="ViewModels\Report\DataValue.cs" />
+    <Compile Include="ViewModels\Report\InvoiceDataValue.cs" />
     <Compile Include="ViewModels\Report\SeriesData.cs" />
     <Compile Include="ViewModels\Report\TopFiveMaterialViewSource.cs" />
     <Compile Include="ViewModels\User\UserModel.cs" />

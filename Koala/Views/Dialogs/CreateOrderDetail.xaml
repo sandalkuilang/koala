@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:rules="clr-namespace:Koala.ViewModels.ValidationRules"   
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:styles="clr-namespace:Koala.Styles"
         WindowStartupLocation="CenterScreen"  
@@ -71,7 +71,7 @@
                                   Width="205" HorizontalAlignment="Left" Margin="0,0,0,10"
                                   ItemsSource="{Binding Material}"
                                   DisplayMemberPath="Description"
-                                  SelectedItem="{Binding SelectedMaterial}"
+                                  SelectedItem="{Binding SelectedMaterial, ValidatesOnDataErrors=True}"
                                   SelectedValue="{Binding MaterialId}"
                                   SelectedValuePath="Id" />
                          
@@ -124,7 +124,7 @@
                                   Text="{Binding SelectedQuality}"
                                   Controls:TextBoxHelper.Watermark="Choose Material Type"
                                   SelectedItem="{Binding SelectedQuality, Mode=TwoWay}"
-                                  SelectedValue="{Binding QualityId}"
+                                  SelectedValue="{Binding QualityId, ValidatesOnDataErrors=True}"
                                   SelectedValuePath="Id"/>
                          
                         <Label Grid.Row="5" Grid.Column="0" Content="Finishing"/> 
@@ -132,7 +132,7 @@
                                   Width="320" HorizontalAlignment="Left" Margin="0,0,0,10"
                                   ItemsSource="{Binding Finishing}"
                                   DisplayMemberPath="Description"
-                                  Text="{Binding SelectedFinishing}"
+                                  Text="{Binding SelectedFinishing, ValidatesOnDataErrors=True}"
                                   SelectedItem="{Binding SelectedFinishing, Mode=TwoWay}"
                                   SelectedValue="{Binding FinishingId}"
                                   SelectedValuePath="Id"/>
@@ -164,7 +164,7 @@
                             Height="70" 
                             Margin="0,0,0,10"
                             VerticalAlignment="Top"
-                            Text="{Binding Description, Mode=TwoWay}"
+                            Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
                             HorizontalAlignment="Left"
                             Grid.Row="8" Grid.Column="1"
                             Controls:TextBoxHelper.Watermark="Enter your requirement">
@@ -261,7 +261,7 @@
                                 CommandParameter="{Binding}"
                                 Background="BlueViolet"
                                 Visibility="{Binding UpdateVisibility}"
-                                Width="150" Margin="0 0 15 0"/>
+                                Width="150" Margin="0 0 15 0" Click="ButtonUpdate_Click"/>
 
                             <Button x:Name="btnCancel"  Content="Close" Width="110" Click="btnCancel_Click" Background="BlueViolet" />
                         </StackPanel>

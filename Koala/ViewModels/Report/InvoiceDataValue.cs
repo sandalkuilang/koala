@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Koala.ViewModels.Report
 {
-    public class DataValue : BaseBindableModel
+    public class InvoiceDataValue : BaseBindableModel
     {
         private string name;
         public string Month

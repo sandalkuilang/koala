@@ -7,6 +7,7 @@
         Title ,
         Width ,
         Height ,
+		b.CreatedDate ,
         Qty ,
         b.Status
         Filename ,

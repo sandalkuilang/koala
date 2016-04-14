@@ -11,7 +11,7 @@ using Texaco.Database;
 
 namespace Koala.ViewModels.Master
 {
-    public class MaterialType : BaseGridRow, ISaveCommand, IDataErrorInfo
+    public class MaterialType : BaseGridRow, ISaveCommand
     {
         public event EventHandler ItemChanged;
 
@@ -118,35 +118,6 @@ namespace Koala.ViewModels.Master
             this.SelectedQuality = new KeyValueOption();
             this.Price = 0;
         }
-        public override string this[string columnName]
-        {
-            get
-            {
-                switch (columnName)
-                {
-                    case "Description":
-                        if (string.IsNullOrEmpty(this.Description))
-                            return "Description cannot be null";
-                        break;
-                    case "SelectedQuality":
-                        if (this.SelectedQuality == null)
-                            return "You must choose Quality";
-                        break;
-                    case "Price":
-                        if (this.Price == 0)
-                            return "Price must be greater than 0";
-                        break;
-                }
-                if (!string.IsNullOrEmpty(Description) && (SelectedQuality != null) && (Price > 0))
-                {
-                    IsEnabled = true;
-                }
-                else
-                {
-                    IsEnabled = false;
-                }
-                return string.Empty;
-            }
-        }
+       
     }
 }

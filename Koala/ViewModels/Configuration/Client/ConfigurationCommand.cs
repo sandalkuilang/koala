@@ -10,7 +10,7 @@ using System.Windows.Input;
 namespace Koala.ViewModels.Configuration.Client
 {
     public class ConfigurationCommand : BaseBindableModel, INotifyPropertyChanged
-    {
+    { 
         public ICommand SaveCommand { get; set; }
         public ICommand RouteConnectionCommand { get; set; }
 
