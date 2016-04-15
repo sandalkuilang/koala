@@ -22,6 +22,19 @@ namespace Koala.ViewModels.Report
             }
         }
 
+        private RemainingPerMonthViewSource remainingPerMonth;
+        public RemainingPerMonthViewSource RemainingPerMonth
+        {
+            get
+            {
+                return remainingPerMonth;
+            }
+            set
+            {
+                NotifyIfChanged(ref remainingPerMonth, value);
+            }
+        }
+
         private TopFiveMaterialViewSource topFiveMaterial;
         public TopFiveMaterialViewSource TopFiveMaterial
         {
@@ -53,6 +66,7 @@ namespace Koala.ViewModels.Report
             InvoiceMonth = new InvoiceMonthViewSource();
             TopFiveMaterial = new TopFiveMaterialViewSource();
             TopConsumer = new TopConsumerViewSource();
+            RemainingPerMonth = new RemainingPerMonthViewSource();
 
             RefreshCommand = ReactiveCommand.Create();
             RefreshCommand.Subscribe(x => 
@@ -68,6 +82,7 @@ namespace Koala.ViewModels.Report
             invoiceMonth.Load();
             topFiveMaterial.Load();
             topConsumer.Load();
+            remainingPerMonth.Load();
         }
 
         public void Pull()

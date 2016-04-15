@@ -57,9 +57,10 @@
                                   Width="80" HorizontalAlignment="Left" 
                                   ItemsSource="{Binding TopConsumer.Years}"  
                                   Text="{Binding TopConsumer.Year, UpdateSourceTrigger=PropertyChanged}"
-                                  Controls:TextBoxHelper.Watermark="Select year"
+                                  Controls:TextBoxHelper.Watermark="year"
                                   SelectedItem="{Binding TopConsumer.Year, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValue="Year"
+                                  IsReadOnly="True"
                                   SelectedValuePath="Year"/>
                             <Button Margin="0 0 0 0" BorderThickness="0" Width="80" 
                                 Height="40" Background="Transparent" Foreground="#D15948" 

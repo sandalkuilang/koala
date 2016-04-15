@@ -62,15 +62,15 @@
                             </DataTemplate>
                         </TabItem.ContentTemplate>
                     </TabItem>
-                    <TabItem Visibility="Collapsed">
+                    <TabItem Visibility="Visible">
                         <TabItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="month" FontSize="18" Margin="0,0,10,0"/>
+                                <TextBlock Text="remaining" FontSize="18" Margin="0,0,10,0"/>
                             </DataTemplate>
                         </TabItem.HeaderTemplate>
                         <TabItem.ContentTemplate>
                             <DataTemplate>
-                                <Views:PerMonth DataContext="{Binding Path=PerMonth}"/>
+                                <Views:RemainingPerMonth DataContext="{Binding Path=RemainingPerMonth}"/>
                             </DataTemplate>
                         </TabItem.ContentTemplate>
                     </TabItem>

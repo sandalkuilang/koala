@@ -2,12 +2,25 @@
 using Koala.ViewModels.Configuration.Client;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Texaco.Database;
 
 namespace Koala.ViewModels.Report
 {
     public abstract class BaseDashboardViewSource : BaseBindableModel
     {
+        private int month;
+        public int Month
+        {
+            get
+            {
+                return month;
+            }
+            set
+            {
+                NotifyIfChanged(ref month, value);
+            }
+        }
 
         private int year;
         public int Year
@@ -137,6 +150,19 @@ namespace Koala.ViewModels.Report
             }
         }
 
+        private List<int> months;
+        public List<int> Months
+        {
+            get
+            {
+                return months;
+            }
+            set
+            {
+                NotifyIfChanged(ref months, value);
+            }
+        }
+
         public BaseDashboardViewSource()
         {
             this.Year = DateTime.Now.Year;
@@ -144,6 +170,13 @@ namespace Koala.ViewModels.Report
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
             Years = db.Query<int>("GetDistinctYear");
             db.Close();
+
+            months = new List<int>();
+            for (int i = 1; i <= 12; i++)
+            {
+                months.Add(i);
+            }
+            Month = DateTime.Now.Month; 
         }
 
         public abstract void Load();

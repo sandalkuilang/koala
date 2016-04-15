@@ -55,9 +55,10 @@
                             <TextBlock Text="Select year" Margin="0,5,10,8"  VerticalAlignment="Center"/>
                             <ComboBox Grid.Row="0" Grid.Column="0"  Margin="0,8,10,8"
                                   Width="80" HorizontalAlignment="Left" 
+                                  IsReadOnly="True"
                                   ItemsSource="{Binding TopFiveMaterial.Years}"  
                                   Text="{Binding TopFiveMaterial.Year, UpdateSourceTrigger=PropertyChanged}"
-                                  Controls:TextBoxHelper.Watermark="Select year"
+                                  Controls:TextBoxHelper.Watermark="year"
                                   SelectedItem="{Binding TopFiveMaterial.Year, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValue="Year"
                                   SelectedValuePath="Year"/>

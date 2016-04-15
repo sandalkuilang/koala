@@ -58,7 +58,8 @@
                                   Width="80" HorizontalAlignment="Left" 
                                   ItemsSource="{Binding InvoiceMonth.Years}"  
                                   Text="{Binding InvoiceMonth.Year, UpdateSourceTrigger=PropertyChanged}"
-                                  Controls:TextBoxHelper.Watermark="Select year"
+                                  Controls:TextBoxHelper.Watermark="year"
+                                  IsReadOnly="True"
                                   SelectedItem="{Binding InvoiceMonth.Year, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValue="Year"
                                   SelectedValuePath="Year"/>

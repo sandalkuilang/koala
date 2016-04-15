@@ -9,9 +9,9 @@ namespace Koala.Views.Report
     /// <summary>
     /// Interaction logic for PerMonth.xaml
     /// </summary>
-    public partial class PerMonth : UserControl
+    public partial class RemainingPerMonth : UserControl
     {
-        public PerMonth()
+        public RemainingPerMonth()
         {
             InitializeComponent(); 
         } 

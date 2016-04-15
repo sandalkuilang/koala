@@ -229,6 +229,7 @@
     <Compile Include="ViewModels\Report\DashboardCollaborator.cs" />
     <Compile Include="ViewModels\Report\InvoiceMonthViewSource.cs" />
     <Compile Include="ViewModels\Report\DataValue.cs" />
+    <Compile Include="ViewModels\Report\RemainingPerMonthViewSource.cs" />
     <Compile Include="ViewModels\Report\SeriesData.cs" />
     <Compile Include="ViewModels\Report\TopConsumerViewSource.cs" />
     <Compile Include="ViewModels\Report\TopFiveMaterialViewSource.cs" />
@@ -314,8 +315,8 @@
     <Compile Include="Views\Report\Invoice.xaml.cs">
       <DependentUpon>Invoice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Report\PerMonth.xaml.cs">
-      <DependentUpon>PerMonth.xaml</DependentUpon>
+    <Compile Include="Views\Report\RemainingPerMonth.xaml.cs">
+      <DependentUpon>RemainingPerMonth.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Report\TopConsumer.xaml.cs">
       <DependentUpon>TopConsumer.xaml</DependentUpon>
@@ -489,7 +490,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Report\PerMonth.xaml">
+    <Page Include="Views\Report\RemainingPerMonth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -533,6 +534,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SqlFiles\GetDashboardRemainingPerMonth.sql" />
     <EmbeddedResource Include="SqlFiles\GetDashboardTopConsumer.sql" />
     <EmbeddedResource Include="SqlFiles\CheckExistsOrder.sql" />
     <EmbeddedResource Include="SqlFiles\GetUser.sql" />
