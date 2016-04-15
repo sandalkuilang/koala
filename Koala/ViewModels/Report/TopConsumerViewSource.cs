@@ -5,9 +5,8 @@ using Texaco.Database;
 
 namespace Koala.ViewModels.Report
 {
-    public class TopFiveMaterialViewSource : BaseDashboardViewSource
+    public class TopConsumerViewSource : BaseDashboardViewSource
     {
-
         private MutableObservableCollection<SeriesData<DataValue>> source;
         public MutableObservableCollection<SeriesData<DataValue>> Source
         {
@@ -20,21 +19,21 @@ namespace Koala.ViewModels.Report
                 NotifyIfChanged(ref source, value);
             }
         }
- 
-        public TopFiveMaterialViewSource()
+
+        public TopConsumerViewSource()
         {
-            
+
         }
 
         public override void Load()
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
-            List<DataValue> result = db.Query<DataValue>("GetDashboardTopFiveMaterial", new { Year = this.Year });
+            List<DataValue> result = db.Query<DataValue>("GetDashboardTopConsumer", new { Year = this.Year });
 
-            MutableObservableCollection<SeriesData<DataValue>> model = new MutableObservableCollection<SeriesData<DataValue>>(); 
+            MutableObservableCollection<SeriesData<DataValue>> model = new MutableObservableCollection<SeriesData<DataValue>>();
             for (int i = 0; i < result.Count; i++)
-            { 
+            {
                 model.Add(new SeriesData<DataValue>()
                 {
                     SeriesDisplayName = result[i].Name
@@ -44,7 +43,7 @@ namespace Koala.ViewModels.Report
                 {
                     Name = result[i].Name,
                     Number = result[i].Number
-                }); 
+                });
             }
             this.Source = model;
             db.Close();

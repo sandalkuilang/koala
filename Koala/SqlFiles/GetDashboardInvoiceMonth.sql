@@ -1,7 +1,7 @@
-﻿SELECT CONVERT(DECIMAl(8,3), SUM(TOTAL) / 1000000) AS Number, DATEPART(Month, UpdateDate) AS Month
+﻿SELECT CAST(SUM(TOTAL) AS money) Number, DATEPART(Month, CreatedDate) AS Name
 FROM dbo.[Order]
 WHERE Status = 'F'
-	AND Remaining = 0 
-	AND DATEPART(YEAR, UpdateDate) = @Year
-GROUP BY  DATEPART(Month, UpdateDate)  
-ORDER BY DATEPART(Month, UpdateDate) 
+	AND Remaining = 0  
+	AND DATEPART(YEAR, CreatedDate) = @Year
+GROUP BY  DATEPART(Month, CreatedDate)  
+ORDER BY DATEPART(Month, CreatedDate) 

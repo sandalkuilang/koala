@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Koala.Views.Report.TopFiveMaterial"
+﻿<UserControl x:Class="Koala.Views.Report.TopConsumer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -55,10 +55,10 @@
                             <TextBlock Text="Select year" Margin="0,5,10,8"  VerticalAlignment="Center"/>
                             <ComboBox Grid.Row="0" Grid.Column="0"  Margin="0,8,10,8"
                                   Width="80" HorizontalAlignment="Left" 
-                                  ItemsSource="{Binding TopFiveMaterial.Years}"  
-                                  Text="{Binding TopFiveMaterial.Year, UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding TopConsumer.Years}"  
+                                  Text="{Binding TopConsumer.Year, UpdateSourceTrigger=PropertyChanged}"
                                   Controls:TextBoxHelper.Watermark="Select year"
-                                  SelectedItem="{Binding TopFiveMaterial.Year, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding TopConsumer.Year, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValue="Year"
                                   SelectedValuePath="Year"/>
                             <Button Margin="0 0 0 0" BorderThickness="0" Width="80" 
@@ -104,14 +104,14 @@
                             Width="1300"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch"
-                            ChartTitle="Material per year"
-                            ChartSubTitle="* in quantity" 
-                            Palette="{Binding Path=TopFiveMaterial.SelectedPalette.Value}"
-                            FontSize="{Binding Path=TopFiveMaterial.SelectedFontSize}" 
-                            Foreground="{Binding Path=TopFiveMaterial.Foreground}" 
-                            Background="{Binding Path=TopFiveMaterial.Background}"                    
-                            SelectedItem="{Binding Path=TopFiveMaterial.SelectedItem, Mode=TwoWay}" 
-                            SeriesSource="{Binding Path=TopFiveMaterial.Source, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
+                            ChartTitle="Top 15 Consumer"
+                            ChartSubTitle="* in Rupiah" 
+                            Palette="{Binding Path=TopConsumer.SelectedPalette.Value}"
+                            FontSize="{Binding Path=TopConsumer.SelectedFontSize}" 
+                            Foreground="{Binding Path=TopConsumer.Foreground}" 
+                            Background="{Binding Path=TopConsumer.Background}"                    
+                            SelectedItem="{Binding Path=TopConsumer.SelectedItem, Mode=TwoWay}" 
+                            SeriesSource="{Binding Path=TopConsumer.Source, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
                             <chart:StackedColumnChart.SeriesTemplate>
                                 <DataTemplate>
                                     <chart:ChartSeries
@@ -125,7 +125,7 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                
+
             </Grid>
         </Grid>
     </Grid>

@@ -7,11 +7,11 @@ using System.Windows.Controls;
 namespace Koala.Views.Report
 {
     /// <summary>
-    /// Interaction logic for TopFiveMaterial.xaml
+    /// Interaction logic for PerMonth.xaml
     /// </summary>
-    public partial class TopFiveMaterial : UserControl
+    public partial class TopConsumer : UserControl
     {
-        public TopFiveMaterial()
+        public TopConsumer()
         {
             InitializeComponent();
         }

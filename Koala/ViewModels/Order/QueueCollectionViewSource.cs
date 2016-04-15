@@ -75,12 +75,7 @@ namespace Koala.ViewModels.Order
                 }
             }
             db.Close(); 
-            orderCollaborator.PaymentOrder.Source = orderCollaborator.PaymentOrder.Source.OrderByDescending(x => x.UpdateDate).Convert();
-            //if (updated)
-            //{
-            //    OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
-            //    orderCollaborator.RefreshCommand.Execute(null);
-            //}
+            orderCollaborator.PaymentOrder.Source = orderCollaborator.PaymentOrder.Source.OrderByDescending(x => x.UpdateDate).Convert(); 
             CheckedHeader = false;
         }
 

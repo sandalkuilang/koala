@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Koala.Views.Report.Dashboard"
+﻿<UserControl x:Class="Koala.Views.Report.PerMonth"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,8 +9,7 @@
              xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
              xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="800">
-
+             d:DesignHeight="800" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary    
      
@@ -50,16 +49,15 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
                         <!-- Command here -->
-                        
+
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Text="Select year" Margin="0,5,10,8"  VerticalAlignment="Center"/>
-                          
                             <ComboBox Grid.Row="0" Grid.Column="0"  Margin="0,8,10,8"
                                   Width="80" HorizontalAlignment="Left" 
-                                  ItemsSource="{Binding InvoiceMonth.Years}"  
-                                  Text="{Binding InvoiceMonth.Year, UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding TopConsumer.Years}"  
+                                  Text="{Binding TopConsumer.Year, UpdateSourceTrigger=PropertyChanged}"
                                   Controls:TextBoxHelper.Watermark="Select year"
-                                  SelectedItem="{Binding InvoiceMonth.Year, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding TopConsumer.Year, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValue="Year"
                                   SelectedValuePath="Year"/>
                             <Button Margin="0 0 0 0" BorderThickness="0" Width="80" 
@@ -78,7 +76,7 @@
 
                             </Button>
                         </StackPanel>
-                        
+
                     </StackPanel>
                 </Grid>
             </Border>
@@ -93,7 +91,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
- 
+
                 <ScrollViewer Grid.Row="0" Grid.Column="0" 
                             Grid.ColumnSpan="2" Grid.RowSpan="2"  
                             HorizontalScrollBarVisibility="Visible"
@@ -105,35 +103,28 @@
                             Width="1300"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch"
-                            ChartTitle="Invoice per year"
-                            ChartSubTitle="* in million Rupiah" 
-                            Palette="{Binding Path=InvoiceMonth.SelectedPalette.Value}"
-                            FontSize="{Binding Path=InvoiceMonth.SelectedFontSize}" 
-                            Foreground="{Binding Path=InvoiceMonth.Foreground}" 
-                            Background="{Binding Path=InvoiceMonth.Background}"                    
-                            SelectedItem="{Binding Path=InvoiceMonth.SelectedItem, Mode=TwoWay}" 
-                            SeriesSource="{Binding Path=InvoiceMonth.Source, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
+                            ChartTitle="Top 15 Consumer"
+                            ChartSubTitle="* in Rupiah" 
+                            Palette="{Binding Path=TopConsumer.SelectedPalette.Value}"
+                            FontSize="{Binding Path=TopConsumer.SelectedFontSize}" 
+                            Foreground="{Binding Path=TopConsumer.Foreground}" 
+                            Background="{Binding Path=TopConsumer.Background}"                    
+                            SelectedItem="{Binding Path=TopConsumer.SelectedItem, Mode=TwoWay}" 
+                            SeriesSource="{Binding Path=TopConsumer.Source, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
                             <chart:StackedColumnChart.SeriesTemplate>
                                 <DataTemplate>
                                     <chart:ChartSeries
 			                            SeriesTitle="{Binding Path=SeriesDisplayName}"
-                                        DisplayMember="Month"
+                                        DisplayMember="Name"
                                         ValueMember="Number"
                                         ItemsSource="{Binding Path=Items}" />
                                 </DataTemplate>
                             </chart:StackedColumnChart.SeriesTemplate>
-                        </chart:StackedColumnChart> 
+                        </chart:StackedColumnChart>
                     </StackPanel>
                 </ScrollViewer>
-                     
-                <Grid Grid.Row="1" Grid.Column="0">
-
-                </Grid>
 
 
-                <Grid Grid.Row="1" Grid.Column="1">
-
-                </Grid>
             </Grid>
         </Grid>
     </Grid>

@@ -1,16 +1,6 @@
-﻿using Koala.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System;
 using ReactiveUI;
-using System.Reactive;
 using System.Reactive.Linq;
-using Texaco.Database;
-using Koala.ViewModels.Configuration.Client;
 
 namespace Koala.ViewModels.Report
 {
@@ -32,10 +22,38 @@ namespace Koala.ViewModels.Report
             }
         }
 
-        
+        private TopFiveMaterialViewSource topFiveMaterial;
+        public TopFiveMaterialViewSource TopFiveMaterial
+        {
+            get
+            {
+                return topFiveMaterial;
+            }
+            set
+            {
+                NotifyIfChanged(ref topFiveMaterial, value);
+            }
+        }
+
+        private TopConsumerViewSource topConsumer;
+        public TopConsumerViewSource TopConsumer
+        {
+            get
+            {
+                return topConsumer;
+            }
+            set
+            {
+                NotifyIfChanged(ref topConsumer, value);
+            }
+        }
+ 
         public DashboardCollaborator()
         {
             InvoiceMonth = new InvoiceMonthViewSource();
+            TopFiveMaterial = new TopFiveMaterialViewSource();
+            TopConsumer = new TopConsumerViewSource();
+
             RefreshCommand = ReactiveCommand.Create();
             RefreshCommand.Subscribe(x => 
             {
@@ -47,7 +65,9 @@ namespace Koala.ViewModels.Report
 
         private void OnRefresh()
         {  
-            InvoiceMonth.Load(); 
+            invoiceMonth.Load();
+            topFiveMaterial.Load();
+            topConsumer.Load();
         }
 
         public void Pull()

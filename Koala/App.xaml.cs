@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Koala.Core;
 using Koala.Views;
 using Texaco.Database;
 using Koala.ViewModels.User;
-using Koala.ViewModels.Master;
-using Koala.ViewModels.Report;
 using Koala.ViewModels.Configuration.Client;
 using Koala.ViewModels.ValidationRules;
 using Koala.Core.Credential;
@@ -26,13 +21,14 @@ namespace Koala
         private string _pass = "";
         public App()
         { 
-            ShowLogOn();
+            
         }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             var bootstrapper = new ApplicationStartup();
             bootstrapper.Run();
+            ShowLogOn();
         }
         private void ShowLogOn()
         {

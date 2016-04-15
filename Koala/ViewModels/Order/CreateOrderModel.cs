@@ -400,9 +400,12 @@ namespace Koala.ViewModels.Order
                 {
                     Remaining = (paymentBeforeDiscount - installment) ; 
                 }
-                Remaining *= -1;
             }
                 
+            if (remaining > 0)
+            {
+                Remaining *= -1;
+            }
 
             if (installment > totalPayment)
             {
@@ -521,19 +524,28 @@ namespace Koala.ViewModels.Order
                     IsBusy = true;
                     IsEnabled = false;
 
+                    CreateOrderModel model = (CreateOrderModel)obj;
+
                     IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
                     IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
 
                     Dictionary<string, string> scripts = new Dictionary<string, string>();
-                    scripts.Add("Order", "CreateOrder");
-                    scripts.Add("OrderDetail", "CreateOrderDetail");
 
-                    CreateOrderModel model = (CreateOrderModel)obj;
-                    //db.Execute("DeletePrintOrder", new 
-                    //{
-                    //    OrderId = model.PoNumber,
-                    //    Status = "I"
-                    //});
+                    List<int> result = db.Query<int>("CheckExistsOrder", new
+                    {
+                        OrderId = model.PoNumber
+                    });
+
+                    if (result.Any())
+                    { 
+                        scripts.Add("Order", "UpdateOrder");
+                        scripts.Add("OrderDetail", "UpdateOrderDetail");
+                    }
+                    else
+                    {
+                        scripts.Add("Order", "CreateOrder");
+                        scripts.Add("OrderDetail", "CreateOrderDetail"); 
+                    } 
 
                     IDbTransaction transaction = ((BaseDbCommand)db).BeginTransaction();
                     try
@@ -576,7 +588,7 @@ namespace Koala.ViewModels.Order
                         } 
                         transaction.Commit();
                     }
-                    catch(Exception)
+                    catch(Exception x)
                     {
                         transaction.Rollback();
                     }
@@ -585,10 +597,7 @@ namespace Koala.ViewModels.Order
 
                     IsBusy = false;
                     IsEnabled = true;
-
-                    //OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
-                    //orderCollaborator.IndexRefreshing = 1;
-                    //orderCollaborator.RefreshCommand.Execute(null); 
+                     
                     OnItemCreated();
                 });
 

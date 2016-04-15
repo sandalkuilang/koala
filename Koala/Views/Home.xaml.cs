@@ -1,8 +1,4 @@
-﻿using Koala.Core.Credential;
-using Koala.ViewModels.ValidationRules;
-using System.Windows;
-using System.Windows.Controls;
-using System;
+﻿using System.Windows.Controls;
 
 namespace Koala.Views
 {

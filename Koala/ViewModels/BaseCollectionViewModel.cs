@@ -1,11 +1,5 @@
-﻿using Koala.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ReactiveUI; 
-using System.Reactive;
+﻿using System;
+using ReactiveUI;
 using System.Reactive.Linq;
 
 namespace Koala.ViewModels

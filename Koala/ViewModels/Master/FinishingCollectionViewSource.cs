@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Koala.ViewModels;
-using Koala.Core;
+﻿using Koala.Core;
 using Koala.Views.Dialogs;
 using Texaco.Database;
 using Koala.ViewModels.Configuration.Client;

@@ -108,10 +108,7 @@ namespace Koala.ViewModels.Order
                     orderCollaborator.PrintOrder.Source.Remove(order);
                 }
             }
-            db.Close();
-            //OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
-            //orderCollaborator.IndexRefreshing = 1;
-            //orderCollaborator.Pull();
+            db.Close(); 
             base.OnDelete(arg);
         }
 

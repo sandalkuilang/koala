@@ -7,14 +7,15 @@ using System.Windows.Controls;
 namespace Koala.Views.Report
 {
     /// <summary>
-    /// Interaction logic for TopFiveMaterial.xaml
+    /// Interaction logic for PerMonth.xaml
     /// </summary>
-    public partial class TopFiveMaterial : UserControl
+    public partial class PerMonth : UserControl
     {
-        public TopFiveMaterial()
+        public PerMonth()
         {
-            InitializeComponent();
-        }
+            InitializeComponent(); 
+        } 
+
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
@@ -28,5 +29,6 @@ namespace Koala.Views.Report
                 });
             });
         }
+
     }
 }

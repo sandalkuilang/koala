@@ -51,9 +51,7 @@ namespace Koala.ViewModels.Order
                 }
             }
             db.Close();
-             
-            //orderCollaborator.IndexRefreshing = 3;
-            //orderCollaborator.Pull();
+              
             base.OnDelete(obj);
         }
 
@@ -61,8 +59,11 @@ namespace Koala.ViewModels.Order
         {
             IDialogService dialog = ObjectPool.Instance.Resolve<IDialogService>();
             CreateOrderModel model = ((CreateOrderModel)obj);
-            model.CanEdit = false;
-            dialog.ShowDialog<CreateOrder>(model);
+            if (model != null)
+            {
+                model.CanEdit = false;
+                dialog.ShowDialog<CreateOrder>(model);
+            }
         }
 
         public override void OnPrint(object obj)

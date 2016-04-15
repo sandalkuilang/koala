@@ -228,8 +228,9 @@
     <Compile Include="ViewModels\Report\BaseDashboardViewSource.cs" />
     <Compile Include="ViewModels\Report\DashboardCollaborator.cs" />
     <Compile Include="ViewModels\Report\InvoiceMonthViewSource.cs" />
-    <Compile Include="ViewModels\Report\InvoiceDataValue.cs" />
+    <Compile Include="ViewModels\Report\DataValue.cs" />
     <Compile Include="ViewModels\Report\SeriesData.cs" />
+    <Compile Include="ViewModels\Report\TopConsumerViewSource.cs" />
     <Compile Include="ViewModels\Report\TopFiveMaterialViewSource.cs" />
     <Compile Include="ViewModels\User\UserModel.cs" />
     <Compile Include="ViewModels\ValidationRules\AuthorizationDelegateCommand.cs" />
@@ -310,8 +311,14 @@
     <Compile Include="Views\Dialogs\PrintInvoice.xaml.cs">
       <DependentUpon>PrintInvoice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Report\Dashboard.xaml.cs">
-      <DependentUpon>Dashboard.xaml</DependentUpon>
+    <Compile Include="Views\Report\Invoice.xaml.cs">
+      <DependentUpon>Invoice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\PerMonth.xaml.cs">
+      <DependentUpon>PerMonth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\TopConsumer.xaml.cs">
+      <DependentUpon>TopConsumer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Report\TopFiveMaterial.xaml.cs">
       <DependentUpon>TopFiveMaterial.xaml</DependentUpon>
@@ -478,7 +485,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Report\Dashboard.xaml">
+    <Page Include="Views\Report\Invoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\PerMonth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\TopConsumer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -518,8 +533,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SqlFiles\GetDashboardTopConsumer.sql" />
+    <EmbeddedResource Include="SqlFiles\CheckExistsOrder.sql" />
     <EmbeddedResource Include="SqlFiles\GetUser.sql" />
-    <EmbeddedResource Include="SqlFiles\GetDashbordMaterialYear.sql" />
+    <EmbeddedResource Include="SqlFiles\GetDashboardTopFiveMaterial.sql" />
     <EmbeddedResource Include="SqlFiles\GetDistinctYear.sql" />
     <EmbeddedResource Include="SqlFiles\GetDashboardInvoiceMonth.sql" />
     <EmbeddedResource Include="SqlFiles\GetMaterialName.sql" />
