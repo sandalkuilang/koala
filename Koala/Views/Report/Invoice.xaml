@@ -106,7 +106,7 @@
                             Width="1300"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch"
-                            ChartTitle="Invoice per year"
+                            ChartTitle="Transaction per Month"
                             ChartSubTitle="* in Rupiah" 
                             Palette="{Binding Path=InvoiceMonth.SelectedPalette.Value}"
                             FontSize="{Binding Path=InvoiceMonth.SelectedFontSize}" 

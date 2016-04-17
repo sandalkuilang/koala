@@ -9,9 +9,9 @@ namespace Koala.Views.Report
     /// <summary>
     /// Interaction logic for TopFiveMaterial.xaml
     /// </summary>
-    public partial class TopFiveMaterial : UserControl
+    public partial class TopMaterial : UserControl
     {
-        public TopFiveMaterial()
+        public TopMaterial()
         {
             InitializeComponent();
         }

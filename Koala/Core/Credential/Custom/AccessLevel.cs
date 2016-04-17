@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Koala.Core.Credential
+namespace Koala.Core.Credential.Custom
 {
     public class AccessLevel
     {

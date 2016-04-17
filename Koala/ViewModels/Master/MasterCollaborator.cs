@@ -3,7 +3,7 @@ using Koala.ViewModels.Configuration.Client;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Texaco.Database;
+using Krokot.Database;
 
 namespace Koala.ViewModels.Master
 {

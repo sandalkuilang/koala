@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Texaco.Database;
-using Texaco.Database.SqlLoader;
-using Texaco.Container;
-using Texaco.Database.Petapoco;
+﻿using System.Threading.Tasks;
 using System.Threading;
 using System.Reflection;
 using System.Windows;
@@ -17,6 +8,9 @@ using Koala.ViewModels.Master;
 using System.Windows.Markup;
 using System.Globalization;
 using Koala.ViewModels.Report;
+using Krokot.Database;
+using Krokot.Database.SqlLoader;
+using Koala.Core.Credential;
 
 namespace Koala.Core
 {
@@ -109,21 +103,27 @@ namespace Koala.Core
         {
             Task.Factory.StartNew(() =>
             { 
-                string formattedConnectionString;
-                string connectionString;
-                 
-                formattedConnectionString = settings.Database.ConnectionStringFormat;
-                connectionString = string.Format(formattedConnectionString, settings.Database.Server, settings.Database.Name, settings.Database.Username, settings.Database.Password);
+                IEncryptionAgent encryption;
+                string passwd;
 
-                dbManager = new Texaco.Database.Petapoco.PetapocoDbManager(null, null);
-                dbManager.AddSqlLoader(new ResourceSqlLoader("filesql", "Koala.SqlFiles", Assembly.GetAssembly(this.GetType())));
-                dbManager.ConnectionDescriptor.Add(new ConnectionDescriptor()
+                IDbManager dbManager = new Krokot.Database.Petapoco.PetapocoDbManager(null, null);
+                IFileLoader resourceloader = new ResourceSqlLoader("resource-loader", "SqlFiles", Assembly.GetAssembly(this.GetType()));
+                dbManager.AddSqlLoader(resourceloader);
+ 
+                ConnectionStringCollection connections = ApplicationSettings.Instance.Database.Items;
+                foreach (ConnectionStringElement connection in connections)
                 {
-                    ConnectionString = connectionString,
-                    IsDefault = true,
-                    Name = settings.Database.Name,
-                    ProviderName = settings.Database.ProviderName
-                });
+                    encryption = new RijndaelEncryption(connection.Key, connection.IV);
+                    passwd = encryption.Decrypt(connection.Password);
+
+                    dbManager.ConnectionDescriptor.Add(new ConnectionDescriptor()
+                    {
+                        ConnectionString = string.Format(connection.ConnectionString, connection.UserId, passwd),
+                        IsDefault = connection.IsDefault,
+                        Name = connection.Name,
+                        ProviderName = connection.ProviderName
+                    });
+                }
 
                 ObjectPool.Instance.Register<IDbManager>().ImplementedBy(dbManager); 
             });

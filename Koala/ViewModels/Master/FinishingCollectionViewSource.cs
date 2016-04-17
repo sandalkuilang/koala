@@ -1,6 +1,6 @@
 ﻿using Koala.Core;
 using Koala.Views.Dialogs;
-using Texaco.Database;
+using Krokot.Database;
 using Koala.ViewModels.Configuration.Client;
 
 namespace Koala.ViewModels.Master

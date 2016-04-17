@@ -1,11 +1,11 @@
 ﻿using Koala.Core;
 using Koala.ViewModels.Configuration.Client;
 using System.Collections.Generic;
-using Texaco.Database;
+using Krokot.Database;
 
 namespace Koala.ViewModels.Report
 {
-    public class TopFiveMaterialViewSource : BaseDashboardViewSource
+    public class TopMaterialViewSource : BaseDashboardViewSource
     {
 
         private MutableObservableCollection<SeriesData<DataValue>> source;
@@ -21,7 +21,7 @@ namespace Koala.ViewModels.Report
             }
         }
  
-        public TopFiveMaterialViewSource()
+        public TopMaterialViewSource()
         {
             
         }
@@ -30,7 +30,7 @@ namespace Koala.ViewModels.Report
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
-            List<DataValue> result = db.Query<DataValue>("GetDashboardTopFiveMaterial", new { Year = this.Year });
+            List<DataValue> result = db.Query<DataValue>("GetDashboardTopMaterial", new { Year = this.Year });
 
             MutableObservableCollection<SeriesData<DataValue>> model = new MutableObservableCollection<SeriesData<DataValue>>(); 
             for (int i = 0; i < result.Count; i++)

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Koala.Core.Credential
 {
-    public interface IAuthorization
+    public interface IEncryptionAgent
     {
-        bool IsAuthorize(string key, string qualifier);
+        string Encrypt(string value);
+        string Decrypt(string value);
     }
 }

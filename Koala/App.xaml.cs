@@ -3,11 +3,11 @@ using System.Linq;
 using System.Windows;
 using Koala.Core;
 using Koala.Views;
-using Texaco.Database;
+using Krokot.Database;
 using Koala.ViewModels.User;
 using Koala.ViewModels.Configuration.Client;
 using Koala.ViewModels.ValidationRules;
-using Koala.Core.Credential;
+using Koala.Core.Credential.Custom;
 
 namespace Koala
 {

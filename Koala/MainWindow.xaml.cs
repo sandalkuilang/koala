@@ -8,7 +8,7 @@ using Koala.ViewModels.Configuration.Client;
 using MahApps.Metro.Controls.Dialogs;
 using Koala.ViewModels.ValidationRules;
 using Koala.Core.Credential;
-using Texaco.Database;
+using Krokot.Database;
 using Koala.ViewModels.User;
 using Koala.ViewModels.Order;
 using Koala.ViewModels.Master;

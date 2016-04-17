@@ -53,19 +53,19 @@
                     <TabItem>
                         <TabItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="material" FontSize="18" Margin="0,0,10,0"/>
+                                <TextBlock Text="transaction" FontSize="18" Margin="0,0,10,0"/>
                             </DataTemplate>
                         </TabItem.HeaderTemplate>
                         <TabItem.ContentTemplate>
                             <DataTemplate>
-                                <Views:TopFiveMaterial DataContext="{Binding Path=TopFiveMaterial}"/>
+                                <Views:Invoice DataContext="{Binding Path=InvoiceMonth}"/>
                             </DataTemplate>
                         </TabItem.ContentTemplate>
                     </TabItem>
                     <TabItem Visibility="Visible">
                         <TabItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="remaining" FontSize="18" Margin="0,0,10,0"/>
+                                <TextBlock Text="debt" FontSize="18" Margin="0,0,10,0"/>
                             </DataTemplate>
                         </TabItem.HeaderTemplate>
                         <TabItem.ContentTemplate>
@@ -77,24 +77,24 @@
                     <TabItem>
                         <TabItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="invoice" FontSize="18" Margin="0,0,10,0"/>
+                                <TextBlock Text="consumer" FontSize="18" Margin="0,0,10,0"/>
                             </DataTemplate>
                         </TabItem.HeaderTemplate>
                         <TabItem.ContentTemplate>
                             <DataTemplate>
-                                <Views:Invoice DataContext="{Binding Path=InvoiceMonth}"/>
+                                <Views:TopConsumer DataContext="{Binding Path=TopConsumer}"/> 
                             </DataTemplate>
                         </TabItem.ContentTemplate>
                     </TabItem>
                     <TabItem>
                         <TabItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="consumer" FontSize="18" Margin="0,0,10,0"/>
+                                <TextBlock Text="materials" FontSize="18" Margin="0,0,10,0"/>
                             </DataTemplate>
                         </TabItem.HeaderTemplate>
                         <TabItem.ContentTemplate>
                             <DataTemplate>
-                                <Views:TopConsumer DataContext="{Binding Path=TopConsumer}"/>
+                                <Views:TopMaterial DataContext="{Binding Path=TopMaterial}"/>
                             </DataTemplate>
                         </TabItem.ContentTemplate>
                     </TabItem>

@@ -21,7 +21,7 @@ namespace Koala.ViewModels.Configuration.Client
 
         public ContactSettings Contact { get; set; }
         public GeneralSettings General { get; set; }
-        public DatabaseSettings Database { get; set; }
+        public ConnectionStringSettings Database { get; set; }
         public AudioSettings Audio { get; set; }
         public ConfigurationCommand Command { get; set; }
         public OpenWithSettings OpenWith { get; set; }
@@ -39,7 +39,7 @@ namespace Koala.ViewModels.Configuration.Client
             Configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             General = (GeneralSettings)Configuration.Sections["generalSettings"];
             Contact = (ContactSettings)Configuration.Sections["contactSettings"];
-            Database = (DatabaseSettings)Configuration.Sections["databaseSettings"];
+            Database = (ConnectionStringSettings)Configuration.Sections["connectionStringCollection"];
             Audio = (AudioSettings)Configuration.Sections["audioSettings"];
             OpenWith = new OpenWithSettings();
         }

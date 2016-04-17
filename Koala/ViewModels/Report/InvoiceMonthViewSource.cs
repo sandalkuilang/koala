@@ -3,7 +3,7 @@ using Koala.ViewModels.Configuration.Client;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Texaco.Database;
+using Krokot.Database;
 using System.Reactive.Linq;
 
 namespace Koala.ViewModels.Report

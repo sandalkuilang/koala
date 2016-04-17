@@ -116,7 +116,7 @@
                             Width="1300"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch"
-                            ChartTitle="Consumer debt"
+                            ChartTitle="Consumer Debt"
                             ChartSubTitle="in Rupiah" 
                             Palette="{Binding Path=RemainingPerMonth.SelectedPalette.Value}"
                             FontSize="{Binding Path=RemainingPerMonth.SelectedFontSize}" 

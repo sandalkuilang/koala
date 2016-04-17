@@ -1,4 +1,4 @@
-﻿SELECT TOP 15
+﻿SELECT TOP 10
         b.Description Name,
         SUM(a.Qty) AS Number
 FROM    dbo.[OrderDetail] a
