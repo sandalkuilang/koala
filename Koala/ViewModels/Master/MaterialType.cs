@@ -81,7 +81,7 @@ namespace Koala.ViewModels.Master
         private void OnUpdate(MaterialType model)
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             db.Execute("UpdateMaterial", new
             {
                 Id = model.Id,
@@ -99,7 +99,7 @@ namespace Koala.ViewModels.Master
                 return;
 
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             db.Execute("InsertMaterial", new
             {
                 Id = model.Id,

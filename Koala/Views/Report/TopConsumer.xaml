@@ -72,7 +72,7 @@
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
-                                        <i:InvokeCommandAction Command="{Binding Path=RefreshCommand}" />
+                                        <i:InvokeCommandAction Command="{Binding Path=RefreshCommand}"  CommandParameter="3"  />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 

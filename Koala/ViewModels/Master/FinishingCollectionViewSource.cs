@@ -18,12 +18,19 @@ namespace Koala.ViewModels.Master
                 if (dialog.ShowDialog<Finishing>(model).Value == true)
                 {
                     IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
-                    db.Execute("UpdateFinishing", new
+                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+                    try
                     {
-                        Id = model.Id,
-                        Description = model.Description
-                    });
+                        db.Execute("UpdateFinishing", new
+                        {
+                            Id = model.Id,
+                            Description = model.Description
+                        });
+                    }
+                    catch { }
+                    {
+
+                    }
                     db.Close();
                     OnSourceChanged(this);
                 }
@@ -33,15 +40,19 @@ namespace Koala.ViewModels.Master
         public override void OnDelete(object arg)
         { 
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name); 
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name); 
             foreach (KeyValueOption item in Source)
             {
                 if (item.IsSelected)
                 {
-                    db.Execute("DeleteFinishing", new
+                    try
                     {
-                        Id = item.Id
-                    });
+                        db.Execute("DeleteFinishing", new
+                        {
+                            Id = item.Id
+                        });
+                    }
+                    catch { }
                 }
             }
             db.Close();
@@ -62,12 +73,18 @@ namespace Koala.ViewModels.Master
                 this.Source.Add(model);
 
                 IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
-                db.Execute("InsertFinishing", new
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+
+                try
                 {
-                    Id = model.Id,
-                    Description = model.Description
-                });
+                    db.Execute("InsertFinishing", new
+                    {
+                        Id = model.Id,
+                        Description = model.Description
+                    });
+                }
+                catch { }
+                 
                 db.Close();
                 OnSourceChanged(this);
             }

@@ -105,7 +105,7 @@ namespace Koala.ViewModels.Master
         public void Pull()
         { 
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             int mstrType = -1;
             if (masterTypeSync == MasterType.All)
                 mstrType = 100;

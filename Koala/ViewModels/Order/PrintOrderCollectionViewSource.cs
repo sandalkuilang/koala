@@ -42,7 +42,7 @@ namespace Koala.ViewModels.Order
         private void OnUpdateQueueOrder(string status)
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>(); 
             foreach (CreateOrderModel order in Source.ToList())
             {
@@ -94,7 +94,7 @@ namespace Koala.ViewModels.Order
         public override void OnDelete(object arg)
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
             foreach (CreateOrderModel order in Source.ToList())
             {

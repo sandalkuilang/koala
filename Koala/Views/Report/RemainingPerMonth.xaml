@@ -83,7 +83,7 @@
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
-                                        <i:InvokeCommandAction Command="{Binding Path=RefreshCommand}" />
+                                        <i:InvokeCommandAction Command="{Binding Path=RefreshCommand}" CommandParameter="2" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 
@@ -127,6 +127,7 @@
                             <chart:StackedColumnChart.SeriesTemplate>
                                 <DataTemplate>
                                     <chart:ChartSeries
+                                        ItemStringFormat="Value: {0:P2}"
 			                            SeriesTitle="{Binding Path=SeriesDisplayName}"
                                         DisplayMember="Name"
                                         ValueMember="Number"

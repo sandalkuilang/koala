@@ -200,7 +200,7 @@ namespace Koala.ViewModels.Order
                 IsBusy = true; 
                 IsEnabled = false;
                 IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
                 List<QualityType> quality = db.Query<QualityType>("GetQuality");
                 ObjectPool.Instance.Register<List<QualityType>>().ImplementedBy(quality);
                 db.Close();
@@ -235,7 +235,7 @@ namespace Koala.ViewModels.Order
             //Task.Factory.StartNew(() => 
             //{
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             MutableObservableCollection<CreateOrderModel> newPaymentOrder = new MutableObservableCollection<CreateOrderModel>();
             MutableObservableCollection<CreateOrderModel> newPrintOrder  = new MutableObservableCollection<CreateOrderModel>();
             MutableObservableCollection<CreateOrderModel> newQueue = new MutableObservableCollection<CreateOrderModel>();

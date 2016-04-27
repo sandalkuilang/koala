@@ -59,9 +59,14 @@ namespace Koala.ViewModels.Master
                 model.IsReadOnly = true;
                 model.SelectedQuality = model.Quality.Where(x => x.Id == model.QualityId).SingleOrDefault();
 
-                IDialogService dialog = ObjectPool.Instance.Resolve<IDialogService>();
-                model.ItemChanged += model_ItemChanged;
-                dialog.ShowDialog<Material>(model); 
+                try
+                {
+                    IDialogService dialog = ObjectPool.Instance.Resolve<IDialogService>();
+                    model.ItemChanged += model_ItemChanged;
+                    dialog.ShowDialog<Material>(model);
+                    
+                }
+                catch { }
                 model.ItemChanged -= model_ItemChanged;
             }
         }
@@ -69,15 +74,20 @@ namespace Koala.ViewModels.Master
         public override void OnDelete(object arg)
         { 
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             foreach (MaterialType item in Source)
             {
                 if (item.IsSelected)
                 {
-                    db.Execute("DeleteMaterial", new
+                    try
                     {
-                        Id = item.Id
-                    });
+                        db.Execute("DeleteMaterial", new
+                        {
+                            Id = item.Id
+                        });
+                    }
+                    catch { }
+                    
                 }
             }
             db.Close();

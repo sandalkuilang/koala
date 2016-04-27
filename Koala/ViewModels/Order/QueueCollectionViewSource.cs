@@ -43,7 +43,7 @@ namespace Koala.ViewModels.Order
         private void OnUpdateQueueOrder(string status)
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             //bool updated = false;
 
             OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();  
@@ -51,7 +51,7 @@ namespace Koala.ViewModels.Order
             {
                 if (order.IsSelected)
                 {
-                    if (order.Remaining > 0)
+                    if (order.Remaining < 0)
                     {
                         IDialogService dialog = ObjectPool.Instance.Resolve<IDialogService>();
                         bool? dialogResult = dialog.ShowDialog<Warning>(new WarningModel()
@@ -102,7 +102,7 @@ namespace Koala.ViewModels.Order
         public override void OnDelete(object obj)
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
 
             foreach (CreateOrderModel order in Source.ToList())

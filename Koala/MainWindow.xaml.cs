@@ -95,7 +95,7 @@ namespace Koala
             else
             {
                 IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
                 List<UserModel> result = db.Query<UserModel>("GetUser", new { Username = x.Username, Password = x.Password });
                 if (result.Any())
                 {

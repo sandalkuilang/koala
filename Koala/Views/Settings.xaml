@@ -248,7 +248,7 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Row="4" Grid.Column="2" Margin="0,10,0,0">
+                <Grid Grid.Row="4" Grid.Column="2" Margin="0,10,0,0" Visibility="Collapsed">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
                         <RowDefinition />
@@ -275,22 +275,22 @@
                                          Width="190" 
                                          FontSize="16" 
                                          Tag="Server name" 
-                                         Text="{Binding Path=Database.Server, UpdateSourceTrigger=PropertyChanged}"/>
+                                         Text="{Binding Path=Database.DefaultConnection.Server, UpdateSourceTrigger=PropertyChanged}"/>
                                 <TextBox Margin="0,0,0,10" 
                                          HorizontalAlignment="Left" 
                                          Width="190" 
                                          FontSize="16" 
                                          Tag="Name" 
-                                         Text="{Binding Path=Database.Name, UpdateSourceTrigger=PropertyChanged}" />
+                                         Text="{Binding Path=Database.DefaultConnection.Name, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBox Margin="0,0,0,10" 
                                          HorizontalAlignment="Left" 
                                          Width="190" 
                                          FontSize="16" 
                                          Tag="Login" 
-                                         Text="{Binding Path=Database.Username, UpdateSourceTrigger=PropertyChanged}" />
+                                         Text="{Binding Path=Database.DefaultConnection.Username, UpdateSourceTrigger=PropertyChanged}" />
                                 <PasswordBox Margin="0,0,0,10" 
                                         FontSize="16"  
-                                        ctrls:PasswordHelper.PlaceHolderText="Password"
+                                        ctrls:PasswordHelper.PlaceHolderText="Database.DefaultConnection.Password"
                                         HorizontalAlignment="Left" Width="190" />
                             </StackPanel>
                         </Grid>

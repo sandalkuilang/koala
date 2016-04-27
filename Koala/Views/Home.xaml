@@ -9,7 +9,7 @@
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:Views="clr-namespace:Koala.Views" 
              xmlns:ctrls="clr-namespace:Koala.ViewModels" 
-             xmlns:a="clr-namespace:Koala.Core.Credential"
+             xmlns:a="clr-namespace:Koala.Core.Credential.Custom"
              xmlns:op="clr-namespace:Koala.ViewModels.ValidationRules"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 

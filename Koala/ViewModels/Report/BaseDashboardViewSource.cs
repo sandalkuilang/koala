@@ -167,7 +167,7 @@ namespace Koala.ViewModels.Report
         {
             this.Year = DateTime.Now.Year;
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             Years = db.Query<int>("GetDistinctYear");
             db.Close();
 

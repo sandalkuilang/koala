@@ -630,7 +630,7 @@ namespace Koala.ViewModels.Order
 
             Task.Run(() => {
                 IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
 
                 CreateOrderDetailModel detail = (CreateOrderDetailModel)arg;
                 db.Execute("UpdateOrderDetail", new
@@ -761,7 +761,7 @@ namespace Koala.ViewModels.Order
                 //Task.Factory.StartNew(() =>
                 //{
                     IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
                     Finishing = db.Query<KeyValueOption>("GetFinishing");
                     Size = db.Query<KeyValueOption>("GetSize");
                     MaterialMaster = db.Query<MaterialType>("GetMaterial");

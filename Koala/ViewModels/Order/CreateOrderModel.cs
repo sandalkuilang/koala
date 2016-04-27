@@ -226,8 +226,7 @@ namespace Koala.ViewModels.Order
         public string Status { get; set; }
 
         public System.Windows.Input.ICommand AddCommand { get; set; } 
-        public System.Windows.Input.ICommand UpdateCommand { get; set; }
-        //public System.Windows.Input.ICommand SaveCommand { get; set; }
+        public System.Windows.Input.ICommand UpdateCommand { get; set; } 
         public ReactiveCommand<Unit> SaveCommand { get; set; }
         public System.Windows.Input.ICommand PrintCommand { get; set; }
         public System.Windows.Input.ICommand AddDetailCommand { get; set; } 
@@ -273,11 +272,13 @@ namespace Koala.ViewModels.Order
             UpdateDetailStatusCommand = new DelegateCommand<object>(new Action<object>(OnUpdateDetailStatus));
             StartPrintingCommand = new DelegateCommand<Visual>(new Action<Visual>(OnStartPrint));
 
-            CreatedDate = DateTime.Now;
-            PoNumber = string.Join("-", 
-                Guid.NewGuid().ToString().GetHashCode().ToString("x").ToUpper(), 
-                Guid.NewGuid().ToString().GetHashCode().ToString("x").Substring(0,2).ToUpper(),
-                Guid.NewGuid().ToString().GetHashCode().ToString("x").Substring(0,1).ToUpper()); 
+            CreatedDate = DateTime.Now; 
+
+            PoNumber = string.Join("-", DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString("00") + DateTime.Now.Year.ToString().Substring(2),
+                GetNextPoNumber(new
+                {
+                    CreatedDate = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString()
+                }));
         }
 
         private void Details_DataChanged(object sender, MutableObservableCollection<CreateOrderDetailModel> e)
@@ -285,10 +286,24 @@ namespace Koala.ViewModels.Order
             NotifyDetailHeader();
         }
  
+        private string GetNextPoNumber(params object[] args)
+        {
+            IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+            List<int> result = db.Query<int>("GetNextPoNumber", args);
+            int counter = 0;
+            if (result.Any())
+            {
+                counter += result[0] + 1;
+            }
+            db.Close();
+            return counter.ToString("000");
+        }
+
         private void OnUpdateDetailStatus(object status)
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
 
             foreach(CreateOrderDetailModel detail in this.details.Source)
             {
@@ -322,7 +337,7 @@ namespace Koala.ViewModels.Order
                 return;
 
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
 
             db.Execute("UpdateOrder", new 
             {
@@ -471,7 +486,7 @@ namespace Koala.ViewModels.Order
             if (!NewOrder)
             {
                 IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
                 foreach (CreateOrderDetailModel item in collection.ToList())
                 {
                     db.Execute("DeleteOrderDetail", new 
@@ -518,16 +533,19 @@ namespace Koala.ViewModels.Order
         {
             if (obj != null)
             {
-                //Task.Factory.StartNew(() => 
+                CreateOrderModel model = (CreateOrderModel)obj;
+                if (string.IsNullOrEmpty(model.CustomerName))
+                {
+                    return;
+                }
+
                 await Task.Run(() =>
                 {
                     IsBusy = true;
                     IsEnabled = false;
-
-                    CreateOrderModel model = (CreateOrderModel)obj;
-
+                     
                     IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
 
                     Dictionary<string, string> scripts = new Dictionary<string, string>();
 
@@ -558,7 +576,7 @@ namespace Koala.ViewModels.Order
                             Status = "I",
                             Total = model.TotalPayment,
                             Installment = model.Installment,
-                            Remaining = model.Remaining,
+                            Remaining = model.Remaining, 
                             Disc = model.discount
                         });
 

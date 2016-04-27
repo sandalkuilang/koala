@@ -27,13 +27,14 @@
         <Grid.LayoutTransform>
             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.0" />
         </Grid.LayoutTransform>
-        <Grid VerticalAlignment="Stretch">
+        
+        <Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Grid.LayoutTransform>
                 <ScaleTransform ScaleX="1" ScaleY="1" />
             </Grid.LayoutTransform>
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
-                <RowDefinition />
+                <RowDefinition /> 
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
@@ -73,7 +74,7 @@
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
-                                        <i:InvokeCommandAction Command="{Binding Path=RefreshCommand}" />
+                                        <i:InvokeCommandAction Command="{Binding Path=RefreshCommand}" CommandParameter="1" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 
@@ -99,12 +100,12 @@
                             Grid.ColumnSpan="2" Grid.RowSpan="2"  
                             HorizontalScrollBarVisibility="Visible"
                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal" >
-                        <chart:StackedColumnChart  
-                            Grid.Row="3"
-                            Margin="10"
+                    <StackPanel Orientation="Vertical" >
+                        <chart:StackedBarChart   
+                            VerticalAlignment="Top"
                             Width="1300"
-                            VerticalAlignment="Stretch"
+                            Height="550"
+                            Margin="10,10,10,0"
                             HorizontalAlignment="Stretch"
                             ChartTitle="Transaction per Month"
                             ChartSubTitle="* in Rupiah" 
@@ -114,7 +115,7 @@
                             Background="{Binding Path=InvoiceMonth.Background}"                    
                             SelectedItem="{Binding Path=InvoiceMonth.SelectedItem, Mode=TwoWay}" 
                             SeriesSource="{Binding Path=InvoiceMonth.Source, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
-                            <chart:StackedColumnChart.SeriesTemplate>
+                            <chart:StackedBarChart.SeriesTemplate>
                                 <DataTemplate>
                                     <chart:ChartSeries
 			                            SeriesTitle="{Binding Path=SeriesDisplayName}"
@@ -122,13 +123,73 @@
                                         ValueMember="Number"
                                         ItemsSource="{Binding Path=Items}" />
                                 </DataTemplate>
-                            </chart:StackedColumnChart.SeriesTemplate>
-                        </chart:StackedColumnChart> 
+                            </chart:StackedBarChart.SeriesTemplate>
+                        </chart:StackedBarChart>
+
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Row="0" Grid.Column="0" TextBlock.FontSize="13">
+                                <TextBlock Text="Total transaction (Paid)" />
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="1" TextBlock.FontSize="13">
+                                <TextBlock Text=":" />
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="2" TextBlock.FontSize="13">
+                                <TextBlock Text="{Binding Path=InvoiceMonth.Total, StringFormat={}{0:#,#}}" />
+                            </Grid>
+
+                            <Grid Grid.Row="2" Grid.Column="0" TextBlock.FontSize="13">
+                                <TextBlock Text="" />
+                            </Grid> 
+
+                            <Grid Grid.Row="1" Grid.Column="0" TextBlock.FontSize="13">
+                                <TextBlock Text="Total order (Paid)" />
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="1" TextBlock.FontSize="13">
+                                <TextBlock Text=":" />
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="2" TextBlock.FontSize="13">
+                                <TextBlock Text="{Binding Path=InvoiceMonth.Order}" />
+                            </Grid>
+
+                            <Grid Grid.Row="3" Grid.Column="0" TextBlock.FontSize="13">
+                                <TextBlock Text="Total transaction (installment)" />
+                            </Grid>
+                            <Grid Grid.Row="3" Grid.Column="1" TextBlock.FontSize="13">
+                                <TextBlock Text=":" />
+                            </Grid>
+                            <Grid Grid.Row="3" Grid.Column="2" TextBlock.FontSize="13">
+                                <TextBlock Text="{Binding Path=InvoiceMonth.TotalInstallment, StringFormat={}{0:#,#}}" />
+                            </Grid>
+
+                            <Grid Grid.Row="4" Grid.Column="0" TextBlock.FontSize="13">
+                                <TextBlock Text="Total order (installment)" />
+                            </Grid>
+                            <Grid Grid.Row="4" Grid.Column="1" TextBlock.FontSize="13">
+                                <TextBlock Text=":" />
+                            </Grid>
+                            <Grid Grid.Row="4" Grid.Column="2" TextBlock.FontSize="13">
+                                <TextBlock Text="{Binding Path=InvoiceMonth.OrderInstallment}" />
+                            </Grid>
+
+                        </Grid>
                     </StackPanel>
                 </ScrollViewer>
-                     
-              
+ 
             </Grid>
+ 
         </Grid>
     </Grid>
 </UserControl>

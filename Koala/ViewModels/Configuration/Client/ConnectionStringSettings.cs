@@ -22,23 +22,19 @@ namespace Koala.ViewModels.Configuration.Client
                 base["connectionString"] = value;
             }
         }
-
-
-        private string name; 
-        public string Name
+         
+        public ConnectionStringElement DefaultConnection
         {
             get
-            {
-                string name = "";
+            { 
                 foreach(ConnectionStringElement collection in this.Items)
                 {
                     if (collection.IsDefault)
                     {
-                        name = collection.Name;
-                        break;
+                        return collection; 
                     }
                 }
-                return name;
+                return null;
             } 
         }
     }

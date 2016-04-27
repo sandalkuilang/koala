@@ -23,12 +23,18 @@ namespace Koala.ViewModels.Master
                 if (dialog.ShowDialog<Size>(model).Value == true)
                 {
                     IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
-                    db.Execute("UpdateSize", new
+                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+
+                    try
                     {
-                        Id = model.Id,
-                        Description = model.Description
-                    });
+                        db.Execute("UpdateSize", new
+                        {
+                            Id = model.Id,
+                            Description = model.Description
+                        });
+                    }
+                    catch { }
+                    
                     db.Close();
                     OnSourceChanged(this);
                 }
@@ -38,15 +44,21 @@ namespace Koala.ViewModels.Master
         public override void OnDelete(object arg)
         { 
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name); 
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name); 
             foreach (KeyValueOption item in Source)
             {
                 if (item.IsSelected)
                 {
-                    db.Execute("DeleteSize", new
+
+                    try
                     {
-                        Id = item.Id
-                    });
+                        db.Execute("DeleteSize", new
+                        {
+                            Id = item.Id
+                        });
+                    }
+                    catch { }
+                    
                 }
             }
             db.Close();
@@ -68,12 +80,18 @@ namespace Koala.ViewModels.Master
                 this.Source.Add(model);
 
                 IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
-                db.Execute("InsertSize", new
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+
+                try
                 {
-                    Id = model.Id,
-                    Description = model.Description
-                });
+                    db.Execute("InsertSize", new
+                    {
+                        Id = model.Id,
+                        Description = model.Description
+                    });
+                }
+                catch { }
+                
                 db.Close();
                 OnSourceChanged(this);
             }

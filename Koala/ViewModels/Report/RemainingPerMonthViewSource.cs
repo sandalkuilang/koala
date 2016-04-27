@@ -32,17 +32,17 @@ namespace Koala.ViewModels.Report
         public override void Load()
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             List<DataValue> result = db.Query<DataValue>("GetDashboardRemainingPerMonth", new { Year = this.Year, Month = this.Month }); 
 
-            MutableObservableCollection<SeriesData<DataValue>> model = new MutableObservableCollection<SeriesData<DataValue>>(); 
+            MutableObservableCollection<SeriesData<DataValue>> model = new MutableObservableCollection<SeriesData<DataValue>>();
             for (int i = 0; i < result.Count; i++)
             {
                 model.Add(new SeriesData<DataValue>()
                 {
                     SeriesDisplayName = result[i].Name
                 });
-
+                 
                 model[i].Items.Add(new DataValue()
                 {
                     Name = result[i].Name,

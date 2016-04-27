@@ -1,6 +1,7 @@
 ﻿using System;
 using ReactiveUI;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 
 namespace Koala.ViewModels.Report
 {
@@ -71,18 +72,42 @@ namespace Koala.ViewModels.Report
             RefreshCommand = ReactiveCommand.Create();
             RefreshCommand.Subscribe(x => 
             {
-                OnRefresh();
+                OnRefresh(x);
             });
 
             RefreshCommand.Execute(null);
         }
 
-        private void OnRefresh()
-        {  
-            invoiceMonth.Load();
-            topMaterial.Load();
-            topConsumer.Load();
-            remainingPerMonth.Load();
+        private void OnRefresh(object parameter)
+        {
+            Task.Run(() =>
+            {
+                if (parameter != null)
+                {
+                    switch (parameter.ToString())
+                    {
+                        case "1":
+                            invoiceMonth.Load();
+                            break;
+                        case "2":   
+                            remainingPerMonth.Load();
+                            break;
+                        case "3":
+                            topConsumer.Load();
+                            break;
+                        case "4":
+                            topMaterial.Load();
+                            break;
+                    }
+                }
+                else
+                {
+                    invoiceMonth.Load();
+                    topMaterial.Load();
+                    topConsumer.Load();
+                    remainingPerMonth.Load();
+                }
+            });
         }
 
         public void Pull()

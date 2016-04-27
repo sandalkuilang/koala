@@ -14,16 +14,16 @@
              GlowBrush="{DynamicResource AccentColorBrush}"
              Title="Order"
              mc:Ignorable="d" 
-             Height="590" Width="760"
+             Height="560" Width="760"
              d:DesignHeight="630" d:DesignWidth="760">
-    
+
     <Control.Resources>
         <ResourceDictionary>
             <rules:BooleanVisibilityConverter x:Key="BooleanVisibility" />
             <rules:CheckedConverter x:Key="RadioButtonCheckedConverter" />
             <rules:NullableValueConverter x:Key="NullableValueConverter" />
             <BitmapImage x:Key="PaidInFull" UriSource="../../Images/paid_in_full.png" />
-            <ResourceDictionary.MergedDictionaries> 
+            <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Styles/ButtonStyle.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -56,8 +56,8 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="185" />
-                            <RowDefinition Height="Auto" /> 
+                            <RowDefinition Height="155" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="0,0,0,15">
@@ -93,7 +93,7 @@
                                                 <Setter Property="IsReadOnly" Value="True"/>
                                             </DataTrigger>
                                         </Style.Triggers>
-                                    </Style> 
+                                    </Style>
                                 </TextBox.Style>
                             </TextBox>
 
@@ -146,11 +146,11 @@
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Left"
                                 Grid.Row="2" Grid.Column="4" >
-                            </TextBox> 
+                            </TextBox>
                         </Grid>
 
                         <Separator  Grid.Row="4" Grid.Column="0" VerticalAlignment="Top" />
-                        
+
 
                         <Grid Grid.Row="4" Grid.Column="0">
                             <Grid.RowDefinitions>
@@ -161,7 +161,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal"> 
+                            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
                                 <Button BorderThickness="0" Width="32" Margin="0,0,15,0"
                                     Height="Auto" Background="Transparent" Foreground="#D15948" 
                                     diag:PresentationTraceSources.TraceLevel="High">
@@ -175,8 +175,8 @@
                                             <i:InvokeCommandAction Command="{Binding Path=AddDetailCommand}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
-                                </Button> 
-                                
+                                </Button>
+
                                 <Button BorderThickness="0" Width="32"
                                     Height="Auto" Background="Transparent" Foreground="#D15948" 
                                     diag:PresentationTraceSources.TraceLevel="High">
@@ -184,14 +184,14 @@
                                         <Image Width="26" Height="26" Margin="0,0,10,0" VerticalAlignment="Center" 
                                            HorizontalAlignment="Center"  Source="../../Images/minus_26.png" ToolTip="delete"/>
                                     </StackPanel>
-                                    
+
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
                                             <i:InvokeCommandAction 
                                                 Command="{Binding Path=DeleteDetailCommand}" 
                                                 CommandParameter="{Binding ElementName=grid, Path=ItemsSource}" />
                                         </i:EventTrigger>
-                                    </i:Interaction.Triggers> 
+                                    </i:Interaction.Triggers>
                                 </Button>
                                 <StackPanel.Style>
                                     <Style TargetType="StackPanel">
@@ -249,7 +249,7 @@
                                     </Style>
                                 </StackPanel.Style>
                             </StackPanel>
-                            
+
                             <TextBlock Grid.Row="0" Grid.Column="1" 
                                        Text="{Binding DetailHeader, UpdateSourceTrigger=PropertyChanged}"
                                        VerticalAlignment="Center" HorizontalAlignment="Right" />
@@ -262,8 +262,8 @@
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
-                            </Grid.Style> 
-                        </Grid> 
+                            </Grid.Style>
+                        </Grid>
 
                         <DataGrid x:Name="grid" 
                                 Grid.Column="0"
@@ -276,7 +276,7 @@
                                 CanUserAddRows="False" 
                                 ItemsSource="{Binding Details.Source, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 GridLinesVisibility="Horizontal">
-                            
+
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseDoubleClick">
                                     <i:InvokeCommandAction 
@@ -286,7 +286,7 @@
                                     </i:InvokeCommandAction>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
- 
+
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Edit"
@@ -297,10 +297,10 @@
                                     <Separator />
                                     <MenuItem Header="Delete"
                                         Command="{Binding Path=DeleteDetailCommand}" 
-                                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}"/> 
+                                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}"/>
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
-                            
+
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn CanUserResize="False">
                                     <DataGridTemplateColumn.HeaderTemplate>
@@ -347,18 +347,18 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="Add. Requirement" IsReadOnly="True" Width="180" Binding="{Binding Description}" />
-                                <DataGridTextColumn Header="Created date" IsReadOnly="True" Width="105" Binding="{Binding CreatedDate, StringFormat={}\{0:dd-MMM-yyyy HH:mm\}}" />
+                                <DataGridTextColumn Header="Created date" IsReadOnly="True" Width="105" Binding="{Binding CreatedDate, StringFormat={}\{0:dd-MMM-yyyy HH:mm\}, UpdateSourceTrigger=PropertyChanged}" />
                                 <DataGridTextColumn Header="Deadline" IsReadOnly="True" Width="80" Binding="{Binding Deadline, StringFormat={}\{0:dd-MMM-yyyy\}}" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        
+
                         <Grid Grid.Row="7" Margin="0,10,0,0">
                             <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition /> 
+                                <RowDefinition Height="29*" />
+                                <RowDefinition Height="29*" />
+                                <RowDefinition Height="29*" />
+                                <RowDefinition Height="29*" />
+                                <RowDefinition Height="29*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="435"/>
@@ -368,12 +368,10 @@
                             </Grid.ColumnDefinitions>
 
 
-                            <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="6"
-                                    Stretch="Fill"
-                                    Width="200" 
-                                    Height="200">
+                            <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"
+                                    Stretch="Fill" Height="130" Width="130">
                                 <Image.Style>
-                                    <Style TargetType="{x:Type Image}"> 
+                                    <Style TargetType="{x:Type Image}">
                                         <Style.Triggers>
                                             <DataTrigger Value="true" Binding="{Binding Paid}">
                                                 <Setter Property="Source"  Value="{StaticResource PaidInFull}"/>
@@ -383,7 +381,7 @@
                                 </Image.Style>
                             </Image>
 
-                            <Label Grid.Row="0" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="12" Grid.Column="1" Content="Subtotal" HorizontalAlignment="Right"/>
+                            <Label Grid.Row="0" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="11" Grid.Column="1" Content="Subtotal" HorizontalAlignment="Right" Width="53" Margin="0" Height="25" VerticalAlignment="Top"/>
                             <TextBox
                                 Height="25" 
                                 TextAlignment="Right"
@@ -394,10 +392,10 @@
                                 Text="{Binding TotalPayment, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:n0}}"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Stretch"
-                                Grid.Row="0" Grid.Column="3" >
+                                Grid.Row="0" Grid.Column="3" Margin="0" >
                             </TextBox>
 
-                            <Label Grid.Row="1" Grid.Column="1" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="12" Content="Disc." HorizontalAlignment="Right"/>
+                            <Label Grid.Row="1" Grid.Column="1" TextBlock.FontWeight="SemiBold" Height="25" TextBlock.FontSize="11" Content="Disc." HorizontalAlignment="Right" Width="36"/>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3">
                                 <TextBox 
                                     Height="25"  
@@ -422,11 +420,11 @@
                                         </Style>
                                     </TextBox.Style>
                                 </TextBox>
-                                <Label Grid.Row="1" Grid.Column="1" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="12" Content="%" HorizontalAlignment="Right"/>
+                                <Label Grid.Row="1" Grid.Column="1" Height="25" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="11" Content="%" HorizontalAlignment="Right"/>
                             </StackPanel>
-                            
-                             
-                            <Label Grid.Row="2" Grid.Column="1" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="12" Content="Cash" HorizontalAlignment="Right"/>
+
+
+                            <Label Grid.Row="2" Grid.Column="1" TextBlock.FontWeight="SemiBold" Height="25" TextBlock.FontSize="11" Content="Cash" HorizontalAlignment="Right" Width="35"/>
                             <TextBox 
                                 Height="25"  
                                 Padding="3"
@@ -451,7 +449,7 @@
                                 </TextBox.Style>
                             </TextBox>
 
-                            <Label Grid.Row="3" Grid.Column="1" Content="Change" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="12" HorizontalAlignment="Right"/>
+                            <Label Grid.Row="3" Grid.Column="1" Content="Change" Height="25" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="11" HorizontalAlignment="Right" Margin="0,0,0,5" Width="50"/>
                             <TextBox 
                                 Height="25"  
                                 Padding="3"
@@ -461,10 +459,10 @@
                                 Text="{Binding Change, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:n0}}"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Stretch"
-                                Grid.Row="3" Grid.Column="3" >
+                                Grid.Row="3" Grid.Column="3" Margin="0" >
                             </TextBox>
 
-                            <Label Grid.Row="4" Grid.Column="1" Content="Remaining" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="12" HorizontalAlignment="Right"/>
+                            <Label Grid.Row="4" Grid.Column="1" Content="Remaining" Height="25" TextBlock.FontWeight="SemiBold" TextBlock.FontSize="11" HorizontalAlignment="Right" Width="67"/>
                             <TextBox 
                                 Height="25"  
                                 Padding="3"
@@ -475,14 +473,14 @@
                                 Text="{Binding Remaining, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:n0}}"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Stretch"
-                                Grid.Row="4" Grid.Column="3" >
+                                Grid.Row="4" Grid.Column="3" Margin="0" >
                             </TextBox>
 
                         </Grid>
 
                         <Grid Grid.Row="8" Margin="0,10,0,0">
-                            <Grid.ColumnDefinitions> 
-                                <ColumnDefinition /> 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -491,9 +489,9 @@
                             <Grid Margin="0,0,450,0"  >
                                 <Controls:ProgressRing Width="25" Height="25" 
                                     IsActive="{Binding Path=IsBusy, UpdateSourceTrigger=PropertyChanged}"  
-                                    HorizontalAlignment="Right"/> 
+                                    HorizontalAlignment="Right"/>
                             </Grid>
- 
+
                             <Grid Grid.Row="0" Grid.Column="0" >
                                 <Button x:Name="btnCancel" Content="Close" HorizontalAlignment="Right"
                                     IsEnabled="{Binding IsEnabled}"
@@ -502,11 +500,11 @@
                                 <Grid.Style>
                                     <Style TargetType="Grid">
                                         <Style.Triggers>
-                                            <DataTrigger Binding ="{Binding Path=Status}" Value="Q"> 
+                                            <DataTrigger Binding ="{Binding Path=Status}" Value="Q">
                                                 <Setter Property="HorizontalAlignment" Value="Right"/>
                                                 <Setter Property="Margin" Value="0,0,165,0"/>
                                             </DataTrigger>
-                                            <DataTrigger Binding ="{Binding Path=Status}" Value="I"> 
+                                            <DataTrigger Binding ="{Binding Path=Status}" Value="I">
                                                 <Setter Property="Margin" Value="0,0,325,0"/>
                                             </DataTrigger>
                                             <DataTrigger Binding ="{Binding Path=Status}" Value="F">
@@ -516,7 +514,7 @@
                                     </Style>
                                 </Grid.Style>
                             </Grid>
-                             
+
                             <Grid Grid.Row="0" Grid.Column="0">
                                 <Button Content="Invoice"   
                                     HorizontalAlignment="Right"
@@ -560,13 +558,13 @@
                                                 <Setter Property="Visibility" Value="Hidden"/>
                                             </DataTrigger>
                                             <DataTrigger Binding ="{Binding Path=Status}" Value="F">
-                                                <Setter Property="Visibility" Value="Collapsed"/> 
+                                                <Setter Property="Visibility" Value="Collapsed"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Grid.Style>
                             </Grid>
-                            
+
                             <Grid Grid.Row="0" Grid.Column="0">
                                 <Button Content="Save"   
                                     HorizontalAlignment="Right"
@@ -590,10 +588,10 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Grid.Style>
-                            </Grid> 
-                            
+                            </Grid>
+
                         </Grid>
-                            
+
                     </Grid>
                 </Controls:TransitioningContentControl>
             </Border>

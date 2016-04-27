@@ -2,6 +2,7 @@
 using Koala.ViewModels.Configuration.Client;
 using System.Collections.Generic;
 using Krokot.Database;
+using System;
 
 namespace Koala.ViewModels.Report
 {
@@ -28,7 +29,7 @@ namespace Koala.ViewModels.Report
         public override void Load()
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.Name);
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             List<DataValue> result = db.Query<DataValue>("GetDashboardTopConsumer", new { Year = this.Year });
 
             MutableObservableCollection<SeriesData<DataValue>> model = new MutableObservableCollection<SeriesData<DataValue>>();
