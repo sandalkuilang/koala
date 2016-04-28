@@ -216,21 +216,21 @@
                                          HorizontalAlignment="Left" 
                                          Width="220" 
                                          FontSize="16" 
-                                         Text="{Binding Contact.Company}"
+                                         Text="{Binding Contact.Company, UpdateSourceTrigger=PropertyChanged}"
                                          Tag="Company name" >
                                 </TextBox>
                                 <TextBox Margin="0,0,0,10" 
                                          HorizontalAlignment="Left" 
                                          Width="450" 
                                          FontSize="16" 
-                                         Text="{Binding Contact.Address}"
+                                         Text="{Binding Contact.Address, UpdateSourceTrigger=PropertyChanged}"
                                          Tag="Address">
                                 </TextBox>
                                 <TextBox Margin="0,0,0,10" 
                                          HorizontalAlignment="Left" 
                                          Width="180" 
                                          FontSize="16" 
-                                         Text="{Binding Contact.Phone}"
+                                         Text="{Binding Contact.Phone, UpdateSourceTrigger=PropertyChanged}"
                                          Tag="Phone" >
                                     <interactivity:Interaction.Behaviors>
                                         <rules:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9-+]+$" MaxLength="20" />
@@ -240,7 +240,7 @@
                                          HorizontalAlignment="Left" 
                                          Width="180" 
                                          FontSize="16" 
-                                         Text="{Binding Contact.Email}"
+                                         Text="{Binding Contact.Email, UpdateSourceTrigger=PropertyChanged}"
                                          Tag="Email">
                                 </TextBox>
                             </StackPanel>

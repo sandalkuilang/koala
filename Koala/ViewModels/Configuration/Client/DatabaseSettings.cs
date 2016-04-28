@@ -16,11 +16,12 @@ namespace Koala.ViewModels.Configuration.Client
         {
             get
             {
-                server = (string)this["connectionStringFormat"];
-                return server;
+                connectionStringFormat = (string)this["connectionStringFormat"];
+                return connectionStringFormat;
             }
             set
             {
+                this["connectionStringFormat"] = value;
                 NotifyIfChanged(ref connectionStringFormat, value);
             }
         }
@@ -36,6 +37,7 @@ namespace Koala.ViewModels.Configuration.Client
             }
             set
             {
+                this["server"] = value;
                 NotifyIfChanged(ref server, value);
             }
         }
@@ -51,6 +53,7 @@ namespace Koala.ViewModels.Configuration.Client
             }
             set
             {
+                this["name"] = value;
                 NotifyIfChanged(ref name, value);
             }
         }

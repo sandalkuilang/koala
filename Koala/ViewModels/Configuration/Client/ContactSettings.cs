@@ -16,6 +16,7 @@ namespace Koala.ViewModels.Configuration.Client
             }
             set
             {
+                this["company"] = value;
                 NotifyIfChanged(ref company, value);
             }
         }
@@ -31,6 +32,7 @@ namespace Koala.ViewModels.Configuration.Client
             }
             set
             {
+                this["address"] = value;
                 NotifyIfChanged(ref address, value);
             }
         }
@@ -46,6 +48,7 @@ namespace Koala.ViewModels.Configuration.Client
             }
             set
             {
+                this["phone"] = value;
                 NotifyIfChanged(ref phone, value);
             }
         }
@@ -61,6 +64,7 @@ namespace Koala.ViewModels.Configuration.Client
             }
             set
             {
+                this["email"] = value;
                 NotifyIfChanged(ref email, value);
             }
         }

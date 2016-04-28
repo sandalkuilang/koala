@@ -132,8 +132,8 @@
                               ItemsSource="{Binding Details.Source, UpdateSourceTrigger=PropertyChanged}"
                               GridLinesVisibility="All">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Name" IsReadOnly="True" TextBlock.TextAlignment="Center" Width="135" Binding="{Binding Title}" />
-                                    <DataGridTextColumn Header="Material" IsReadOnly="True" Width="135" Binding="{Binding SelectedMaterial.Description}" />
+                                    <DataGridTextColumn Header="Name" IsReadOnly="True" TextBlock.TextAlignment="Center" Width="115" Binding="{Binding Title}" />
+                                    <DataGridTextColumn Header="Material" IsReadOnly="True" Width="115" Binding="{Binding SelectedMaterial.Description}" />
                                     <DataGridTextColumn Header="W" IsReadOnly="True" Width="40" Binding="{Binding Height}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
@@ -155,7 +155,7 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Quality" IsReadOnly="True" Width="85" Binding="{Binding SelectedQuality.Description}" />
+                                    <DataGridTextColumn Header="Quality" IsReadOnly="True" Width="70" Binding="{Binding SelectedQuality.Description}" />
                                     <DataGridTextColumn Header="Price" IsReadOnly="True" TextBlock.FontWeight="SemiBold" Width="85" Binding="{Binding SelectedMaterial.Price, StringFormat={}{0:n0}}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
@@ -164,7 +164,7 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Disc" IsReadOnly="True" Width="60" Binding="{Binding Discount}" >
+                                    <DataGridTextColumn Header="Disc" IsReadOnly="True" Width="55" Binding="{Binding Discount}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Center" />
