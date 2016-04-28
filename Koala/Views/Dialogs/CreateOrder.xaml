@@ -11,6 +11,8 @@
              ShowMaxRestoreButton="False"
              ShowMinButton="False"
              ResizeMode="NoResize"  
+             ShowIconOnTitleBar="False"
+             ShowInTaskbar="False"
              GlowBrush="{DynamicResource AccentColorBrush}"
              Title="Order"
              mc:Ignorable="d" 

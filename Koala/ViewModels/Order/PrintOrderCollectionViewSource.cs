@@ -96,19 +96,32 @@ namespace Koala.ViewModels.Order
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
-            foreach (CreateOrderModel order in Source.ToList())
+
+            WarningModel message = new WarningModel()
             {
-                if (order.IsSelected)
+                Message = "Are you sure want to delete data?"
+            };
+
+            IDialogService dialog = ObjectPool.Instance.Resolve<IDialogService>();
+            bool? result = dialog.ShowDialog<YesNo>(message);
+
+            if (result.HasValue && result.Value)
+            {
+                foreach (CreateOrderModel order in Source.ToList())
                 {
-                    db.Execute("DeletePrintOrder", new
+                    if (order.IsSelected)
                     {
-                        OrderId = order.PoNumber,
-                        Status = "I"
-                    });
-                    orderCollaborator.PrintOrder.Source.Remove(order);
+                        db.Execute("DeletePrintOrder", new
+                        {
+                            OrderId = order.PoNumber,
+                            Status = "I"
+                        });
+                        orderCollaborator.PrintOrder.Source.Remove(order);
+                    }
                 }
+                db.Close(); 
             }
-            db.Close(); 
+             
             base.OnDelete(arg);
         }
 

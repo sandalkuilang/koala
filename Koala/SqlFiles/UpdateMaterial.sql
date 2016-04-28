@@ -1,6 +1,6 @@
 ﻿UPDATE  [MaterialType]
-SET     [Description] = @Description ,
-        [QualityId] = @QualityId ,
+SET     [Description] = @Description , 
         [Price] = @Price
 WHERE   Id = @Id
+	AND [QualityId] = @QualityId
  

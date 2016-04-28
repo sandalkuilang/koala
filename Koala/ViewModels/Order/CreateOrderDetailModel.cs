@@ -186,15 +186,13 @@ namespace Koala.ViewModels.Order
 
                     Quality = filterQuality;
                     if (qualityId != null)
-                        SelectedQuality = Quality.Where(x => x.Id == qualityId).SingleOrDefault();
+                    {
+                        SelectedQuality = Quality.Where(x => x.Id == qualityId).SingleOrDefault(); 
+                    }
                     else
-                        SelectedQuality = Quality.FirstOrDefault();
-
-                    //if (selectedQuality != null)
-                        //Price = selectedMaterial.Price * qty;
-                    //Price = materialMaster.Where(x => x.Id == selectedMaterial.Id && x.QualityId == selectedQuality.Id).SingleOrDefault().Price * qty;
-                   // else
-                       // Price = 0;
+                    {
+                        SelectedQuality = Quality.FirstOrDefault(); 
+                    }
                 }
             }
         }
@@ -617,7 +615,7 @@ namespace Koala.ViewModels.Order
                     IsBusy = true;
                     if (AddingOrderDetail != null)
                         AddingOrderDetail(this, (CreateOrderDetailModel)this.Clone());
-                    InitializeModel();
+                     
                     IsBusy = false;
                 });
             } 
@@ -733,42 +731,19 @@ namespace Koala.ViewModels.Order
         }
 
         private void InitializeModel()
-        {
-            //await Task.Run(() => 
-            //{
-                this.Title = string.Empty;
-                this.SelectedFinishing = null;
-                this.SelectedMaterial = null;
-                this.SelectedQuality = null;
-                this.SelectedSize = null;
-                this.QualityId = null;
-                this.FinishingId = null;
-                this.SizeId = null;
-                this.MaterialId = null;
-                this.Width = 0;
-                this.Height = 0;
-                this.Qty = 0;
-                this.Price = 0;
-                this.Stream = null;
-                this.Description = string.Empty;
-                this.Deadline = DateTime.Now;
-                this.Queue = 0;
-                this.ThumbnailImage = null;
-                this.Stream = null;
-                this.CanUpdateDetailStatus = true;
-
-                Qty = 1;
-                //Task.Factory.StartNew(() =>
-                //{
-                    IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-                    IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
-                    Finishing = db.Query<KeyValueOption>("GetFinishing");
-                    Size = db.Query<KeyValueOption>("GetSize");
-                    MaterialMaster = db.Query<MaterialType>("GetMaterial");
-                    Material = MaterialMaster.GroupBy(x => x.Id).Select(d => d.First()).ToList();
-                    db.Close();
-                //});
-            //}); 
+        { 
+            this.Title = string.Empty; 
+            this.Deadline = DateTime.Now;
+            this.CreatedDate = DateTime.Now; 
+            
+            Qty = 1; 
+            IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+            Finishing = db.Query<KeyValueOption>("GetFinishing");
+            Size = db.Query<KeyValueOption>("GetSize");
+            MaterialMaster = db.Query<MaterialType>("GetMaterial");
+            Material = MaterialMaster.GroupBy(x => x.Id).Select(d => d.First()).ToList();
+            db.Close();
         }
 
 
@@ -788,25 +763,28 @@ namespace Koala.ViewModels.Order
 
                 detail.title = this.title;
                
-                detail.SelectedFinishing = new KeyValueOption();
-
+                detail.SelectedFinishing = new KeyValueOption(); 
                 detail.SelectedFinishing.Id = this.SelectedFinishing.Id;
                 detail.SelectedFinishing.Description = this.SelectedFinishing.Description;
 
-                detail.SelectedQuality = new KeyValueOption();
-                detail.SelectedQuality.Id = this.SelectedQuality.Id;
-                detail.SelectedQuality.Description = this.SelectedQuality.Description;
+                //detail.SelectedMaterial = new MaterialType();
+                //detail.SelectedMaterial.Id = this.SelectedMaterial.Id;
+                //detail.SelectedMaterial.Description = this.SelectedMaterial.Description;
+                //detail.SelectedMaterial.QualityId = this.SelectedMaterial.QualityId;
+                //detail.SelectedMaterial.Price = this.SelectedMaterial.Price;
 
-                detail.SelectedMaterial = new MaterialType();
-                detail.SelectedMaterial.Id = this.SelectedMaterial.Id;
-                detail.SelectedMaterial.Description = this.SelectedMaterial.Description;
-                detail.SelectedMaterial.QualityId = this.SelectedMaterial.QualityId;
-                detail.SelectedMaterial.Price = this.SelectedMaterial.Price;
+                //detail.SelectedQuality = new KeyValueOption();
+                //detail.SelectedQuality.Id = this.SelectedQuality.Id;
+                //detail.SelectedQuality.Description = this.SelectedQuality.Description;
 
+                detail.SelectedMaterial = this.selectedMaterial;
+
+                detail.SelectedQuality = this.selectedQuality;
+                 
                 detail.QualityId = this.QualityId;
                 detail.MaterialId = this.MaterialId;
                 detail.FinishingId = this.FinishingId;
-                //detail.SizeId = this.SizeId; 
+                detail.CreatedDate = this.CreatedDate;
 
                 detail.Width = this.width;
                 detail.Height = this.height;

@@ -8,6 +8,8 @@
         WindowStartupLocation="CenterScreen"  
         ShowMaxRestoreButton="False"
         ShowMinButton="False"
+        ShowIconOnTitleBar="False"
+        ShowInTaskbar="False"
         ResizeMode="NoResize"  
         GlowBrush="{DynamicResource AccentColorBrush}"
         Title="detail" Height="500" Width="500">
@@ -71,7 +73,7 @@
                                   Width="205" HorizontalAlignment="Left" Margin="0,0,0,10"
                                   ItemsSource="{Binding Material}"
                                   DisplayMemberPath="Description"
-                                  SelectedItem="{Binding SelectedMaterial, ValidatesOnDataErrors=True}"
+                                  SelectedItem="{Binding SelectedMaterial, ValidatesOnDataErrors=True,Mode=TwoWay}"
                                   SelectedValue="{Binding MaterialId}"
                                   SelectedValuePath="Id" />
                          

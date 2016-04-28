@@ -22,7 +22,7 @@ namespace Koala.Core
 
             bool? result = pd.ShowDialog();
              
-            pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
+            pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
 
             if (!result.HasValue || !result.Value) return;
 
@@ -65,8 +65,8 @@ namespace Koala.Core
                 canvas.Height = height;
                 canvas.Width = width;
 
-                FixedPage.SetLeft(canvas, 50);
-                FixedPage.SetTop(canvas, 50);
+                FixedPage.SetLeft(canvas, 0);
+                FixedPage.SetTop(canvas, 25);
 
                 page.Children.Add(canvas);
             }

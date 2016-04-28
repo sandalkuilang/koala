@@ -485,17 +485,18 @@ namespace Koala.ViewModels.Order
 
             if (!NewOrder)
             {
+               
                 IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
                 IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
                 foreach (CreateOrderDetailModel item in collection.ToList())
                 {
-                    db.Execute("DeleteOrderDetail", new 
+                    db.Execute("DeleteOrderDetail", new
                     {
                         OrderId = item.OrderId,
                         SeqNbr = item.SeqNbr
                     });
-                } 
-                db.Close();
+                }
+                db.Close(); 
             }
             
             foreach (CreateOrderDetailModel item in collection.ToList())
@@ -582,9 +583,20 @@ namespace Koala.ViewModels.Order
 
                         CreateOrderDetailModel detail;
                         for (int i = 0; i < model.Details.Source.Count; i++)
-                        {
+                        { 
                             detail = model.Details.Source[i];
 
+                            result = db.Query<int>("CheckExistsOrderDetail", new
+                            {
+                                OrderId = model.poNumber,
+                                SeqNbr = detail.SeqNbr
+                            });
+
+                            if (!result.Any())
+                            {  
+                                scripts["OrderDetail"] = "CreateOrderDetail";
+                            }
+                             
                             db.Execute(scripts["OrderDetail"], new
                             {
                                 OrderId = model.PoNumber,

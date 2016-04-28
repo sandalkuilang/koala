@@ -301,7 +301,7 @@
                     <Button 
                         Content="Save" 
                         HorizontalAlignment="Left"
-                        Command="{Binding Path=Commands.SaveCommand}"/>
+                        Command="{Binding Path=Command.SaveCommand}"/>
 
                     <Button 
                         Content="Restart" 

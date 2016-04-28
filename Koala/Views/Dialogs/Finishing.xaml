@@ -8,6 +8,8 @@
         WindowStartupLocation="CenterScreen"  
         ShowMaxRestoreButton="False"
         ShowMinButton="False"
+        ShowIconOnTitleBar="False"
+        ShowInTaskbar="False"
         ResizeMode="NoResize"  
         GlowBrush="{DynamicResource AccentColorBrush}"
         Title="Finishing" Height="200" Width="400">

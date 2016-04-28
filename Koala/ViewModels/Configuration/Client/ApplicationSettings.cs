@@ -45,8 +45,13 @@ namespace Koala.ViewModels.Configuration.Client
         }
 
         public void Save()
-        {
+        { 
+            General.SectionInformation.ForceSave = true;
+            Contact.SectionInformation.ForceSave = true;
+            Database.SectionInformation.ForceSave = true;
+            Audio.SectionInformation.ForceSave = true;
 
+            Configuration.Save(ConfigurationSaveMode.Full);
         }
 
         public void ContactConnect()
