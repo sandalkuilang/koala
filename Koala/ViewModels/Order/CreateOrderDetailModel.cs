@@ -139,7 +139,7 @@ namespace Koala.ViewModels.Order
                 {
                     selectedMaterial = MaterialMaster.Where(s => s.Id == selectedMaterial.Id && s.QualityId == value.Id).SingleOrDefault();
                     if (selectedMaterial != null)
-                        Price = selectedMaterial.Price * qty;
+                        CalculateTotalPaymentBySize();
                 }
                 else
                     Price = 0;
@@ -312,6 +312,7 @@ namespace Koala.ViewModels.Order
             set
             {
                 NotifyIfChanged(ref width, value);
+                CalculateTotalPaymentBySize();
             }
         }
 
@@ -324,7 +325,28 @@ namespace Koala.ViewModels.Order
             }
             set
             {
-                NotifyIfChanged(ref height, value);
+                NotifyIfChanged(ref height, value); 
+                CalculateTotalPaymentBySize();
+            }
+        }
+
+        private void CalculateTotalPaymentBySize()
+        {
+            if (selectedMaterial == null)
+                return;
+
+            int higherSize = height;
+            if (width > height)
+                higherSize = width;
+
+            if (higherSize > 100)
+            {
+                int s = higherSize / 100; 
+                Price = (selectedMaterial.Price * s) * qty;
+            }
+            else
+            {
+                Price = (selectedMaterial.Price) * qty;
             }
         }
 
@@ -339,7 +361,7 @@ namespace Koala.ViewModels.Order
             {
                 NotifyIfChanged(ref qty, value);
                 if (selectedMaterial != null)
-                    Price = selectedMaterial.Price * value;
+                    CalculateTotalPaymentBySize();
 
             }
         }
@@ -565,8 +587,7 @@ namespace Koala.ViewModels.Order
                     stream.Close();
                 }
             });
-
-            //AddDetailCommand = new DelegateCommand<object>(new Action<object>(OnAddDetail));
+             
             AddDetailCommand = ReactiveCommand.Create();
             AddDetailCommand.Subscribe(x => 
             {

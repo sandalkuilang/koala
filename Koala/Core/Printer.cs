@@ -22,7 +22,7 @@ namespace Koala.Core
 
             bool? result = pd.ShowDialog();
              
-            pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
+            pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
 
             if (!result.HasValue || !result.Value) return;
 
@@ -33,8 +33,8 @@ namespace Koala.Core
                 fe.UpdateLayout();
             }), System.Windows.Threading.DispatcherPriority.Render);
 
-            int height = (int)pd.PrintableAreaHeight;
-            int width = (int)pd.PrintableAreaWidth;
+            int height = (int)pd.PrintTicket.PageMediaSize.Height;
+            int width = (int)pd.PrintTicket.PageMediaSize.Width;
             int pages = (int)Math.Ceiling((fe.ActualHeight / height)); 
 
             FixedDocument document = new FixedDocument();
@@ -44,6 +44,7 @@ namespace Koala.Core
                 FixedPage page = new FixedPage();
                 page.Height = height;
                 page.Width = width;
+                page.PrintTicket = pd.PrintTicket;
 
                 PageContent content = new PageContent();
                 content.Child = page;

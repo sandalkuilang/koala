@@ -354,9 +354,7 @@ namespace Koala.ViewModels.Order
 
         private void CalculatingTotalPayment()
         {
-            CreateOrderDetailModel detail;
-            //installment = 0;
-            //discount = 0;
+            CreateOrderDetailModel detail; 
             totalPayment = 0;
             paymentBeforeDiscount = 0;
             // remaining must be set last

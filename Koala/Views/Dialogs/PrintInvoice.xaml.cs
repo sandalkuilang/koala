@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Koala.Views.Dialogs
 {
@@ -16,5 +17,11 @@ namespace Koala.Views.Dialogs
         {
             DialogResult = false;
         }
+           
+        private void grid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            ((DataGrid)sender).UnselectAllCells();
+        }
+         
     }
 }

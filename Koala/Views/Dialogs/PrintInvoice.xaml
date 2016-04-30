@@ -12,11 +12,11 @@
         ShowMaxRestoreButton="False"
         ShowMinButton="False"
         ResizeMode="NoResize"  
-        ShowIconOnTitleBar="False"
-        ShowInTaskbar="False"
+        ShowIconOnTitleBar="True"
+        ShowInTaskbar="True"
         GlowBrush="{DynamicResource AccentColorBrush}"
         mc:Ignorable="d" 
-        Title="Print Invoice" Height="565" Width="825">
+        Title="Print Invoice" Height="565" Width="805">
 
     <Control.Resources>
         <ResourceDictionary>
@@ -27,7 +27,7 @@
         </ResourceDictionary>
     </Control.Resources>
     
-    <Grid>
+    <Grid x:Name="layoutInvoice">
         <Border BorderBrush="LightBlue" BorderThickness="2" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="Auto"> 
             <Grid Margin="10">
                 <Grid.RowDefinitions>
@@ -59,8 +59,8 @@
                             <ColumnDefinition Width="220"/>
                             <ColumnDefinition Width="70"/>
                             <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="90"/>
                             <ColumnDefinition Width="90"/>
                             <ColumnDefinition Width="10"/>
                             <ColumnDefinition />
@@ -123,40 +123,63 @@
                             <DataGrid x:Name="grid" 
                               AutoGenerateColumns="False" 
                               CanUserAddRows="False" 
-                              IsReadOnly="True" 
+                              IsReadOnly="True"  
                               BorderThickness="2"
                               BorderBrush="Black"
                               HorizontalGridLinesBrush="Black"
                               VerticalGridLinesBrush="Black" 
                               HorizontalScrollBarVisibility="Hidden"
                               ItemsSource="{Binding Details.Source, UpdateSourceTrigger=PropertyChanged}"
-                              GridLinesVisibility="All">
+                              GridLinesVisibility="All"  SelectedCellsChanged="grid_SelectedCellsChanged"> 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Name" IsReadOnly="True" TextBlock.TextAlignment="Center" Width="115" Binding="{Binding Title}" />
-                                    <DataGridTextColumn Header="Material" IsReadOnly="True" Width="115" Binding="{Binding SelectedMaterial.Description}" />
-                                    <DataGridTextColumn Header="W" IsReadOnly="True" Width="40" Binding="{Binding Height}" >
+                                    <DataGridTextColumn Header="NAME" IsReadOnly="True" Width="130" Binding="{Binding Title}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="TextAlignment" Value="Center" /> 
+                                                <Setter Property="Margin" Value="10,0,0,0" />
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                        <!--<DataGridTextColumn.HeaderStyle>
+                                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="Background" Value="White" />
+                                                <Setter Property="FontWeight" Value="Medium" />
+                                                <Setter Property="Margin" Value="5,-5,0,0" />
+                                                <Setter Property="Height" Value="15" /> 
+                                            </Style>
+                                        </DataGridTextColumn.HeaderStyle>-->
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Material" Width="150" Binding="{Binding SelectedMaterial.Description}" />
+                                    <DataGridTextColumn Header="W" Width="35" Binding="{Binding Width}" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                                <Setter Property="TextWrapping" Value="Wrap"/> 
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="H" IsReadOnly="True" Width="40" Binding="{Binding Width}" >
+                                    <DataGridTextColumn Header="H" Width="35" Binding="{Binding Height}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Center" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Qty" IsReadOnly="True" Width="55" Binding="{Binding Qty}" >
+                                    <DataGridTextColumn Header="Qty" Width="45" Binding="{Binding Qty}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Center" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Quality" IsReadOnly="True" Width="70" Binding="{Binding SelectedQuality.Description}" />
-                                    <DataGridTextColumn Header="Price" IsReadOnly="True" TextBlock.FontWeight="SemiBold" Width="85" Binding="{Binding SelectedMaterial.Price, StringFormat={}{0:n0}}" >
+                                    <DataGridTextColumn Header="Quality" Width="70" Binding="{Binding SelectedQuality.Description}" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Price" Width="62" Binding="{Binding SelectedMaterial.Price, StringFormat={}{0:n0}}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Right" />
@@ -164,15 +187,15 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Disc" IsReadOnly="True" Width="55" Binding="{Binding Discount}" >
+                                    <DataGridTextColumn Header="Disc" Width="55" Binding="{Binding Discount}" Visibility="Collapsed" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Center" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Total" IsReadOnly="True"
-                                                        Width="85" TextBlock.FontWeight="SemiBold" 
+                                    <DataGridTextColumn Header="Total"
+                                                        Width="85" 
                                                         Binding="{Binding Price, StringFormat={}{0:n0}}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
@@ -181,7 +204,14 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Finishing" IsReadOnly="True" Width="155" Binding="{Binding SelectedFinishing.Description}" />
+                                    <DataGridTextColumn Header="Finishing" IsReadOnly="True" Width="170" Binding="{Binding SelectedFinishing.Description}" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Margin" Value="10,0,0,0" />
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
                                 </DataGrid.Columns>
                                 
                             </DataGrid>
@@ -324,22 +354,24 @@
 
                     <Grid Grid.Column="4">
                         <Button Content="Close"   
-                                HorizontalAlignment="Left"  
+                                HorizontalAlignment="Right"  
                                 Background="DarkOrange"
                                 CommandParameter="{Binding}"
                                 IsEnabled="{Binding IsEnabled}" 
-                                Width="120" Click="Button_Click" >
+                                Height="40"
+                                Width="80" Click="Button_Click" >
                         </Button>
                     </Grid>
 
                     <Grid Grid.Column="5">
-                        <Button Content="Print"   
+                        <Button Content="Print" x:Name="btnPrint"   
                                 HorizontalAlignment="Right"
                                 Background="DarkOrange"
+                                Height="40"
                                 Command="{Binding StartPrintingCommand}"
                                 CommandParameter="{Binding ElementName=Document, Mode=OneWay}"
                                 IsEnabled="{Binding IsEnabled}"
-                                Width="150" >
+                                 >
                         </Button>
                     </Grid>
                 </Grid>
