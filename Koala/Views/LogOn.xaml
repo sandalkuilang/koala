@@ -23,8 +23,8 @@
         </ResourceDictionary>
         
     </Window.Resources>
-    <Grid x:Name="layoutInvoice">
-        <Border BorderBrush="LightBlue" BorderThickness="2" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="Auto">
+    <Grid x:Name="layout">
+        <Border  BorderThickness="2" Margin="10" VerticalAlignment="Stretch" Height="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -49,7 +49,7 @@
                 <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Content="Password"/>
                 <PasswordBox Grid.Column="1" Grid.Row="2" GotFocus="CredentialsFocussed" x:Name="txtPassword" />
                 <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="Red" FontStyle="Italic" Visibility="{Binding ShowInvalidCredentials}" Content="*Invalid User Name and/or Password"/>
-                <StackPanel Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,10,10"  >
+                <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,10,10"  >
                     <Button Content="Log-on" IsCancel="True" Click="LogonClick" Height="35" Width="90" Margin="0,0,10,0" TextBlock.FontSize="12" />
                     <Button Content="Cancel" IsCancel="True" Click="Button_Click" Height="35" Width="90" TextBlock.FontSize="12" />
                 </StackPanel>

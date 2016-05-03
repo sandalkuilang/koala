@@ -33,11 +33,7 @@ namespace Koala.ViewModels.Order
         }
 
         public override void OnDelete(object obj)
-        {
-            IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
-            OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
-
+        { 
             WarningModel message = new WarningModel()
             {
                 Message = "Are you sure want to delete data?"
@@ -48,6 +44,9 @@ namespace Koala.ViewModels.Order
 
             if (result.HasValue && result.Value)
             {
+                IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+                OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
                 foreach (CreateOrderModel order in Source.ToList())
                 {
                     if (order.IsSelected)
@@ -60,10 +59,9 @@ namespace Koala.ViewModels.Order
                         orderCollaborator.PaymentOrder.source.Remove(order);
                     }
                 }
-                db.Close();
-            } 
-              
-            base.OnDelete(obj);
+                db.Close(); 
+                base.OnDelete(obj);
+            }  
         }
 
         public override void OnEditCommand(object obj)

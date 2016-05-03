@@ -22,7 +22,7 @@ namespace Koala.Core
 
             bool? result = pd.ShowDialog();
              
-            pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
+            pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
 
             if (!result.HasValue || !result.Value) return;
 

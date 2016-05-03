@@ -15,8 +15,7 @@ using Koala.Core.Credential;
 namespace Koala.Core
 {
     public class ApplicationStartup  
-    {
-        private IDbManager dbManager;
+    { 
         private ApplicationSettings settings;
          
 
@@ -87,6 +86,7 @@ namespace Koala.Core
             dialog.Register(new Views.Dialogs.Warning());
             dialog.Register(new Views.Dialogs.PrintInvoice());
             dialog.Register(new Views.Dialogs.YesNo());
+            dialog.Register(new Views.Dialogs.Supplier());
 
             ObjectPool.Instance.Register<IDialogService>().ImplementedBy(dialog);
         }

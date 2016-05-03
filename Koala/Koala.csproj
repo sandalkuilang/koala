@@ -38,7 +38,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -215,6 +215,8 @@
     <Compile Include="ViewModels\Master\QualityCollectionViewSource.cs" />
     <Compile Include="ViewModels\Master\QualityType.cs" />
     <Compile Include="ViewModels\Master\SizeCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Master\Supplier.cs" />
+    <Compile Include="ViewModels\Master\SupplierCollectionViewSource.cs" />
     <Compile Include="ViewModels\MutableObservableCollection.cs" />
     <Compile Include="ViewModels\IDetailCommand.cs" />
     <Compile Include="ViewModels\ISelectableGridCommand.cs" />
@@ -271,6 +273,9 @@
     <Compile Include="Views\Dialogs\Finishing.xaml.cs">
       <DependentUpon>Finishing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Dialogs\Stock.xaml.cs">
+      <DependentUpon>Stock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dialogs\Material.xaml.cs">
       <DependentUpon>Material.xaml</DependentUpon>
     </Compile>
@@ -279,6 +284,9 @@
     </Compile>
     <Compile Include="Views\Dialogs\Size.xaml.cs">
       <DependentUpon>Size.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\Supplier.xaml.cs">
+      <DependentUpon>Supplier.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\Warning.xaml.cs">
       <DependentUpon>Warning.xaml</DependentUpon>
@@ -306,6 +314,9 @@
     </Compile>
     <Compile Include="Views\Master\SizeList.xaml.cs">
       <DependentUpon>SizeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Master\SupplierList.xaml.cs">
+      <DependentUpon>SupplierList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderLayout.xaml.cs">
       <DependentUpon>OrderLayout.xaml</DependentUpon>
@@ -431,6 +442,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Dialogs\Stock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dialogs\Material.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -440,6 +455,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dialogs\Size.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\Supplier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -476,6 +495,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Master\SizeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Master\SupplierList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -551,6 +574,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SqlFiles\DeleteSupplier.sql" />
+    <EmbeddedResource Include="SqlFiles\GetSupplier.sql" />
+    <EmbeddedResource Include="SqlFiles\InsertSupplier.sql" />
+    <EmbeddedResource Include="SqlFiles\UpdateSupplier.sql" />
     <EmbeddedResource Include="SqlFiles\CheckExistsOrderDetail.sql" />
     <EmbeddedResource Include="SqlFiles\GetNextPoNumber.sql" />
     <EmbeddedResource Include="SqlFiles\GetDashboardRemainingPerMonth.sql" />

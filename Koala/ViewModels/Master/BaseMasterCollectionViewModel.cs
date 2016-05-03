@@ -33,9 +33,9 @@ namespace Koala.ViewModels.Master
             CreateCommand = new DelegateCommand(new Action(OnCreate)); 
         }
 
-        protected string GenerateId(int length)
+        protected string GenerateId(int length, string suffix = "")
         {
-            return Guid.NewGuid().ToString().Replace("-","").Substring(0, length).ToUpper();
+            return suffix + Guid.NewGuid().ToString().Replace("-","").Substring(0, length).ToUpper();
         }
 
         protected void OnSourceChanged(object sender)

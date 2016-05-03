@@ -56,10 +56,10 @@
                             <TextBlock Text="Select year" Margin="0,5,10,8"  VerticalAlignment="Center"/>
                           
                             <ComboBox Grid.Row="0" Grid.Column="0"  Margin="0,8,10,8"
-                                  Width="80" HorizontalAlignment="Left" 
+                                  Width="70" HorizontalAlignment="Left" 
                                   ItemsSource="{Binding InvoiceMonth.Years}"  
                                   Text="{Binding InvoiceMonth.Year, UpdateSourceTrigger=PropertyChanged}"
-                                  Controls:TextBoxHelper.Watermark="year"
+                                  Controls:TextBoxHelper.Watermark="Year"
                                   IsReadOnly="True"
                                   SelectedItem="{Binding InvoiceMonth.Year, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValue="Year"

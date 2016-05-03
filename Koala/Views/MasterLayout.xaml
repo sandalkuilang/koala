@@ -81,18 +81,18 @@
                             </DataTemplate>
                         </TabItem.ContentTemplate>
                     </TabItem>
-                    <TabItem>
+                    <!--<TabItem>
                         <TabItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="size" FontSize="18" Margin="0,0,10,0"/>
+                                <TextBlock Text="supplier" FontSize="18" Margin="0,0,10,0"/>
                             </DataTemplate>
                         </TabItem.HeaderTemplate>
                         <TabItem.ContentTemplate>
                             <DataTemplate>
-                                <Views:SizeList DataContext="{Binding Path=Size}"/>
+                                <Views:SupplierList DataContext="{Binding Path=Supplier}"/>
                             </DataTemplate>
                         </TabItem.ContentTemplate>
-                    </TabItem>
+                    </TabItem>-->
                 </Controls:MetroAnimatedSingleRowTabControl>
             </Grid>
 

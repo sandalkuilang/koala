@@ -1,0 +1,103 @@
+﻿<Controls:MetroWindow  x:Class="Koala.Views.Dialogs.Supplier"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:rules="clr-namespace:Koala.ViewModels.ValidationRules"   
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"  
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        WindowStartupLocation="CenterScreen"  
+        ShowMaxRestoreButton="False"
+        ShowMinButton="False"
+        ResizeMode="NoResize"
+        ShowIconOnTitleBar="False"
+        ShowInTaskbar="False"  
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Title="Supplier" Height="240" Width="400">
+
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/ButtonStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
+    <Grid RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display"
+          VerticalAlignment="Stretch">
+        <Border BorderBrush="LightBlue" BorderThickness="1" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="Auto">
+            <Controls:TransitioningContentControl Width="Auto" x:Name="transitionComposeContact"
+                Transition="Left" Margin="9,-1,-9,1">
+                <Grid Margin="10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="ID"/>
+                    <TextBox Grid.Row="0" Grid.Column="1"  
+                             Width="80"
+                             Margin="0,0,0,5"
+                             IsReadOnly="True"
+                             Text="{Binding Path=SupplierId, UpdateSourceTrigger=PropertyChanged}"
+                             HorizontalAlignment="Left"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Name"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" AcceptsReturn="True" 
+                             Width="240"
+                              Margin="0,0,0,5"
+                             Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             HorizontalAlignment="Left"
+                             Controls:TextBoxHelper.Watermark="Enter Supplier Name">
+                    </TextBox>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Address"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" AcceptsReturn="True" 
+                             Width="240"
+                             Margin="0,0,0,5"
+                             Text="{Binding Path=Address, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             HorizontalAlignment="Left"
+                             Controls:TextBoxHelper.Watermark="Enter Address">
+                    </TextBox>
+ 
+                    <Label Grid.Row="3" Grid.Column="0" Content="Telp."/>
+                    <TextBox Grid.Row="3" Grid.Column="1" AcceptsReturn="True" 
+                             Width="130"
+                             Margin="0,0,0,5" 
+                             Text="{Binding Path=Telp, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             HorizontalAlignment="Left"
+                             Controls:TextBoxHelper.Watermark="Enter Phone Number">
+                        <i:Interaction.Behaviors>
+                            <rules:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9;]+$" MaxLength="870" />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                    
+                    <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                                Orientation="Horizontal" Margin="0 20 0 0">
+                        <Button x:Name="btnOK" Content="OK"  
+                                Command="{Binding SaveCommand}"
+                                CommandParameter="{Binding}"
+                                Width="90" Height="40" Margin="0 0 15 0" Click="btnOK_Click"
+                                />
+                        <Button x:Name="btnCancel" Content="Cancel" Width="90" 
+                                Height="40" Click="btnCancel_Click" />
+
+                        <Controls:ProgressRing Width="25" Height="25" 
+                                                   IsActive="{Binding Path=IsBusy, UpdateSourceTrigger=PropertyChanged}" 
+                                                   Margin="20,0,0,0" 
+                                                   HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Grid>
+            </Controls:TransitioningContentControl>
+        </Border>
+    </Grid>
+
+</Controls:MetroWindow>

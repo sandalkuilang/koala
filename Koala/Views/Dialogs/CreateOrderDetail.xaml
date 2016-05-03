@@ -12,7 +12,7 @@
         ShowInTaskbar="False"
         ResizeMode="NoResize"  
         GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="detail" Height="500" Width="500">
+        Title="detail" Height="455" Width="500">
 
     <Control.Resources>
         <ResourceDictionary>
@@ -31,10 +31,10 @@
             <Border BorderBrush="LightBlue" BorderThickness="1" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="Auto">
                 <Controls:TransitioningContentControl Width="Auto" x:Name="transitionComposeMessage"
                 Transition="Left" Margin="9,-1,10,1">
-                    <Grid Margin="20,20,0,0" >
+                    <Grid Margin="10,10,0,0" >
                         <Grid.Resources> 
                             <Style TargetType="{x:Type Label}">
-                                <Setter Property="Margin" Value="0 0 0 10" />
+                                <Setter Property="Margin" Value="0 0 0 5" />
                             </Style>
                         </Grid.Resources>
                         <Grid.ColumnDefinitions>
@@ -73,6 +73,7 @@
                                   Width="205" HorizontalAlignment="Left" Margin="0,0,0,10"
                                   ItemsSource="{Binding Material}"
                                   DisplayMemberPath="Description"
+                                  Controls:TextBoxHelper.Watermark="Choose material type"
                                   SelectedItem="{Binding SelectedMaterial, ValidatesOnDataErrors=True,Mode=TwoWay}"
                                   SelectedValue="{Binding MaterialId}"
                                   SelectedValuePath="Id" />
@@ -120,11 +121,11 @@
 
                         <Label Grid.Row="4" Grid.Column="0" Content="Quality"/>
                         <ComboBox Grid.Row="4" Grid.Column="1" 
-                                  Width="120" HorizontalAlignment="Left" Margin="0,0,0,10"
+                                  Width="150" HorizontalAlignment="Left" Margin="0,0,0,10"
                                   ItemsSource="{Binding Quality}"
                                   DisplayMemberPath="Description"
                                   Text="{Binding SelectedQuality}"
-                                  Controls:TextBoxHelper.Watermark="Choose Material Type"
+                                  Controls:TextBoxHelper.Watermark="Choose quality"
                                   SelectedItem="{Binding SelectedQuality, Mode=TwoWay}"
                                   SelectedValue="{Binding QualityId, ValidatesOnDataErrors=True}"
                                   SelectedValuePath="Id"/>
@@ -134,6 +135,7 @@
                                   Width="320" HorizontalAlignment="Left" Margin="0,0,0,10"
                                   ItemsSource="{Binding Finishing}"
                                   DisplayMemberPath="Description"
+                                  Controls:TextBoxHelper.Watermark="Choose finishing"
                                   Text="{Binding SelectedFinishing, ValidatesOnDataErrors=True}"
                                   SelectedItem="{Binding SelectedFinishing, Mode=TwoWay}"
                                   SelectedValue="{Binding FinishingId}"
@@ -256,7 +258,7 @@
                                 CommandParameter="{Binding}"
                                 Visibility="{Binding AddVisibility}"
                                 Background="BlueViolet"
-                                Width="150" Margin="0 0 15 0"/>
+                                Width="120" Margin="0 0 15 0"/>
                             
                             <Button Content="Update"  
                                 Command="{Binding UpdateDetailCommand}"

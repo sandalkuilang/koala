@@ -51,19 +51,15 @@ namespace Koala
                     {
                         case 100:
                             accessLevel = new string[] {
-                                AccessLevel.CAN_VIEW_ORDER,
-                                AccessLevel.CAN_VIEW_MASTER
-                            };
-                            //ObjectPool.Instance.Register<MasterCollaborator>().ImplementedBy(new MasterCollaborator());
+                                AccessLevel.CAN_VIEW_ORDER 
+                            }; 
                             break;
                         case 900:
                             accessLevel = new string[] {
                                 AccessLevel.CAN_VIEW_ORDER,
                                 AccessLevel.CAN_VIEW_MASTER,
                                 AccessLevel.CAN_VIEW_REPORT
-                            };
-                            //ObjectPool.Instance.Register<MasterCollaborator>().ImplementedBy(new MasterCollaborator());
-                            //ObjectPool.Instance.Register<DashboardCollaborator>().ImplementedBy(new DashboardCollaborator());
+                            }; 
                             break;
                         default:
                             accessLevel = new string[] {

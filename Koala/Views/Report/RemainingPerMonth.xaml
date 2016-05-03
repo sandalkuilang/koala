@@ -53,10 +53,9 @@
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Text="Month" Margin="0,5,10,8"  VerticalAlignment="Center"/>
                             <ComboBox Grid.Row="0" Grid.Column="0"  Margin="0,8,10,8"
-                                  Width="80" HorizontalAlignment="Left" 
+                                  Width="50" HorizontalAlignment="Left" 
                                   ItemsSource="{Binding RemainingPerMonth.Months}"  
-                                  Text="{Binding RemainingPerMonth.Month, UpdateSourceTrigger=PropertyChanged}"
-                                  Controls:TextBoxHelper.Watermark="Month"
+                                  Text="{Binding RemainingPerMonth.Month, UpdateSourceTrigger=PropertyChanged}" 
                                   IsReadOnly="True"
                                   SelectedItem="{Binding RemainingPerMonth.Month, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValue="Month"
@@ -64,10 +63,10 @@
                             
                             <TextBlock Text="Year" Margin="0,5,10,8"  VerticalAlignment="Center"/>
                             <ComboBox Grid.Row="0" Grid.Column="0"  Margin="0,8,10,8"
-                                  Width="80" HorizontalAlignment="Left" 
+                                  Width="70" HorizontalAlignment="Left" 
                                   ItemsSource="{Binding RemainingPerMonth.Years}"  
                                   Text="{Binding RemainingPerMonth.Year, UpdateSourceTrigger=PropertyChanged}"
-                                  Controls:TextBoxHelper.Watermark="year"
+                                  Controls:TextBoxHelper.Watermark="Year"
                                   IsReadOnly="True"
                                   SelectedItem="{Binding RemainingPerMonth.Year, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValue="Year"

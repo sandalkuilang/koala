@@ -63,7 +63,7 @@ namespace Koala.ViewModels.Master
         public override void OnCreate()
         {
             KeyValueOption model = new KeyValueOption();
-            model.Id = GenerateId(5);
+            model.Id = GenerateId(3, "FN");
             IDialogService dialog = ObjectPool.Instance.Resolve<IDialogService>();
             if (dialog.ShowDialog<Finishing>(model).Value == true)
             {

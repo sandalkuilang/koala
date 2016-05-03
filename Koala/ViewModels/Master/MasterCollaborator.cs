@@ -64,6 +64,19 @@ namespace Koala.ViewModels.Master
             }
         }
 
+        private SupplierCollectionViewSource supplier;
+        public SupplierCollectionViewSource Supplier
+        {
+            get
+            {
+                return supplier;
+            }
+            set
+            {
+                NotifyIfChanged(ref supplier, value);
+            }
+        }
+
         public MasterCollaborator()
         {
             Size = new SizeCollectionViewSource();
@@ -74,7 +87,17 @@ namespace Koala.ViewModels.Master
             material.SourceChanged += material_SourceChanged;
             Finishing = new FinishingCollectionViewSource();
             Finishing.SourceChanged += Finishing_SourceChanged;
+            
+            Supplier = new SupplierCollectionViewSource();
+            supplier.SourceChanged += Supplier_SourceChanged;
+
             masterTypeSync = MasterType.All;
+            Pull();
+        }
+
+        private void Supplier_SourceChanged(object sender, EventArgs e)
+        {
+            masterTypeSync = MasterType.Supplier;
             Pull();
         }
 
@@ -121,6 +144,9 @@ namespace Koala.ViewModels.Master
 
             if (mstrType == 100 || masterTypeSync == MasterType.Size)
                 Size.Source = db.Query<KeyValueOption>("GetSize").Convert<KeyValueOption>();
+
+            //if (mstrType == 100 || masterTypeSync == MasterType.Supplier)
+            //    Supplier.Source = db.Query<Supplier>("GetSupplier").Convert<Supplier>();
 
             db.Close(); 
         }

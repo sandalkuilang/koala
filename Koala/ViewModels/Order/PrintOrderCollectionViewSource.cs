@@ -30,8 +30,7 @@ namespace Koala.ViewModels.Order
 
         public PrintOrderCollectionViewSource()
         {
-            Source = new MutableObservableCollection<CreateOrderModel>();
-            //UpdateQueueOrderCommand = new DelegateCommand<string>(new Action<string>(OnUpdateQueueOrder));
+            Source = new MutableObservableCollection<CreateOrderModel>(); 
             UpdateQueueOrderCommand = ReactiveUI.ReactiveCommand.Create();
             UpdateQueueOrderCommand.Subscribe(x => 
             {
@@ -92,11 +91,7 @@ namespace Koala.ViewModels.Order
         }
          
         public override void OnDelete(object arg)
-        {
-            IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
-            OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
-
+        { 
             WarningModel message = new WarningModel()
             {
                 Message = "Are you sure want to delete data?"
@@ -107,6 +102,10 @@ namespace Koala.ViewModels.Order
 
             if (result.HasValue && result.Value)
             {
+                IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+                OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
+
                 foreach (CreateOrderModel order in Source.ToList())
                 {
                     if (order.IsSelected)
@@ -119,10 +118,9 @@ namespace Koala.ViewModels.Order
                         orderCollaborator.PrintOrder.Source.Remove(order);
                     }
                 }
-                db.Close(); 
-            }
-             
-            base.OnDelete(arg);
+                db.Close();
+                base.OnDelete(arg);
+            } 
         }
 
         public override void OnPrint(object arg)

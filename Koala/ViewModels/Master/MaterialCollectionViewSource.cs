@@ -98,7 +98,7 @@ namespace Koala.ViewModels.Master
         public override void OnCreate()
         {
             MaterialType model = new MaterialType();
-            model.Id = GenerateId(5);
+            model.Id = GenerateId(3, "MA");
 
             IDialogService dialog = ObjectPool.Instance.Resolve<IDialogService>();
             model.ItemChanged += model_ItemChanged;

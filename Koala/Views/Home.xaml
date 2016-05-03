@@ -25,13 +25,13 @@
     
     <Grid> 
         <Controls:MetroAnimatedSingleRowTabControl Margin="0,0,0,0" x:Name="tabMenu">
-            <TabItem Header="order" x:Name="orderMenuItem">
+            <TabItem Header="order" x:Name="orderMenuItem" Visibility="{op:AuthorizationToVisibility {x:Static a:AccessLevel.CAN_VIEW_ORDER}}">
                 <Views:OrderLayout/>
             </TabItem>
             <TabItem Header="report" x:Name="reportMenuItem" Visibility="{op:AuthorizationToVisibility {x:Static a:AccessLevel.CAN_VIEW_REPORT}}">
                 <Views:ReportLayout/>
             </TabItem>
-            <TabItem Header="master" x:Name="masterMenuItem">
+            <TabItem Header="master" x:Name="masterMenuItem" Visibility="{op:AuthorizationToVisibility {x:Static a:AccessLevel.CAN_VIEW_MASTER}}">
                 <Views:MasterLayout/>
             </TabItem>
         </Controls:MetroAnimatedSingleRowTabControl>
