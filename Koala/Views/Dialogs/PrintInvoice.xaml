@@ -22,7 +22,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Styles/ButtonStyle.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />
+                <ResourceDictionary Source="../../Styles/DataGridStyle.xaml" />  
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Control.Resources>
@@ -130,31 +130,22 @@
                               VerticalGridLinesBrush="Black" 
                               HorizontalScrollBarVisibility="Hidden"
                               ItemsSource="{Binding Details.Source, UpdateSourceTrigger=PropertyChanged}"
-                              GridLinesVisibility="All"  SelectedCellsChanged="grid_SelectedCellsChanged"> 
+                              GridLinesVisibility="All"  SelectedCellsChanged="grid_SelectedCellsChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="NAME" IsReadOnly="True" Width="130" Binding="{Binding Title}" >
                                         <DataGridTextColumn.ElementStyle>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Margin" Value="10,0,0,0" />
+                                            <Style TargetType="{x:Type TextBlock}"> 
                                                 <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="Margin" Value="5,0,0,0"/>
                                             </Style>
-                                        </DataGridTextColumn.ElementStyle>
-                                        <!--<DataGridTextColumn.HeaderStyle>
-                                            <Style TargetType="{x:Type DataGridColumnHeader}">
-                                                <Setter Property="Foreground" Value="Black" />
-                                                <Setter Property="Background" Value="White" />
-                                                <Setter Property="FontWeight" Value="Medium" />
-                                                <Setter Property="Margin" Value="5,-5,0,0" />
-                                                <Setter Property="Height" Value="15" /> 
-                                            </Style>
-                                        </DataGridTextColumn.HeaderStyle>-->
+                                        </DataGridTextColumn.ElementStyle> 
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Material" Width="150" Binding="{Binding SelectedMaterial.Description}" />
+                                    <DataGridTextColumn Header="MATERIAL" Width="150" Binding="{Binding SelectedMaterial.Description}" />
                                     <DataGridTextColumn Header="W" Width="35" Binding="{Binding Width}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Center" />
-                                                <Setter Property="TextWrapping" Value="Wrap"/> 
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
@@ -165,25 +156,25 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Qty" Width="45" Binding="{Binding Qty}" >
+                                    <DataGridTextColumn Header="QTY" Width="45" Binding="{Binding Qty}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Center" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Quality" Width="70" Binding="{Binding SelectedQuality.Description}" >
+                                    <DataGridTextColumn Header="QUALITY" Width="70" Binding="{Binding SelectedQuality.Description}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Center" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Price" Width="62" Binding="{Binding SelectedMaterial.Price, StringFormat={}{0:n0}}" >
+                                    <DataGridTextColumn Header="PRICE" Width="62" Binding="{Binding SelectedMaterial.Price, StringFormat={}{0:n0}}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Right" />
-                                                <Setter Property="Margin" Value="0,0,10,0" />
+                                                <Setter Property="Margin" Value="0,0,5,0" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
@@ -194,26 +185,25 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Total"
+                                    <DataGridTextColumn Header="TOTAL"
                                                         Width="85" 
                                                         Binding="{Binding Price, StringFormat={}{0:n0}}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextAlignment" Value="Right" />
-                                                <Setter Property="Margin" Value="0,0,10,0" />
+                                                <Setter Property="Margin" Value="0,0,5,0" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Finishing" IsReadOnly="True" Width="170" Binding="{Binding SelectedFinishing.Description}" >
+                                    <DataGridTextColumn Header="FINISHING" IsReadOnly="True" Width="170" Binding="{Binding SelectedFinishing.Description}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Margin" Value="10,0,0,0" />
+                                                <Setter Property="Margin" Value="5,0,0,0" />
                                                 <Setter Property="TextWrapping" Value="Wrap"/>
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
                                 </DataGrid.Columns>
-                                
                             </DataGrid>
                         </Grid> 
                     </Border>

@@ -342,18 +342,25 @@ namespace Koala.ViewModels.Order
             }
             else
             {
-                decimal higherSize = height;
-                if (width > height)
-                    higherSize = (decimal)width;
-
-                if (higherSize > 100)
+                if (width > 100 && height > 100)
                 {
-                    decimal s = higherSize / 100;
-                    Price = (selectedMaterial.Price * s) * qty;
+                    Price = (selectedMaterial.Price * (((decimal)width / 100) * ((decimal)height / 100))) * qty;
                 }
                 else
                 {
-                    Price = (selectedMaterial.Price) * qty; 
+                    decimal higherSize = height;
+                    if (width > height)
+                        higherSize = (decimal)width;
+
+                    if (higherSize > 100)
+                    {
+                        decimal s = higherSize / 100;
+                        Price = (selectedMaterial.Price * s) * qty;
+                    }
+                    else
+                    {
+                        Price = (selectedMaterial.Price) * qty;
+                    }
                 } 
             }
         }
