@@ -783,8 +783,13 @@ namespace Koala.ViewModels.Order
                 MaterialMaster = db.Query<MaterialType>("GetMaterial");
                 Material = MaterialMaster.GroupBy(x => x.Id).Select(d => d.First()).ToList();
                 db.Close();
-            } 
-            
+            }
+            else
+            {
+                SelectedFinishing = null;
+                SelectedQuality = null;
+                SelectedMaterial = null;
+            }
         }
 
 

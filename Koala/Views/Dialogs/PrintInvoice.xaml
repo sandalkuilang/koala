@@ -16,7 +16,7 @@
         ShowInTaskbar="True"
         GlowBrush="{DynamicResource AccentColorBrush}"
         mc:Ignorable="d" 
-        Title="Print Invoice" Height="565" Width="805">
+        Title="Print Invoice" Height="565" Width="800" FontFamily="Leelawadee UI">
 
     <Control.Resources>
         <ResourceDictionary>
@@ -118,21 +118,20 @@
                     </Grid>
 
                     <!--Content-->
-                    <Border Grid.Row="2" BorderBrush="Black" > 
+                    <Border Grid.Row="2" BorderBrush="Black" Margin="0,0,0,2" > 
                         <Grid TextBlock.FontSize="12">
                             <DataGrid x:Name="grid" 
                               AutoGenerateColumns="False" 
                               CanUserAddRows="False" 
                               IsReadOnly="True"  
-                              BorderThickness="2"
+                              BorderThickness="1"
                               BorderBrush="Black"
                               HorizontalGridLinesBrush="Black"
-                              VerticalGridLinesBrush="Black" 
                               HorizontalScrollBarVisibility="Hidden"
                               ItemsSource="{Binding Details.Source, UpdateSourceTrigger=PropertyChanged}"
-                              GridLinesVisibility="All"  SelectedCellsChanged="grid_SelectedCellsChanged">
+                              GridLinesVisibility="Horizontal"  SelectedCellsChanged="grid_SelectedCellsChanged" FontFamily="Leelawadee UI">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="NAME" IsReadOnly="True" Width="130" Binding="{Binding Title}" >
+                                    <DataGridTextColumn Header="NAME" IsReadOnly="True" Width="115" Binding="{Binding Title}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}"> 
                                                 <Setter Property="TextWrapping" Value="Wrap"/>
@@ -140,11 +139,18 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle> 
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="MATERIAL" Width="150" Binding="{Binding SelectedMaterial.Description}" />
+                                    <DataGridTextColumn Header="MATERIAL" Width="165" Binding="{Binding SelectedMaterial.Description}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Margin" Value="3,0,3,0"/>
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
                                     <DataGridTextColumn Header="W" Width="35" Binding="{Binding Width}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="TextAlignment" Value="Center" />
+                                                <Setter Property="Margin" Value="3,0,3,0"/>
                                                 <Setter Property="TextWrapping" Value="Wrap"/>
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
@@ -195,7 +201,7 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Header="FINISHING" IsReadOnly="True" Width="170" Binding="{Binding SelectedFinishing.Description}" >
+                                    <DataGridTextColumn Header="FINISHING" IsReadOnly="True" Width="270" Binding="{Binding SelectedFinishing.Description}" >
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="Margin" Value="5,0,5,0" />
@@ -215,34 +221,27 @@
                             <ColumnDefinition Width="75"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <Grid Grid.Column="0" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <Border BorderBrush="Black" BorderThickness="2" Grid.RowSpan="2" VerticalAlignment="Center" Padding="2">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0">
-                                        <TextBlock TextWrapping="Wrap" Text="ATTENTION" TextElement.FontWeight="Medium" TextBlock.FontSize="13" TextAlignment="Center" />
-                                    </Grid>
-                                    <Grid Grid.Row="1">
-                                        <TextBlock TextWrapping="Wrap" Text="Please keep this invoice and used to take your order," TextBlock.FontSize="12" TextElement.FontWeight="Normal" TextAlignment="Center" TextElement.FontSize="11" />
-                                    </Grid>
-                                    <Grid Grid.Row="2">
-                                        <TextBlock TextWrapping="Wrap" Text="without a receipt, we cannot serve the retrieval of your goods." TextBlock.FontSize="12" TextElement.FontWeight="Normal" TextAlignment="Center" TextElement.FontSize="11"/>
-                                    </Grid>
+ 
+                        <Border BorderBrush="Black" SnapsToDevicePixels="True"
+                                    BorderThickness="1" Grid.RowSpan="2" VerticalAlignment="Center" Height="70" Padding="2">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <TextBlock TextWrapping="Wrap" Text="ATTENTION" TextElement.FontWeight="Medium" TextBlock.FontSize="13" TextAlignment="Center" />
                                 </Grid>
-                            </Border>
-
-                        </Grid>
-
+                                <Grid Grid.Row="1">
+                                    <TextBlock TextWrapping="Wrap" Text="Please keep this invoice and used to take your order," TextBlock.FontSize="12" TextElement.FontWeight="Normal" TextAlignment="Center" TextElement.FontSize="11" />
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <TextBlock TextWrapping="Wrap" Text="without a receipt, we cannot serve the retrieval of your goods." TextBlock.FontSize="12" TextElement.FontWeight="Normal" TextAlignment="Center" TextElement.FontSize="11"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        
                         <!--Subtotal-->
                         <Grid Grid.Column="3" Margin="3" TextBlock.FontSize="14">
                             <Grid.RowDefinitions>

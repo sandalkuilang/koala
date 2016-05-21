@@ -4,15 +4,15 @@
                     xmlns:Converters="clr-namespace:MahApps.Metro.Converters">
 
    
-    <Style TargetType="{x:Type DataGridColumnHeader}"> 
+    <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="FontWeight"
-                Value="SemiBold" />
+                Value="Regular" />
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
         <Setter Property="MinWidth"
                 Value="0" />
         <Setter Property="MinHeight"
-                Value="25" />
+                Value="23" />
         <Setter Property="Foreground"
                 Value="Black" />
         <Setter Property="Cursor"
@@ -22,11 +22,11 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Padding"
-                Value="10,4,-10,7" />
+                Value="10,4,-10,3" />
         <Setter Property="Margin"
-                Value="-2,-2, -1,0" />
+                Value="-2,-2, 0,0" />
         <Setter Property="BorderThickness"
-                Value="2" />
+                Value="1" />
         <Setter Property="BorderBrush"
                 Value="Black" />
         <Setter Property="Background"
@@ -39,6 +39,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
+                        
                         <Border x:Name="BackgroundBorder"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Grid.ColumnSpan="2"
@@ -85,14 +86,14 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MetroDataGridCell"
+    <!--<Style x:Key="MetroDataGridCell"
            TargetType="{x:Type DataGridCell}"> 
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="BorderBrush"
                 Value="Black" />
         <Setter Property="BorderThickness"
-                Value="2" />
+                Value="1" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
@@ -119,6 +120,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter> 
-    </Style>
+    </Style>-->
     
 </ResourceDictionary>
