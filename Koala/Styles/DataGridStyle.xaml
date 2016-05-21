@@ -22,9 +22,9 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Padding"
-                Value="10,4,0,7" />
+                Value="10,4,-10,7" />
         <Setter Property="Margin"
-                Value="-2,-2,-10,0" />
+                Value="-2,-2, -1,0" />
         <Setter Property="BorderThickness"
                 Value="2" />
         <Setter Property="BorderBrush"

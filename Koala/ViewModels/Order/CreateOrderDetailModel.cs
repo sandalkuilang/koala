@@ -651,7 +651,8 @@ namespace Koala.ViewModels.Order
                     IsBusy = true;
                     if (AddingOrderDetail != null)
                         AddingOrderDetail(this, (CreateOrderDetailModel)this.Clone());
-                     
+
+                    InitializeModel();
                     IsBusy = false;
                 });
             } 
@@ -771,15 +772,19 @@ namespace Koala.ViewModels.Order
             this.Title = string.Empty; 
             this.Deadline = DateTime.Now;
             this.CreatedDate = DateTime.Now; 
-            
             Qty = 1; 
-            IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
-            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
-            Finishing = db.Query<KeyValueOption>("GetFinishing");
-            Size = db.Query<KeyValueOption>("GetSize");
-            MaterialMaster = db.Query<MaterialType>("GetMaterial");
-            Material = MaterialMaster.GroupBy(x => x.Id).Select(d => d.First()).ToList();
-            db.Close();
+
+            if (Finishing == null || MaterialMaster ==  null || Material == null)
+            {
+                IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
+                IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+                Finishing = db.Query<KeyValueOption>("GetFinishing");
+                Size = db.Query<KeyValueOption>("GetSize");
+                MaterialMaster = db.Query<MaterialType>("GetMaterial");
+                Material = MaterialMaster.GroupBy(x => x.Id).Select(d => d.First()).ToList();
+                db.Close();
+            } 
+            
         }
 
 
