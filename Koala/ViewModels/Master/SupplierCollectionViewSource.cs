@@ -11,7 +11,7 @@ namespace Koala.ViewModels.Master
         public override void OnCreate()
         {
             Supplier model = new Supplier();
-            model.SupplierId = GenerateId(3, "SP");
+            model.Id = GenerateId(3, "SP");
             IDialogService dialog = ObjectPool.Instance.Resolve<IDialogService>();
             if (dialog.ShowDialog<Views.Dialogs.Supplier>(model).Value == true)
             {
@@ -28,7 +28,7 @@ namespace Koala.ViewModels.Master
                 {
                     db.Execute("InsertSupplier", new
                     {
-                        SupplierId = model.SupplierId,
+                        SupplierId = model.Id,
                         Name = model.Name,
                         Address = model.Address,
                         Telp = model.Telp,
@@ -64,7 +64,7 @@ namespace Koala.ViewModels.Master
                         {
                             db.Execute("DeleteSupplier", new
                             {
-                                SupplierId = item.SupplierId
+                                SupplierId = item.Id
                             });
                         }
                         catch { }
@@ -93,10 +93,11 @@ namespace Koala.ViewModels.Master
                     {
                         db.Execute("UpdateSupplier", new
                         {
-                            SupplierId = model.SupplierId,
+                            SupplierId = model.Id,
                             Name = model.Name,
                             Address = model.Address,
-                            Telp = model.Telp
+                            Telp = model.Telp,
+                            Active = model.Active
                         });
                     }
                     catch { }

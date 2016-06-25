@@ -11,6 +11,7 @@ namespace Koala.Core.Credential.Custom
         public const string CAN_VIEW_ORDER = "CanViewOrder";
         public const string CAN_VIEW_REPORT = "CanViewReport";
         public const string CAN_VIEW_MASTER = "CanViewMaster";
+        public const string CAN_VIEW_STOCK = "CanViewStock";
     }
 
 }

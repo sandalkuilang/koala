@@ -9,11 +9,12 @@ namespace Koala.ViewModels.Master
 {
     public class Supplier : BaseGridRow
     {
-        public string SupplierId { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Telp { get; set; }
-        
-        
+        public int Active{ get; set; }
+
+
     }
 }

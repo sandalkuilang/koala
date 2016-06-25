@@ -1,5 +1,7 @@
-﻿SELECT SupplierId,
+﻿SELECT Id,
 	Name,
 	Address,
-	Telp
+	Telp,
+	Active
 FROM supplier
+WHERE Active = 1

@@ -145,8 +145,8 @@ namespace Koala.ViewModels.Master
             if (mstrType == 100 || masterTypeSync == MasterType.Size)
                 Size.Source = db.Query<KeyValueOption>("GetSize").Convert<KeyValueOption>();
 
-            //if (mstrType == 100 || masterTypeSync == MasterType.Supplier)
-            //    Supplier.Source = db.Query<Supplier>("GetSupplier").Convert<Supplier>();
+            if (mstrType == 100 || masterTypeSync == MasterType.Supplier)
+                Supplier.Source = db.Query<Supplier>("GetSupplier").Convert<Supplier>();
 
             db.Close(); 
         }

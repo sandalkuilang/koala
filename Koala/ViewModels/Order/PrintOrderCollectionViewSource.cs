@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Krokot.Database;
+using Koala.ViewModels.User;
 
 namespace Koala.ViewModels.Order
 {
@@ -43,6 +44,7 @@ namespace Koala.ViewModels.Order
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>(); 
+            UserModel user = ObjectPool.Instance.Resolve<UserModel>();
             foreach (CreateOrderModel order in Source.ToList())
             {
                 if (order.IsSelected)
@@ -57,7 +59,18 @@ namespace Koala.ViewModels.Order
 
                     /// update list
                     order.Status = "Q";
-                    
+                     
+                    foreach (CreateOrderDetailModel detail in order.Details.Source)
+                    {
+                        db.Execute("InsertTransactionStock", new
+                        {
+                            MaterialId = detail.MaterialId,
+                            QualityId = detail.QualityId,
+                            Qty = detail.Qty,
+                            CreatedBy = user.Username,
+                        });
+                    }
+
                     orderCollaborator.PrintOrder.source.Remove(order);
                     orderCollaborator.Queue.Source.Add(order);
                 }

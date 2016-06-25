@@ -2,4 +2,5 @@
 SET Name = @Name
     ,Telp = @Telp
     ,Address = @Address
- WHERE  [SupplierId] = @SupplierId
+	,Active = @Active
+ WHERE  [Id] = @SupplierId

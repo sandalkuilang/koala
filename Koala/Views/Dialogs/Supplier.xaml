@@ -12,7 +12,7 @@
         ShowIconOnTitleBar="False"
         ShowInTaskbar="False"  
         GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="Supplier" Height="240" Width="400">
+        Title="Supplier" Height="260" Width="400">
 
     <Control.Resources>
         <ResourceDictionary>
@@ -40,6 +40,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="ID"/>
@@ -47,7 +48,7 @@
                              Width="80"
                              Margin="0,0,0,5"
                              IsReadOnly="True"
-                             Text="{Binding Path=SupplierId, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding Path=Id, UpdateSourceTrigger=PropertyChanged}"
                              HorizontalAlignment="Left"/>
 
                     <Label Grid.Row="1" Grid.Column="0" Content="Name"/>
@@ -79,8 +80,13 @@
                             <rules:AllowableCharactersTextBoxBehavior RegularExpression="^[0-9;]+$" MaxLength="870" />
                         </i:Interaction.Behaviors>
                     </TextBox>
+
+                    <Label Grid.Row="4" Grid.Column="0" Content="Active"/>
+                    <CheckBox Grid.Row="4" Grid.Column="1" 
+                              IsChecked="{Binding Path=Active, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                     
                     
-                    <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                    <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
                                 Orientation="Horizontal" Margin="0 20 0 0">
                         <Button x:Name="btnOK" Content="OK"  
                                 Command="{Binding SaveCommand}"

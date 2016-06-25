@@ -15,6 +15,7 @@ using ReactiveUI;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.ComponentModel;
+using Koala.ViewModels.User;
 
 namespace Koala.ViewModels.Order
 {
@@ -304,8 +305,7 @@ namespace Koala.ViewModels.Order
         {
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
-
-            foreach(CreateOrderDetailModel detail in this.details.Source)
+            foreach (CreateOrderDetailModel detail in this.details.Source)
             {
                 if (detail.IsSelected)
                 { 

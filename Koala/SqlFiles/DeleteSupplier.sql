@@ -1,2 +1,2 @@
 ﻿DELETE FROM Supplier
-WHERE SupplierId = @SupplierId
+WHERE Id = @SupplierId

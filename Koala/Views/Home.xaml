@@ -34,6 +34,9 @@
             <TabItem Header="master" x:Name="masterMenuItem" Visibility="{op:AuthorizationToVisibility {x:Static a:AccessLevel.CAN_VIEW_MASTER}}">
                 <Views:MasterLayout/>
             </TabItem>
+            <TabItem Header="stock" x:Name="stockMenuItem" Visibility="{op:AuthorizationToVisibility {x:Static a:AccessLevel.CAN_VIEW_MASTER}}">
+                <Views:StockLayout/>
+            </TabItem>
         </Controls:MetroAnimatedSingleRowTabControl>
     </Grid>
     

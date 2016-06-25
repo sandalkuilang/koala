@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Krokot.Database;
+using Koala.ViewModels.User;
 
 namespace Koala.ViewModels.Order
 {
@@ -45,7 +46,7 @@ namespace Koala.ViewModels.Order
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             //bool updated = false;
 
-            OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();  
+            OrderCollaborator orderCollaborator = ObjectPool.Instance.Resolve<OrderCollaborator>();
             foreach (CreateOrderModel order in Source.ToList())
             {
                 if (order.IsSelected)
@@ -67,6 +68,7 @@ namespace Koala.ViewModels.Order
                             Status = status,
                             Queue = 2
                         });
+
                         orderCollaborator.Queue.Source.Remove(order);
                         orderCollaborator.PaymentOrder.Source.Add(order);
                     }

@@ -151,8 +151,7 @@ namespace Koala.ViewModels.Order
             PaymentOrderMaster = new FinishedOrderCollectionViewSource();
             QueueMaster = new QueueCollectionViewSource();
              
-            CreateOrderCommand = new DelegateCommand(new Action(OnCreateOrder));
-            //RefreshCommand = new DelegateCommand(new Action(OnRefresh));
+            CreateOrderCommand = new DelegateCommand(new Action(OnCreateOrder)); 
             RefreshCommand = ReactiveCommand.CreateAsyncTask(async _ => 
             {
                 IndexRefreshing = -1;
@@ -160,12 +159,8 @@ namespace Koala.ViewModels.Order
             });
            
             SearchCommand = new DelegateCommand(new Action(OnSearch));
-
-            //Task.Factory.StartNew(() => 
-            //{
-            //    Thread.Sleep(0);
-            RefreshCommand.Execute(null);
-            //});
+             
+            RefreshCommand.Execute(null); 
 
             SelectedRange = Range.SingleOrDefault(x => x.Id == "3");
         }
@@ -179,17 +174,10 @@ namespace Koala.ViewModels.Order
         private QueueCollectionViewSource QueueMaster;
         private FinishedOrderCollectionViewSource PaymentOrderMaster;
         private void OnSearch()
-        {
-            //Task.Factory.StartNew(() =>
-            //{
+        { 
             PrintOrder.Source = OrderSearchEngine.Filter(PrintOrderMaster.Source, searchInput);
             PaymentOrder.Source = OrderSearchEngine.Filter(PaymentOrderMaster.Source, searchInput);
-            Queue.Source = OrderSearchEngine.Filter(QueueMaster.Source, searchInput);
-            //}).ContinueWith(x =>
-            //{
-            //if (string.IsNullOrEmpty(searchInput))
-            //    Pull();
-            //});
+            Queue.Source = OrderSearchEngine.Filter(QueueMaster.Source, searchInput); 
         }
 
         private async Task OnRefresh()
@@ -231,9 +219,7 @@ namespace Koala.ViewModels.Order
 
 
         public void Pull()
-        {
-            //Task.Factory.StartNew(() => 
-            //{
+        { 
             IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
             IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
             MutableObservableCollection<CreateOrderModel> newPaymentOrder = new MutableObservableCollection<CreateOrderModel>();
@@ -285,8 +271,7 @@ namespace Koala.ViewModels.Order
                 } 
             }
 
-            db.Close(); 
-           // }); 
+            db.Close();  
         }
 
         private void GetDetails(MutableObservableCollection<CreateOrderModel> source, IDataCommand db)

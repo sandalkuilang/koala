@@ -58,7 +58,8 @@ namespace Koala
                             accessLevel = new string[] {
                                 AccessLevel.CAN_VIEW_ORDER,
                                 AccessLevel.CAN_VIEW_MASTER,
-                                AccessLevel.CAN_VIEW_REPORT
+                                AccessLevel.CAN_VIEW_REPORT,
+                                AccessLevel.CAN_VIEW_STOCK
                             }; 
                             break;
                         default:
@@ -66,7 +67,8 @@ namespace Koala
                             };
                             break;
                     }
-                    db.Close();
+                    ObjectPool.Instance.Register<UserModel>().ImplementedBy(result[0]);
+                    db.Close(); 
                     AuthorizationProvider.Initialize<DefaultAuthorizationProvider>(accessLevel);
                     Current.MainWindow = new MainWindow();
                     Current.MainWindow.Show();

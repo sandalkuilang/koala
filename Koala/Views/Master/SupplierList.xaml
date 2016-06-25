@@ -103,7 +103,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="70" Binding="{Binding SupplierId}" />
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="70" Binding="{Binding Id}" />
                     <DataGridTextColumn Header="Name" IsReadOnly="True" Width="250" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Address" IsReadOnly="True" Width="400" Binding="{Binding Address}" />
                     <DataGridTextColumn Header="Telp." IsReadOnly="True" Width="120" Binding="{Binding Telp}" /> 

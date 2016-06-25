@@ -11,6 +11,7 @@ using Koala.ViewModels.Report;
 using Krokot.Database;
 using Krokot.Database.SqlLoader;
 using Koala.Core.Credential;
+using Koala.ViewModels.Stock;
 
 namespace Koala.Core
 {
@@ -43,10 +44,12 @@ namespace Koala.Core
             OrderCollaborator order = new OrderCollaborator();
             MasterCollaborator master = new MasterCollaborator();
             DashboardCollaborator report = new DashboardCollaborator();
+            StockCollaborator stock = new StockCollaborator();
 
             ObjectPool.Instance.Register<OrderCollaborator>().ImplementedBy(order);
             ObjectPool.Instance.Register<MasterCollaborator>().ImplementedBy(master);
             ObjectPool.Instance.Register<DashboardCollaborator>().ImplementedBy(report);
+            ObjectPool.Instance.Register<StockCollaborator>().ImplementedBy(stock);
         }
 
         private void InitializeAudio()

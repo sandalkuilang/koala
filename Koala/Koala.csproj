@@ -248,6 +248,12 @@
     <Compile Include="ViewModels\Report\SeriesData.cs" />
     <Compile Include="ViewModels\Report\TopConsumerViewSource.cs" />
     <Compile Include="ViewModels\Report\TopMaterialViewSource.cs" />
+    <Compile Include="ViewModels\Stock\StockCollaborator.cs" />
+    <Compile Include="ViewModels\Stock\StockSearchEngine.cs" />
+    <Compile Include="ViewModels\Stock\StockType.cs" />
+    <Compile Include="ViewModels\Stock\SummaryCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Stock\TransactionStock.cs" />
+    <Compile Include="ViewModels\Stock\TransactionStockViewSource.cs" />
     <Compile Include="ViewModels\User\UserModel.cs" />
     <Compile Include="ViewModels\ValidationRules\AuthorizationDelegateCommand.cs" />
     <Compile Include="ViewModels\ValidationRules\AuthorizationProvider.cs" />
@@ -354,6 +360,15 @@
     <Compile Include="Views\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StockLayout.xaml.cs">
+      <DependentUpon>StockLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stock\Summary.xaml.cs">
+      <DependentUpon>Summary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stock\Transaction.xaml.cs">
+      <DependentUpon>Transaction.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -383,6 +398,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\StockLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stock\Summary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stock\Transaction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Resource Include="Images\completed.png" />
     <Resource Include="Images\uncompleted.png" />
     <EmbeddedResource Include="SqlFiles\UpdateOrderDetailStatus.sql">
@@ -581,6 +608,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SqlFiles\GetRemainingStockInHand.sql" />
+    <EmbeddedResource Include="SqlFiles\InsertTransactionStock.sql" />
+    <EmbeddedResource Include="SqlFiles\GetSummary.sql" />
+    <EmbeddedResource Include="SqlFiles\GetTransactionStock.sql" />
     <EmbeddedResource Include="SqlFiles\DeleteSupplier.sql" />
     <EmbeddedResource Include="SqlFiles\GetSupplier.sql" />
     <EmbeddedResource Include="SqlFiles\InsertSupplier.sql" />
