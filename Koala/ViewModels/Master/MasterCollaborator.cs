@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Krokot.Database;
+using Koala.ViewModels.Stock;
 
 namespace Koala.ViewModels.Master
 {
@@ -77,6 +78,19 @@ namespace Koala.ViewModels.Master
             }
         }
 
+        private StockCollectionViewSource stock;
+        public StockCollectionViewSource Stock
+        {
+            get
+            {
+                return stock;
+            }
+            set
+            {
+                NotifyIfChanged(ref stock, value);
+            }
+        }
+
         public MasterCollaborator()
         {
             Size = new SizeCollectionViewSource();
@@ -87,11 +101,18 @@ namespace Koala.ViewModels.Master
             material.SourceChanged += material_SourceChanged;
             Finishing = new FinishingCollectionViewSource();
             Finishing.SourceChanged += Finishing_SourceChanged;
-            
+            Stock = new StockCollectionViewSource();
+            Stock.SourceChanged += Stock_SourceChanged; 
             Supplier = new SupplierCollectionViewSource();
             supplier.SourceChanged += Supplier_SourceChanged;
 
             masterTypeSync = MasterType.All;
+            Pull();
+        }
+
+        private void Stock_SourceChanged(object sender, EventArgs e)
+        {
+            masterTypeSync = MasterType.Stock;
             Pull();
         }
 
@@ -147,6 +168,9 @@ namespace Koala.ViewModels.Master
 
             if (mstrType == 100 || masterTypeSync == MasterType.Supplier)
                 Supplier.Source = db.Query<Supplier>("GetSupplier").Convert<Supplier>();
+
+            if (mstrType == 100 || masterTypeSync == MasterType.Stock)
+                Stock.Source = db.Query<TransactionStock>("GetSummary").Convert<TransactionStock>();
 
             db.Close(); 
         }

@@ -13,6 +13,7 @@ namespace Koala.ViewModels.Master
         Finishing,
         Size,
         Supplier,
+        Stock,
         All
     }
 }

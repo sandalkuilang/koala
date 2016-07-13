@@ -60,7 +60,7 @@
                     <TabItem>
                         <TabItem.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="print quality" FontSize="18" Margin="0,0,10,0"/>
+                                <TextBlock Text="quality" FontSize="18" Margin="0,0,10,0"/>
                             </DataTemplate>
                         </TabItem.HeaderTemplate>
                         <TabItem.ContentTemplate>
@@ -90,6 +90,18 @@
                         <TabItem.ContentTemplate>
                             <DataTemplate>
                                 <Views:SupplierList DataContext="{Binding Path=Supplier}"/>
+                            </DataTemplate>
+                        </TabItem.ContentTemplate>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="stock in" FontSize="18" Margin="0,0,10,0"/>
+                            </DataTemplate>
+                        </TabItem.HeaderTemplate>
+                        <TabItem.ContentTemplate>
+                            <DataTemplate>
+                                <Views:StockList DataContext="{Binding Path=Stock}"/>
                             </DataTemplate>
                         </TabItem.ContentTemplate>
                     </TabItem>

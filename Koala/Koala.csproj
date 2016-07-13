@@ -218,6 +218,7 @@
     <Compile Include="ViewModels\Master\QualityCollectionViewSource.cs" />
     <Compile Include="ViewModels\Master\QualityType.cs" />
     <Compile Include="ViewModels\Master\SizeCollectionViewSource.cs" />
+    <Compile Include="ViewModels\Master\StockCollectionViewSource.cs" />
     <Compile Include="ViewModels\Master\Supplier.cs" />
     <Compile Include="ViewModels\Master\SupplierCollectionViewSource.cs" />
     <Compile Include="ViewModels\MutableObservableCollection.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="ViewModels\Report\SeriesData.cs" />
     <Compile Include="ViewModels\Report\TopConsumerViewSource.cs" />
     <Compile Include="ViewModels\Report\TopMaterialViewSource.cs" />
+    <Compile Include="ViewModels\Stock\StockIn.cs" />
     <Compile Include="ViewModels\Stock\StockCollaborator.cs" />
     <Compile Include="ViewModels\Stock\StockSearchEngine.cs" />
     <Compile Include="ViewModels\Stock\StockType.cs" />
@@ -324,6 +326,9 @@
     <Compile Include="Views\Master\SizeList.xaml.cs">
       <DependentUpon>SizeList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Master\StockList.xaml.cs">
+      <DependentUpon>StockList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Master\SupplierList.xaml.cs">
       <DependentUpon>SupplierList.xaml</DependentUpon>
     </Compile>
@@ -398,6 +403,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Master\StockList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StockLayout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -608,6 +617,8 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SqlFiles\DeleteStock.sql" />
+    <EmbeddedResource Include="SqlFiles\InsertStock.sql" />
     <EmbeddedResource Include="SqlFiles\GetRemainingStockInHand.sql" />
     <EmbeddedResource Include="SqlFiles\InsertTransactionStock.sql" />
     <EmbeddedResource Include="SqlFiles\GetSummary.sql" />

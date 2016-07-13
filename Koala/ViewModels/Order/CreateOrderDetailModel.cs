@@ -21,6 +21,7 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Diagnostics;
 using System.ComponentModel;
+using Koala.ViewModels.Stock;
 
 namespace Koala.ViewModels.Order
 {
@@ -143,6 +144,8 @@ namespace Koala.ViewModels.Order
                 }
                 else
                     Price = 0;
+
+                CheckRemainingStock();
             }
         }
          
@@ -160,6 +163,18 @@ namespace Koala.ViewModels.Order
             }
         }
 
+        private int remainingStock;
+        public int RemainingStock
+        {
+            get
+            {
+                return remainingStock;
+            }
+            set
+            {
+                NotifyIfChanged(ref remainingStock, value);
+            }
+        }
 
         private MaterialType selectedMaterial;
         public MaterialType SelectedMaterial
@@ -193,8 +208,29 @@ namespace Koala.ViewModels.Order
                     {
                         SelectedQuality = Quality.FirstOrDefault(); 
                     }
+
+                    CheckRemainingStock();
                 }
             }
+        }
+
+        private void CheckRemainingStock()
+        {
+            if (selectedMaterial == null || selectedQuality == null)
+                return;
+
+            IDbManager dbManager = ObjectPool.Instance.Resolve<IDbManager>();
+            IDataCommand db = dbManager.GetDatabase(ApplicationSettings.Instance.Database.DefaultConnection.Name);
+            List<TransactionStock> stocks = db.Query<TransactionStock>("GetRemainingStockInHand", new { MaterialId = selectedMaterial.Id, QualityId = selectedQuality.Id });
+            if (stocks.Any())
+            {
+                RemainingStock = stocks[0].Qty;
+            }
+            else
+            {
+                RemainingStock = 0;
+            }
+            db.Close(); 
         }
 
         private KeyValueOption selectedSize;
@@ -863,7 +899,7 @@ namespace Koala.ViewModels.Order
                         }
                         break;
                     case "SelectedQuality":
-                        if (this.SelectedMaterial == null)
+                        if (this.SelectedQuality == null)
                         {
                             errorMessage = String.Format(messageFormat, "Quality");
                         }
@@ -874,9 +910,17 @@ namespace Koala.ViewModels.Order
                             errorMessage = String.Format(messageFormat, "Finishing");
                         }
                         break;
+                    case "Qty":
+                        if (this.qty == 0)
+                        {
+                            errorMessage = String.Format(messageFormat, "Qty");
+                        }
+                        break;
                 }
                 return errorMessage;
             }
         }
+
+
     }
 }

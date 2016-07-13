@@ -105,20 +105,22 @@
                                 </i:Interaction.Behaviors>
                             </TextBox>
                         </StackPanel>
-
-
+ 
                         <Label Grid.Row="3" Grid.Column="0" Content="Quantity"/>
                         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-                            <Controls:NumericUpDown Value="{Binding Qty, Mode=TwoWay}" 
-                                        Minimum="1" 
+                            <Controls:NumericUpDown Value="{Binding Qty, Mode=TwoWay, ValidatesOnDataErrors=True}" 
+                                        Minimum="0" 
                                         Height="25"
                                         Width="80"
                                         VerticalAlignment="Top"    
-                                        Maximum="9000" />
+                                        Maximum="{Binding RemainingStock}" />
                              
                             <Label Content="pcs"/>
                         </StackPanel>
 
+                        <Label Grid.Row="3" Margin="140,0,0,0"  Grid.Column="1" Content="{Binding RemainingStock}" FontWeight="Bold" FontFamily="Segoe UI Light" Foreground="Red"/>
+                        <Label Grid.Row="3" Margin="150,0,0,0"  Grid.Column="1" Content="Remaining item" FontWeight="Bold" FontFamily="Segoe UI Semibold" Foreground="Red"/>
+                        
                         <Label Grid.Row="4" Grid.Column="0" Content="Quality"/>
                         <ComboBox Grid.Row="4" Grid.Column="1" 
                                   Width="150" HorizontalAlignment="Left" Margin="0,0,0,10"

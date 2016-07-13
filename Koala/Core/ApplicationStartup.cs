@@ -90,6 +90,7 @@ namespace Koala.Core
             dialog.Register(new Views.Dialogs.PrintInvoice());
             dialog.Register(new Views.Dialogs.YesNo());
             dialog.Register(new Views.Dialogs.Supplier());
+            dialog.Register(new Views.Dialogs.Stock());
 
             ObjectPool.Instance.Register<IDialogService>().ImplementedBy(dialog);
         }

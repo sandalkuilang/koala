@@ -24,8 +24,7 @@ namespace Koala.Views.Master
     {
         public SupplierList()
         {
-            InitializeComponent();
-            InitializeComponent();
+            InitializeComponent(); 
             MasterCollaborator model = ObjectPool.Instance.Resolve<MasterCollaborator>();
             if (this.DataContext == null && model != null)
             {
